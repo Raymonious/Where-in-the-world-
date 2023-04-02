@@ -2,6 +2,34 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import Sidebar from './sidebarPresenter.jsx'
+
+export default function App() {
+
+  //useEffect(lifeACB, [])
+
+  return (
+        <Sidebar className = "navBar"></Sidebar>
+  );
+
+  function lifeACB(){
+      resolvePromise(firebaseModelPromise(myModel), promiseState)
+      updateOnPromise(forceRerenderACB)
+  }
+
+  function updateOnPromise(rerender) {
+      if (promiseState.promise) {
+          promiseState.promise.then(rerender).catch(rerender)
+          rerender()
+      }
+  }
+
+  function forceRerenderACB(){
+      rerender(new Object())
+  }
+}
+
+/*
 
 function App() {
   const [count, setCount] = useState(0)
@@ -33,3 +61,4 @@ function App() {
 }
 
 export default App
+*/

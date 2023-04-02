@@ -1,42 +1,78 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+
+
+@import url(https://fonts.googleapis.com/css?family=Raleway);
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+
+
+.navBar{
+  padding-left: 200px;
+  padding-right: 80px;
+  padding-bottom: 0px;
+  padding-top: 0px;
+  overflow: hidden;
+  border-bottom: 1px solid;
+
+}
+
+li.tab{
+  float: right;
+  display: inline;
+  padding: 30px;
+  padding-bottom: 20px;
+  font-family: 'Raleway';
+}
+
+li.title{
+  float: left;
+  font-size: xx-large;
+  display: inline;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  font-family: 'Satisfy';
+}
+li.title a{
+  color: green;
+  vertical-align: top;
+  
+}
+
+li.tab a{
+  color: rgb(20, 27, 33);
+}
+
+li.tab:hover{
+  background-color: rgb(243, 243, 243);
+  
+}
+
+.title{
+  color: rgb(95, 177, 75);
+  -webkit-text-stroke: 0.7px rgb(95, 177, 75);
+}
+
+
+.header a {
+  float: left;
   text-align: center;
+  color: black;
+  padding: 15px;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 25px;
+  border-radius: 30px;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.header a:hover {
+  text-decoration: none;
+  color: rgb(223, 73, 47);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.header-right {
+  float: right;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+.header-right a:hover {
+  background-color: rgb(243, 243, 243);
+  color:black;
+  text-decoration: none;
 }
