@@ -9,7 +9,7 @@ const app = initializeApp(firebaseConfig)
 const db = getDatabase(app)
 const PATH = "testData/"
 
-const playerLongestStreak = Recoil.atom({
+const playerLongestStreak = atom({
     key: "LongestStreak",
     default: 10,
     effects_UNSTABLE: [

@@ -42,3 +42,4 @@ const playerLatestHighScore = atom({
     default: 0
 });
 
+export {currentDifficulty, targetCountryState, countryFacts, playerLatestStreak, playerLatestHighScore}

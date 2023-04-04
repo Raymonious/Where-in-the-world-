@@ -1,4 +1,4 @@
-import {BASE_URL, API_KEY} from "apiConfig.js"
+import {BASE_URL, API_KEY} from "./apiConfig.js"
 
 const apiParams = {
     method: "GET",
