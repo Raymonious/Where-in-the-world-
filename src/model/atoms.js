@@ -19,7 +19,7 @@ const currentDifficulty = atom({
 
 const targetCountryState = selector({
     key: "CurrentCountryName",
-    default: "Sweden",
+    default: null,
     get: function (recoil) {
         return getCountry(recoil.get(currentDifficulty))
     }
@@ -27,9 +27,9 @@ const targetCountryState = selector({
 
 const countryFacts = selector({
     key: "CurrentCountryFacts",
-    default: ["they like meatballs", "their population is 10 million", "they are nice people", "this is mock data", "in the name of testing"],
+    default: [],
     get: function (recoil) {
-        return getFactsFromApiCall()
+        return getFactsFromApiCall();
     }
 });
 

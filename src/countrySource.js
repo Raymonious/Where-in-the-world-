@@ -1,4 +1,8 @@
 import {BASE_URL, API_KEY} from "./apiConfig.js"
+import {targetCountryState} from "./model/atoms.js";
+import {useRecoilState} from "recoil";
+
+// const [_, setTarget] = useRecoilState(targetCountryState)
 
 const apiParams = {
     method: "GET",
@@ -28,9 +32,18 @@ export function getCountry(difficulty){
 }
 
 export function getFactsFromApiCall(URL){ // utility function
-    function handleHTTPResponseACB(respons){
-        if (respons.status !== 200) throw new Error("Problems with the API, status: " + respons.status);
-        else return respons.json();
+    function handleHTTPResponseACB(response){
+        if (response.status !== 200) throw new Error("Problems with the API, status: " + response.status);
+        else {
+            // console.log(response.json())
+            return response.json().then(res => {
+                // setTarget(res.contents.subcategory)
+                return res.contents.fact
+            });
+        }
     }
-    return  ["they like meatballs", "their population is 10 million", "they are nice people", "this is mock data", "in the name of testing"]// fetch(BASE_URL + URL, apiParams).then(handleHTTPResponseACB)
+    console.log(BASE_URL + URL)
+    return fetch(BASE_URL, apiParams).then(handleHTTPResponseACB)
+    //["they like meatballs", "their population is 10 million", "they are nice people", "this is mock data", "in the name of testing"]
+    // fetch(BASE_URL + URL, apiParams).then(handleHTTPResponseACB)
 }
