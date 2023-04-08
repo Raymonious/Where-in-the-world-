@@ -4,7 +4,7 @@ function testView(prop){
 
     return (
         <div>
-            {/*{console.log(prop)}*/}
+            {console.log(prop)}
             <div className="persitant atoms">
                 <h1>This is an example of the persistant atoms.</h1>
                 <span>
@@ -20,13 +20,16 @@ function testView(prop){
                 <br/>
                 <span>We also have a global high score list in firebase</span>
                 {prop.gHighScore.map((score) => {
-                    return <span> {score}</span>
+                    return <span key={score}> {score}</span>
                 })}
                 <br/>
                 <span>And here is the longest streak leaderboard</span>
                 {prop.gLongestStreak.map((streak) => {
-                    return <span> {streak}</span>
+                    return <span key={streak}> {streak}</span>
                 })}
+            </div>
+            <div className={"Regular Atoms"}>
+                <span>{prop.factList}</span>
             </div>
             <div>
 

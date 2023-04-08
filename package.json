@@ -10,15 +10,22 @@
   },
   "dependencies": {
     "firebase": "^9.19.1",
+<<<<<<< HEAD
     "framer-motion": "^6.5.1",
+=======
+>>>>>>> 74e48caa673f9c5a57d4a7bc569cc92487781b64
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.10.0",
     "recoil": "^0.7.7",
+<<<<<<< HEAD
     "sort-by": "^1.2.0",
     "voronoi": "^1.0.0"
+=======
+    "sort-by": "^1.2.0"
+>>>>>>> 74e48caa673f9c5a57d4a7bc569cc92487781b64
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

@@ -41,7 +41,11 @@ import FavDetail from './react/FavDetailPresenter';
 >>>>>>> 99512f54fe63a2c4bab3b2a962fa0fe6c80af680
 
 function App() {
+<<<<<<< HEAD
 
+=======
+    // const [count, setCount] = useState(0)
+>>>>>>> 74e48caa673f9c5a57d4a7bc569cc92487781b64
 
     return (
         <div>
@@ -54,7 +58,32 @@ function App() {
                     </div>
                 </Suspense>
             </RecoilRoot>
+<<<<<<< HEAD
         
+=======
+
+
+            {/*<div>*/}
+            {/*    <a href="https://vitejs.dev" target="_blank">*/}
+            {/*        <img src={viteLogo} className="logo" alt="Vite logo"/>*/}
+            {/*    </a>*/}
+            {/*    <a href="https://reactjs.org" target="_blank">*/}
+            {/*        <img src={reactLogo} className="logo react" alt="React logo"/>*/}
+            {/*    </a>*/}
+            {/*</div>*/}
+            {/*<h1>Vite + React</h1>*/}
+            {/*<div className="card">*/}
+            {/*    <button onClick={() => setCount((count) => count + 1)}>*/}
+            {/*        count is {count}*/}
+            {/*    </button>*/}
+            {/*    <p>*/}
+            {/*        Edit <code>src/App.jsx</code> and save to test HMR*/}
+            {/*    </p>*/}
+            {/*</div>*/}
+            {/*<p className="read-the-docs">*/}
+            {/*    Click on the Vite and React logos to learn more*/}
+            {/*</p>*/}
+>>>>>>> 74e48caa673f9c5a57d4a7bc569cc92487781b64
         </div>
     )
 }
