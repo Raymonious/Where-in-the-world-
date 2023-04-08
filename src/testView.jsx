@@ -35,7 +35,7 @@ function testView(prop){
     );
 
     function renderfavcCB(country){
-        return <span>{country} </span>
+        return <span key={country}>{country} </span>
     }
 
     function changeStreak(){
