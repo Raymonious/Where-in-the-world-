@@ -2,7 +2,10 @@ import React from 'react';
 
 export default function SidebarView(pikachu){
     return (
+<<<<<<< HEAD
         
+=======
+>>>>>>> 99512f54fe63a2c4bab3b2a962fa0fe6c80af680
         <ul className='navBar'>
           <li className='tab'><a href="#/about">About</a></li>
           <li className='tab'><a href="#/leaderboard">Leaderboard</a></li>
@@ -12,6 +15,7 @@ export default function SidebarView(pikachu){
         </ul>
     );
 }
+<<<<<<< HEAD
 /*
         <div>
          <button class = "button" disabled = {pikachu.number > 1 ? false : true} onClick = {minusNumACB} >-</button>
@@ -60,3 +64,5 @@ export default function SidebarView(pikachu){
 }
   
 }*/
+=======
+>>>>>>> 99512f54fe63a2c4bab3b2a962fa0fe6c80af680
