@@ -272,3 +272,8 @@ table{border-collapse:collapse;}
 .globe :hover {
   transform: scale(1.1);
 }
+
+.resultsPic{
+  width: 20%;
+  height: 20%;
+}

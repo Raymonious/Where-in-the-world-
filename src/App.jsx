@@ -8,22 +8,21 @@ import Home from './react/homePresenter.jsx'
 import Favourite from './react/favouritePresenter.jsx'
 import FavDetail from './react/FavDetailPresenter';
 import Results from './react/resultsPresenter';
+import Sidebar from './sidebarPresenter.jsx';
 
 
 function App() {
 
-
     return (
         <div>
             <RecoilRoot>
-               
                     <div className="flexParent">
+                    <div className='sepPage'>NavBar<Sidebar/></div>
+                    <div className="sepPage">HomePage<Home/></div>
+                    <Suspense fallback={<img src="http://www.csc.kth.se/~cristi/loading.gif"/>}>
                     <Suspense fallback={<img src="http://www.csc.kth.se/~cristi/loading.gif"/>}>
                     <div className="sepPage">Results<Results/></div>
                     </Suspense>
-
-                    <div className="sepPage">HomePage<Home/></div>
-                    <Suspense fallback={<img src="http://www.csc.kth.se/~cristi/loading.gif"/>}>
                     <div className="sepPage">FavouritePage<Favourite /></div>
                     </Suspense>
                     <Suspense fallback={<img src="http://www.csc.kth.se/~cristi/loading.gif"/>}>

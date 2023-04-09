@@ -61,9 +61,9 @@ function FavouriteView(aa) {
             
         <span key={country} id = {country + '1'} className = "fav" onClick={function() {showACB(country)}}> 
             <img className = "log" src = 'https://www.hangtimemedia.com/wp-content/uploads/2018/06/location-icon-png-3.png'></img>
-            <button onClick = {clickLocACB}> click to update </button>
             <img id={country + '2'} className = "img large" src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnz1YfNEZ_NxGWI5Xy3jmOdjbUQ2IPDYg52Q&usqp=CAU'/>
             <div className= "text">{country}</div>
+            <button onClick = {clickLocACB}> click to update </button>
             <span className = "none" id={country}>
                 <div className = "none1">
                     {aa.factList.summary[0]}

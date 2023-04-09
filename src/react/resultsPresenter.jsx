@@ -19,14 +19,16 @@ export default function Results(pikachu){
 
     return (
         <ResultsView curCountry = {curCountry} onNextCountry = {CountryModifierACB} list = {detail}
-        onAddFav = {FavAdderACB}/>
+        onAddFav = {FavAdderACB} favList/>
     );
 
+    /*rough iterator between easy, medium and hard levels and set atom currentDifficulty to switch to next country for the next round*/ 
     function CountryModifierACB(){
         setDiff(difficulty[num % 3]);
         setNum(num + 1);
     }
 
+    /*useSetRecoilState to set the targetCountryState atom with a new array including both the old ones and the newly added one*/ 
     function FavAdderACB(country){
         setFav((currentState) => [
             ...currentState,

@@ -1,5 +1,7 @@
 import React from 'react';
 
+/*Details of selected favorite country*/ 
+
 export default function FavDetailView(aa){
     return (
     <div className="detail">
