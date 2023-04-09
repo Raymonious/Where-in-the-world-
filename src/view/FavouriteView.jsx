@@ -63,12 +63,12 @@ function FavouriteView(aa) {
             <img className = "log" src = 'https://www.hangtimemedia.com/wp-content/uploads/2018/06/location-icon-png-3.png'></img>
             <img id={country + '2'} className = "img large" src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnz1YfNEZ_NxGWI5Xy3jmOdjbUQ2IPDYg52Q&usqp=CAU'/>
             <div className= "text">{country}</div>
-            <button onClick = {clickLocACB}> click to update </button>
+            
             <span className = "none" id={country}>
                 <div className = "none1">
                     {aa.factList.summary[0]}
                 </div>
-            <a className= "more" onClick={clickLocACB} href="">See more</a>
+            <a className= "more" onClick={clickLocACB} >See more</a>
             </span>
             <div>{/*(aa.listofDet(country))*/}</div>
         </span>
