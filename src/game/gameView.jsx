@@ -2,7 +2,7 @@ import React from "react";
 import {getFactsFromApiCall} from "../countrySource.js";
 
 function GameView(prop) {
-    console.log(prop)
+    // console.log(prop)
     return (
         <div>
             {headerText()}

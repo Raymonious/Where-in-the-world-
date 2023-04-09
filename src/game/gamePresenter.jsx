@@ -47,7 +47,7 @@ export default function Game() {
     }
 
     function guess() {
-        if (userGuess === target) {
+        if (userGuess.toLowerCase() === target.toLowerCase()) {
             // console.log(getFactsFromApiCall())
             setStatus("Correct! Well done")
             setRound(round + 1)

@@ -59,7 +59,7 @@ export function getFactsFromApiCall(URL){ // utility function
             });
         }
     }
-    console.log(BASE_URL + URL)
+    // console.log(BASE_URL + URL)
     if (URL) return fetch(BASE_URL + URL, apiParams).then(handleHTTPResponseACB)
     return fetch(BASE_URL, apiParams).then(handleHTTPResponseACB)
     //["they like meatballs", "their population is 10 million", "they are nice people", "this is mock data", "in the name of testing"]
