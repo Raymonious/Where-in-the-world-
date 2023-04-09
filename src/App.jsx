@@ -2,7 +2,7 @@ import {useState} from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import Test from "./testPresenter.jsx";
+import Game from "./game/gamePresenter.jsx";
 import {RecoilRoot} from "recoil";
 import {Suspense} from "react";
 
@@ -13,7 +13,7 @@ function App() {
         <div className="App">
             <RecoilRoot>
                 <Suspense fallback={<img src="http://www.csc.kth.se/~cristi/loading.gif"/>}>
-                    <Test />
+                    <Game />
                 </Suspense>
             </RecoilRoot>
 

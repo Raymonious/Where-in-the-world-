@@ -1,4 +1,4 @@
-import {atom, selector} from "recoil";
+import {atom, selector, selectorFamily} from "recoil";
 import {getCountry, getFactsFromApiCall} from "../countrySource.js"
 
 const currentDifficulty = atom({
@@ -17,21 +17,44 @@ const currentDifficulty = atom({
     ]
 });
 
+const roundNumber = atom({
+    key: "roundNumber",
+    default: 1,
+});
+
+const guessNumber = atom({
+    key: "Guess",
+    default: 1
+    }
+);
+
 const targetCountryState = selector({
     key: "CurrentCountryName",
-    default: null,
+    default: "Germany",
     get: function (recoil) {
+        recoil.get(roundNumber)
         return getCountry(recoil.get(currentDifficulty))
     }
 });
 
-const countryFacts = selector({
+const countryFact = selectorFamily({
     key: "CurrentCountryFacts",
     default: [],
-    get: function (recoil) {
-        return getFactsFromApiCall();
-    }
+    get: (amountOfFacts) => (recoil) => {
+        return getFactsFromApiCall(recoil.get(targetCountryState));
+}
+    // get: function (recoil) {
+    //     if(recoil.get(guessNumber) === 1)
+    //         return getFactsFromApiCall(recoil.get(targetCountryState));
+    // }
 });
+
+const countryFacts = selector({
+    key: 'countryFacts',
+    get: function (recoil) {
+        return [...Array(recoil.get(guessNumber)).keys()].map((index)=>{return recoil.get(countryFact(index))})
+    }
+})
 
 const playerLatestStreak = atom({
     key: "LatestAttemptStreak",
@@ -43,4 +66,4 @@ const playerLatestHighScore = atom({
     default: 0
 });
 
-export {currentDifficulty, targetCountryState, countryFacts, playerLatestStreak, playerLatestHighScore}
+export {currentDifficulty, roundNumber, guessNumber, targetCountryState, countryFact, countryFacts, playerLatestStreak, playerLatestHighScore}

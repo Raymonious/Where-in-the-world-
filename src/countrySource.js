@@ -8,42 +8,64 @@ const apiParams = {
     method: "GET",
     headers: {
         "X-Fungenerators-Api-Secret": API_KEY
+        // 'content-type': 'application/json',
     }
 };
 
+// List of countries for the second api
+// // Easy countries (over 10 million inhabitants)
+// const easyCountries = ['CN', 'IN', 'US', 'ID', 'PK'];
+//
+// // Medium countries (between 1 million and 10 million inhabitants)
+// const mediumCountries = ['CR', 'HR', 'CY', 'CZ', 'DK'];
+//
+// // Hard countries (below 1 million inhabitants)
+// const hardCountries = ['AI', 'AQ', 'AG', 'AW', 'BS'];
+//
+// List of countries for the original API
 // Countries with more than 10 million inhabitants
-const easyCountries = ['China', 'India', 'United States', 'Indonesia', 'Pakistan'];
+// const easyCountries = ['China', 'India', 'United States', 'Indonesia', 'Pakistan'];
+//
+// // Countries with between 1 million and 10 million inhabitants
+// const mediumCountries = ['Algeria', 'Argentina', 'Bulgaria', 'Haiti', 'Jordan'];
+//
+// // Countries with maximum 1 million inhabitants
+// const hardCountries = ['Belize', 'Comoros', 'Kiribati', 'Palau', 'Tuvalu'];
 
-// Countries with between 1 million and 10 million inhabitants
-const mediumCountries = ['Algeria', 'Argentina', 'Bulgaria', 'Haiti', 'Jordan'];
+// list of countries accepted by the current API
 
-// Countries with maximum 1 million inhabitants
-const hardCountries = ['Belize', 'Comoros', 'Kiribati', 'Palau', 'Tuvalu'];
+const APIAccepted = ["Germany", "Spain", "Italy", "France", "Sweden", "Estonia", ]
 
 export function getCountry(difficulty){
-    switch (difficulty){
-        case "easy":
-            return easyCountries[Math.floor(Math.random() * easyCountries.length)];
-        case "medium":
-            return mediumCountries[Math.floor(Math.random() * mediumCountries.length)];
-        case "hard":
-            return hardCountries[Math.floor(Math.random() * hardCountries.length)];
-    }
+
+    return APIAccepted[Math.floor(Math.random() * APIAccepted.length)];
+    // switch (difficulty){
+    //     case "easy":
+    //         return easyCountries[Math.floor(Math.random() * easyCountries.length)];
+    //     case "medium":
+    //         return mediumCountries[Math.floor(Math.random() * mediumCountries.length)];
+    //     case "hard":
+    //         return hardCountries[Math.floor(Math.random() * hardCountries.length)];
+    // }
 }
 
 export function getFactsFromApiCall(URL){ // utility function
     function handleHTTPResponseACB(response){
         if (response.status !== 200) throw new Error("Problems with the API, status: " + response.status);
         else {
-            // console.log(response.json())
-            return response.json().then(res => {
-                // setTarget(res.contents.subcategory)
+            return response.json()
+                .then(res => {
                 return res.contents.fact
             });
         }
     }
     console.log(BASE_URL + URL)
+    if (URL) return fetch(BASE_URL + URL, apiParams).then(handleHTTPResponseACB)
     return fetch(BASE_URL, apiParams).then(handleHTTPResponseACB)
     //["they like meatballs", "their population is 10 million", "they are nice people", "this is mock data", "in the name of testing"]
     // fetch(BASE_URL + URL, apiParams).then(handleHTTPResponseACB)
+};
+
+export function getFactList(){
+    return Promise.all(Array(5).map((country)=>{return getFactsFromApiCall(country)}))
 }
