@@ -39,7 +39,7 @@ export default function FavDetailView(aa){
                 </tr>
                 <tr>
                     <td colSpan={2}>
-                    <img src={aa.factData[0].flags[0]}/></td>
+                    <img width={200} src={aa.factData[0].flags[0]}/></td>
                 </tr>
             </table>
         

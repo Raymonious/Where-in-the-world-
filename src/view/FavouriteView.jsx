@@ -61,7 +61,7 @@ function FavouriteView(aa) {
                 <div className = "none1">
                     {aa.factList[0].summary[0]}
                 </div>
-            <a className= "more" onClick={function() {clickLocACB(country)}} href="">See more</a>
+            <a className= "more" onClick={function() {clickLocACB(country)}} >See more</a>
             </span>
             <div>{/*(aa.listofDet(country))*/}</div>
         </span>
