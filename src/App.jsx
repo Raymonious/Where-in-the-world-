@@ -2,7 +2,7 @@ import {useState, Suspense} from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import Test from "./testPresenter.jsx";
+import Game from "./game/gamePresenter.jsx";
 import {RecoilRoot} from "recoil";
 import Home from './react/homePresenter.jsx'
 import Favourite from './react/favouritePresenter.jsx'
@@ -12,6 +12,7 @@ import Sidebar from './sidebarPresenter.jsx';
 
 
 function App() {
+    // const [count, setCount] = useState(0)
 
     return (
         <div>
@@ -30,7 +31,7 @@ function App() {
                     </Suspense>
                     </div>
             </RecoilRoot>
-        
+
         </div>
     )
 }
