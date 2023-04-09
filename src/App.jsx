@@ -21,6 +21,7 @@ function App() {
                     <div className='sepPage'>NavBar<Sidebar/></div>
                     <div className="sepPage">HomePage<Home/></div>
                     <Suspense fallback={<img src="http://www.csc.kth.se/~cristi/loading.gif"/>}>
+                            <Game/>
                     <Suspense fallback={<img src="http://www.csc.kth.se/~cristi/loading.gif"/>}>
                     <div className="sepPage">Results<Results/></div>
                     </Suspense>

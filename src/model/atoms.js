@@ -117,5 +117,4 @@ const favDetail2 = selector({
     .then(function(response){return response.json()})}
 });
 
-export {currentDifficulty, targetCountryState, countryFacts, playerLatestStreak, playerLatestHighScore, currentLife, currentFavCountry, detailAPI, favDetail, favDetail2, curDetail}
-export {currentDifficulty, roundNumber, guessNumber, targetCountryState, countryFact, countryFacts, playerLatestStreak, playerLatestHighScore}
+export {currentDifficulty, targetCountryState, countryFacts, playerLatestStreak, playerLatestHighScore, currentLife, currentFavCountry, detailAPI, favDetail, favDetail2, curDetail, roundNumber, guessNumber, countryFact}
