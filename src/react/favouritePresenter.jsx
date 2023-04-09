@@ -4,14 +4,16 @@ import * as Recoil from 'recoil';
 import {playerLongestStreak, playerHighScore, favoriteCountries, globalHighScore, globalLongestStreak} from "../model/persistant_atoms.js";
 import {targetCountryState, countryFacts,currentFavCountry, favDetail, detailAPI} from "../model/atoms.js";
 import { DET_URL } from "../apiConfig";
+import { useSetRecoilState } from "recoil";
 
 export default function Favourite(aa) {
 
-    const [favc, setfavc] = Recoil.useRecoilState(favoriteCountries)
-    const [target, setTarget] = Recoil.useRecoilState(targetCountryState)
-    const [facts, setFacts] = Recoil.useRecoilState(countryFacts)
-    const [cfc, setCfc] = Recoil.useRecoilState(currentFavCountry)
-    const detail = Recoil.useRecoilState(favDetail)
+    const [favc, setfavc] = Recoil.useRecoilState(favoriteCountries);
+    const [target, setTarget] = Recoil.useRecoilState(targetCountryState);
+    const [facts, setFacts] = Recoil.useRecoilState(countryFacts);
+    const [cfc, setCfc] = Recoil.useRecoilState(currentFavCountry);
+    const [detail] = Recoil.useRecoilState(favDetail);
+    const setCurFav = useSetRecoilState(currentFavCountry);
 
     return (
         <div>
@@ -24,7 +26,7 @@ export default function Favourite(aa) {
 
                 />
         </div>
-    )
+    );
 
     function prevDetailACB(country){
         return fetch(DET_URL + country + "&topk=1", detailAPI)
@@ -32,7 +34,11 @@ export default function Favourite(aa) {
     } 
 
     function countrySelectACB(country) {
-        setCfc(country)
+        setCurFav(country);
+    
+        console.log(cfc);
+        console.log(country);
     }
+    
 
 }

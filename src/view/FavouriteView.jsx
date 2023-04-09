@@ -52,26 +52,32 @@ function FavouriteView(aa) {
 
 
     function likedLocCB(country){
+        
+        function clickLocACB(){
+            aa.selectCountry(country);
+        }
+       
         return(
+            
         <span key={country} id = {country + '1'} className = "fav" onClick={function() {showACB(country)}}> 
             <img className = "log" src = 'https://www.hangtimemedia.com/wp-content/uploads/2018/06/location-icon-png-3.png'></img>
+            <button onClick = {clickLocACB}> click to update </button>
             <img id={country + '2'} className = "img large" src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnz1YfNEZ_NxGWI5Xy3jmOdjbUQ2IPDYg52Q&usqp=CAU'/>
             <div className= "text">{country}</div>
             <span className = "none" id={country}>
                 <div className = "none1">
-                    {aa.factList[0].summary[0]}
+                    {aa.factList.summary[0]}
                 </div>
-            <a className= "more" onClick={function() {clickLocACB(country)}} href="">See more</a>
+            <a className= "more" onClick={clickLocACB} href="">See more</a>
             </span>
             <div>{/*(aa.listofDet(country))*/}</div>
         </span>
         ); 
    
+
     }
 
-    function clickLocACB(country){
-        aa.selectCountry(country);
-    }
+
 
 
 }

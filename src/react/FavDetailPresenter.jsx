@@ -7,9 +7,9 @@ import { DET_URL } from "../apiConfig";
 
 export default function FavDetail(aa) {
 
-    const [cfc, setCfc] = Recoil.useRecoilState(currentFavCountry)
-    const detail = Recoil.useRecoilState(favDetail)
-    const data = Recoil.useRecoilState(favDetail2)
+    const [cfc, setCfc] = Recoil.useRecoilState(currentFavCountry);
+    const [detail] = Recoil.useRecoilState(favDetail);
+    const [data] = Recoil.useRecoilState(favDetail2);
 
     return (
         <div>
@@ -19,5 +19,5 @@ export default function FavDetail(aa) {
                     factData = {data}
                 />
         </div>
-    )
+    );
 }

@@ -25,10 +25,7 @@ a:hover {
 
 body {
   margin: 0;
-<<<<<<< HEAD
-=======
   place-items: center;
->>>>>>> 99512f54fe63a2c4bab3b2a962fa0fe6c80af680
   min-width: 320px;
   min-height: 100vh;
 }
