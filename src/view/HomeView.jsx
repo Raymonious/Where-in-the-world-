@@ -11,6 +11,6 @@ export default function HomeView(aa){
     );
 
     function goToQuizACB(){
-
+        window.location.hash = "#/game"
     }
 }

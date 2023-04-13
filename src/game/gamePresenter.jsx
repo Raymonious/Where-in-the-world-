@@ -52,7 +52,7 @@ export default function Game() {
             setStatus("Correct! Well done")
             setRound(round + 1)
             setGuess(1)
-
+            window.location.hash = "#/result"
         } else {
             setStatus("Wrong guess, try again.")
             setGuess(amountGuess + 1)
@@ -62,6 +62,7 @@ export default function Game() {
                 setRound(1)
                 setGuess(1)
                 setStatus("Make a guess")
+                window.location.hash = "#/result"
             }
         }
     }
