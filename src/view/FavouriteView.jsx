@@ -57,6 +57,10 @@ function FavouriteView(aa) {
             aa.selectCountry(country);
         }
        
+        function findCountryDetailCB(string){
+           return string.includes(country);
+        }
+
         return(
             
         <span key={country} id = {country + '1'} className = "fav" onClick={function() {showACB(country)}}> 
@@ -66,9 +70,9 @@ function FavouriteView(aa) {
             
             <span className = "none" id={country}>
                 <div className = "none1">
-                    {aa.factList.summary[0]}
+                    {aa.listofDet.find(findCountryDetailCB)}
                 </div>
-            <a className= "more" onClick={clickLocACB} >See more</a>
+            <a className= "more" href="#/details" onClick={clickLocACB} >See more</a>
             </span>
             <div>{/*(aa.listofDet(country))*/}</div>
         </span>

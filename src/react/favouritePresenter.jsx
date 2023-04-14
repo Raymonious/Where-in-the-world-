@@ -2,7 +2,7 @@ import FavouriteView from "../view/FavouriteView";
 import React from 'react'
 import * as Recoil from 'recoil';
 import {playerLongestStreak, playerHighScore, favoriteCountries, globalHighScore, globalLongestStreak} from "../model/persistant_atoms.js";
-import {targetCountryState, countryFacts,currentFavCountry, favDetail, detailAPI} from "../model/atoms.js";
+import {targetCountryState, countryFacts,currentFavCountry, favDetail, detailAPI, countryDetail, singleDetail} from "../model/atoms.js";
 import { DET_URL } from "../apiConfig";
 import { useSetRecoilState } from "recoil";
 
@@ -14,6 +14,8 @@ export default function Favourite(aa) {
     const [cfc, setCfc] = Recoil.useRecoilState(currentFavCountry);
     const [detail] = Recoil.useRecoilState(favDetail);
     const setCurFav = useSetRecoilState(currentFavCountry);
+    const [cDetail, setcDetail] = Recoil.useRecoilState(countryDetail);
+    const [sDetail, setsDetail] = Recoil.useRecoilState(singleDetail('Sweden'));
 
     return (
         <div>
@@ -22,9 +24,9 @@ export default function Favourite(aa) {
                     selectCountry={countrySelectACB}
                     factList = {detail}
                     test = {cfc}
-                    listofDet = {prevDetailACB}
-
+                    listofDet = {cDetail}
                 />
+                  {console.log(cDetail)}
         </div>
     );
 
