@@ -30,11 +30,7 @@ export default function Favourite(aa) {
         </div>
     );
 
-    function prevDetailACB(country){
-        return fetch(DET_URL + country + "&topk=1", detailAPI)
-        .then(function(response){return response.json()} ).then(response => console.log(response));
-    } 
-
+    
     function countrySelectACB(country) {
         setCurFav(country);
     
