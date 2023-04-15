@@ -7,9 +7,13 @@ function FavouriteView(aa) {
     return(
         <div>
         <div className = "display">
+            
+            <a onClick={function() {clickLocACB(aa.favC[num])}} href="#/details">
             <motion.img 
             key={num} initial = {{opacity: 0.4}} animate = {{opacity: 1}}  
-            transition={{duration: 1.2}} onClick={function() {clickLocACB(aa.favC[num])}} src = {aa.listofDet[num].image}/>
+            transition={{duration: 1.2}} src = {aa.listofDet[num].image}/>
+        </a>
+
             <div className = "heading">
                 SAVED LOCATIONS
             </div>
@@ -31,10 +35,19 @@ function FavouriteView(aa) {
         setNum((num + 1) % aa.favC.length);
     }
     function goLeftACB(){
-        if(aa.favC.length > 5)
-        setNum((num - 1) % 5);
-        else
-        setNum((num - 1) % aa.favC.length);
+        if(aa.favC.length > 5){
+            if(num === 0)
+                setNum(4)
+            else
+                setNum((num - 1) % 5);
+        }
+        else{
+            if(num === 0)
+                setNum(aa.favC.length -1)
+            else
+                setNum((num - 1) % aa.favC.length);
+        }
+        
     }
     function showACB(c){
         if(document.getElementById(c).style.display === "none"){
@@ -50,13 +63,11 @@ function FavouriteView(aa) {
 
     }
 
-
+    function clickLocACB(country){
+        aa.selectCountry(country);
+    }
     function likedLocCB(country,index){
         
-        function clickLocACB(){
-            aa.selectCountry(country);
-        }
-       
         return(
             
         <span key={country} id = {country + '1'} className = "fav" onClick={function() {showACB(country)}}> 
