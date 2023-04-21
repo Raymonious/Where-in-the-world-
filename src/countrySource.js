@@ -7,8 +7,8 @@ import {useRecoilState} from "recoil";
 const apiParams = {
     method: "GET",
     headers: {
-        "X-Fungenerators-Api-Secret": API_KEY
-        // 'content-type': 'application/json',
+        "X-Fungenerators-Api-Secret": API_KEY,
+        'accept': 'application/json',
     }
 };
 

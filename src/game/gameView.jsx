@@ -6,13 +6,15 @@ function GameView(prop) {
     return (
         <div>
             {headerText()}
-            <span>round {prop.gameRound}</span>
+            <span>Round {prop.gameRound}</span>
             <ol>
                 {prop.factList.map((fact, index) => {
                     return <li key={index}>{fact}</li>
                 })}
+                {prop.guessNumber.map((msg, index) => {
+                    return <li key={index}>{msg}</li>
+                })}
             </ol>
-            {/*<span>{prop.factList}</span>*/}
             <br/>
             <span>{prop.gameState}</span>
             <br/>
