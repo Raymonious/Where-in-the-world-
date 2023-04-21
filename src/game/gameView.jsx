@@ -9,7 +9,7 @@ function GameView(prop) {
             <div id={"ClueLocation"}>
                 <ol>
                     {prop.factList.map((fact, index) => {
-                        return <li key={index}>{fact}</li>
+                        return <li key={index}>{handleFact(fact)}</li>
                     })}
                     {prop.guessNumber.map((msg, index) => {
                         return <li key={index}>{msg}</li>
@@ -45,6 +45,10 @@ function GameView(prop) {
         prop.guess()
     }
 
+    function handleFact(fact) {
+        if (fact.includes(prop.targetCountry)) return fact.replace(prop.targetCountry, "this country")
+        return fact
+    }
 }
 
 export default GameView;
