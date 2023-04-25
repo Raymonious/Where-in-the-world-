@@ -30,6 +30,11 @@ const guessNumber = atom({
     }
 );
 
+const roundWonState = atom({
+    key: "roundWon",
+    default: false
+})
+
 const targetCountryState = selector({
     key: "CurrentCountryName",
     default: null,
@@ -117,4 +122,4 @@ const favDetail2 = selector({
     .then(function(response){return response.json()})}
 });
 
-export {currentDifficulty, targetCountryState, countryFacts, playerLatestStreak, playerLatestHighScore, currentLife, currentFavCountry, detailAPI, favDetail, favDetail2, curDetail, roundNumber, guessNumber, countryFact}
+export {currentDifficulty, targetCountryState, roundWonState, countryFacts, playerLatestStreak, playerLatestHighScore, currentLife, currentFavCountry, detailAPI, favDetail, favDetail2, curDetail, roundNumber, guessNumber, countryFact}

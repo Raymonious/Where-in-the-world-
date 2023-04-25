@@ -8,6 +8,7 @@ import {
 } from "../model/persistant_atoms.js";
 import {
     currentDifficulty,
+    roundWonState,
     roundNumber,
     guessNumber,
     targetCountryState,
@@ -27,7 +28,7 @@ export default function Game() {
     const [userGuess, setUserGuess] = useState("")
     const [status, setStatus] = useState("Make a guess")
     const [amountGuess, setGuess] = useRecoilState(guessNumber)
-    const [roundWon, setRoundWon] = useState(false)
+    const [roundWon, setRoundWon] = useRecoilState(roundWonState)
     const [latestStreak, setLatestStreak] = useRecoilState(playerLatestStreak)
     const [longestStreak, setLongestStreak] = useRecoilState(playerLongestStreak)
 
@@ -51,16 +52,18 @@ export default function Game() {
         if (userGuess.toLowerCase() === target.toLowerCase()) {
             // console.log(getFactsFromApiCall())
             setStatus("Correct! Well done")
-            setRound(round + 1)
+            setRoundWon(true)
+            // setRound(round + 1)
             setGuess(1)
             window.location.hash = "#/result"
         } else {
             setStatus("Wrong guess, try again.")
             setGuess(amountGuess + 1)
             if (amountGuess === 5) {
+                setRoundWon(false)
                 setLatestStreak(round)
                 if (latestStreak > longestStreak) setLongestStreak(latestStreak)
-                setRound(1)
+                // setRound(1)
                 setGuess(1)
                 setStatus("Make a guess")
                 window.location.hash = "#/result"
