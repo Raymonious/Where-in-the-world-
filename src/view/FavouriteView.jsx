@@ -50,24 +50,30 @@ function FavouriteView(aa) {
         
     }
     function showACB(c){
-        if(document.getElementById(c).style.display === "none"){
+        if(document.getElementById(c).style.display === "none" || document.getElementById(c).style.display === ""){
             document.getElementById(c + '1').style.backgroundColor = "rgba(255,255,255, 0.1)";
             document.getElementById(c).style.display = "inline-block";
-            document.getElementById(c + '2').classList.remove("large")
+            document.getElementById(c + '2').classList.remove("large");
+            console.log(document.getElementById(c).style.display);
         }
         else{
             document.getElementById(c).style.display = "none"     
             document.getElementById(c + '1').style.backgroundColor = "transparent";
-            document.getElementById(c + '2').classList.add("large")
+            document.getElementById(c + '2').classList.add("large");
+            
+        }
         }
 
-    }
+    
 
-    function clickLocACB(country){
-        aa.selectCountry(country);
-    }
+    
     function likedLocCB(country,index){
-        
+       
+        function clickLocACB(){
+            aa.selectCountry(country);
+        }
+
+
         return(
             
         <span key={country} id = {country + '1'} className = "fav" onClick={function() {showACB(country)}}> 

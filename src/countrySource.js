@@ -24,13 +24,13 @@ const apiParams = {
 //
 // List of countries for the original API
 // Countries with more than 10 million inhabitants
-// const easyCountries = ['China', 'India', 'United States', 'Indonesia', 'Pakistan'];
+ const easyCountries = ['China', 'India', 'United States', 'Indonesia', 'Pakistan'];
 //
 // // Countries with between 1 million and 10 million inhabitants
-// const mediumCountries = ['Algeria', 'Argentina', 'Bulgaria', 'Haiti', 'Jordan'];
+ const mediumCountries = ['Algeria', 'Argentina', 'Bulgaria', 'Haiti', 'Jordan'];
 //
 // // Countries with maximum 1 million inhabitants
-// const hardCountries = ['Belize', 'Comoros', 'Kiribati', 'Palau', 'Tuvalu'];
+ const hardCountries = ['Belize', 'Comoros', 'Kiribati', 'Palau', 'Tuvalu'];
 
 // list of countries accepted by the current API
 
@@ -38,15 +38,15 @@ const APIAccepted = ["Germany", "Spain", "Italy", "France", "Sweden", "Estonia",
 
 export function getCountry(difficulty){
 
-    return APIAccepted[Math.floor(Math.random() * APIAccepted.length)];
-    // switch (difficulty){
-    //     case "easy":
-    //         return easyCountries[Math.floor(Math.random() * easyCountries.length)];
-    //     case "medium":
-    //         return mediumCountries[Math.floor(Math.random() * mediumCountries.length)];
-    //     case "hard":
-    //         return hardCountries[Math.floor(Math.random() * hardCountries.length)];
-    // }
+    //return APIAccepted[Math.floor(Math.random() * APIAccepted.length)];
+    switch (difficulty){
+         case "easy":
+             return easyCountries[Math.floor(Math.random() * easyCountries.length)];
+         case "medium":
+             return mediumCountries[Math.floor(Math.random() * mediumCountries.length)];
+        case "hard":
+             return hardCountries[Math.floor(Math.random() * hardCountries.length)];
+     }
 }
 
 export function getFactsFromApiCall(URL){ // utility function
