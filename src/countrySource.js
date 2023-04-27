@@ -34,9 +34,17 @@ const apiParams = {
 
 // list of countries accepted by the current API
 
-const APIAccepted = ["Germany", "Spain", "Italy", "France", "Sweden", "Estonia", ]
+const APIAccepted = [
+    "Germany", "Spain", "Italy",
+    "France", "Sweden", "Estonia",
+    "Switzerland", "Chile", "Iceland",
+    "Thailand", "Bahamas", "Bolivia",
+    "Venezuela", "Honduras", "China",
+    "Peru", "Paraguay", "Japan",
+    "Guatemala", "Ivory-Coast", "Haiti",
+    ]
 
-export function getCountry(difficulty){
+export function getCountry(difficulty) {
 
     return APIAccepted[Math.floor(Math.random() * APIAccepted.length)];
     // switch (difficulty){
@@ -49,16 +57,17 @@ export function getCountry(difficulty){
     // }
 }
 
-export function getFactsFromApiCall(URL){ // utility function
-    function handleHTTPResponseACB(response){
+export function getFactsFromApiCall(URL) { // utility function
+    function handleHTTPResponseACB(response) {
         if (response.status !== 200) throw new Error("Problems with the API, status: " + response.status);
         else {
             return response.json()
                 .then(res => {
-                return res.contents.fact
-            });
+                    return res.contents.fact
+                });
         }
     }
+
     // console.log(BASE_URL + URL)
     if (URL) return fetch(BASE_URL + URL, apiParams).then(handleHTTPResponseACB)
     return fetch(BASE_URL, apiParams).then(handleHTTPResponseACB)
@@ -66,6 +75,8 @@ export function getFactsFromApiCall(URL){ // utility function
     // fetch(BASE_URL + URL, apiParams).then(handleHTTPResponseACB)
 };
 
-export function getFactList(){
-    return Promise.all(Array(5).map((country)=>{return getFactsFromApiCall(country)}))
+export function getFactList() {
+    return Promise.all(Array(5).map((country) => {
+        return getFactsFromApiCall(country)
+    }))
 }
