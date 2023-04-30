@@ -260,7 +260,7 @@ table{border-collapse:collapse;}
 
 .home{
   
-};
+}
 
 .home .globe {
   vertical-align:middle;
@@ -276,4 +276,13 @@ table{border-collapse:collapse;}
 .resultsPic{
   width: 20%;
   height: 20%;
+}
+
+#GameLocation {
+  display: grid;
+  grid-template-columns: 500px auto;
+}
+
+#PictureLocation {
+  height: 250px;
 }

@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
 import ResultsView from '../view/resultsView.jsx';
 import * as Recoil from "recoil";
-import { useSetRecoilState } from 'recoil';
+import {useRecoilState, useSetRecoilState} from 'recoil';
 import {playerLongestStreak, playerHighScore, favoriteCountries, globalHighScore, globalLongestStreak} from "../model/persistant_atoms.js";
-import {currentDifficulty, targetCountryState, countryFacts, playerLatestStreak, playerLatestHighScore, curDetail} from "../model/atoms.js";
+import {roundWonState, currentDifficulty, targetCountryState, countryFacts, playerLatestStreak, playerLatestHighScore, curDetail, roundNumber} from "../model/atoms.js";
 import { getCountry } from '../countrySource.js';
 
 export default function Results(pikachu){
     const [curCountry, setCountry] = Recoil.useRecoilState(targetCountryState);
     const [curDiff, setDiff] = Recoil.useRecoilState(currentDifficulty);
     const difficulty = ['easy', 'medium', 'hard'];
-    const [num, setNum] = useState(0);
+    const [goNextRound] = useRecoilState(roundWonState)
+    const [num, setNum] = useRecoilState(roundNumber);
     const [detail] = Recoil.useRecoilState(curDetail);
     const setFav = useSetRecoilState(favoriteCountries);
 
@@ -24,7 +25,13 @@ export default function Results(pikachu){
 
     /*rough iterator between easy, medium and hard levels and set atom currentDifficulty to switch to next country for the next round*/ 
     function CountryModifierACB(){
-        setDiff(difficulty[Math.floor(100 * Math.random()) % 3]);
+        if (goNextRound) {
+            setDiff(difficulty[num % 3]);
+            setNum(num + 1);
+        }
+        else {
+            setNum(1)
+        }
         window.location.hash = "#/game"
     }
 
