@@ -8,7 +8,7 @@ function FavouriteView(aa) {
         <div>
         <div className = "display">
             
-            <a onClick={function() {clickLocACB(aa.favC[num])}} href="#/details">
+            <a onClick={function() {aa.selectCountry(aa.favC[num])}} href="#/details">
             <motion.img 
             key={num} initial = {{opacity: 0.4}} animate = {{opacity: 1}}  
             transition={{duration: 1.2}} src = {aa.listofDet[num].image}/>
@@ -29,9 +29,7 @@ function FavouriteView(aa) {
     );
 
     function goRightACB(){
-        if(aa.favC.length > 5)
-        setNum((num + 1) % 5);
-        else
+      
         setNum((num + 1) % aa.favC.length);
     }
     function goLeftACB(){
