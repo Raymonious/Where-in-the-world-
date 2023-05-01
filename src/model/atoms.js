@@ -35,10 +35,16 @@ const roundWonState = atom({
     default: false
 })
 
+const gamesPlayed = atom({
+    key: "gamesPlayed",
+    default: 0,
+})
+
 const targetCountryState = selector({
     key: "CurrentCountryName",
     default: null,
     get: function (recoil) {
+        recoil.get(gamesPlayed)
         recoil.get(roundNumber)
         return getCountry(recoil.get(currentDifficulty))
     }

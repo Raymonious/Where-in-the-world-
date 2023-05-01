@@ -45,11 +45,13 @@ export default function Game() {
     );
 
     function registerGuess(guess) {
-        setUserGuess(guess)
+        let validGuess = guess.includes("-") ? guess.replaceAll("-", " ") : guess
+        setUserGuess(validGuess)
     }
 
     function guess() {
-        if (userGuess.toLowerCase() === target.toLowerCase()) {
+        let correctAnswer = target.includes("-") ? target.replaceAll("-", " ") : target
+        if (userGuess.toLowerCase() === correctAnswer.toLowerCase()) {
             // console.log(getFactsFromApiCall())
             setStatus("Correct! Well done")
             setRoundWon(true)

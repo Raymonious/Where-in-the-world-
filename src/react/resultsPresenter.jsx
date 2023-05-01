@@ -3,7 +3,7 @@ import ResultsView from '../view/resultsView.jsx';
 import * as Recoil from "recoil";
 import {useRecoilState, useSetRecoilState} from 'recoil';
 import {playerLongestStreak, playerHighScore, favoriteCountries, globalHighScore, globalLongestStreak} from "../model/persistant_atoms.js";
-import {roundWonState, currentDifficulty, targetCountryState, countryFacts, playerLatestStreak, playerLatestHighScore, curDetail, roundNumber} from "../model/atoms.js";
+import {roundWonState, currentDifficulty, targetCountryState, countryFacts, playerLatestStreak, playerLatestHighScore, curDetail, roundNumber, gamesPlayed} from "../model/atoms.js";
 import { getCountry } from '../countrySource.js';
 
 export default function Results(pikachu){
@@ -13,6 +13,7 @@ export default function Results(pikachu){
     const [goNextRound] = useRecoilState(roundWonState)
     const [num, setNum] = useRecoilState(roundNumber);
     const [detail] = Recoil.useRecoilState(curDetail);
+    const [numberOfGames, setNumberOfGames] = useRecoilState(gamesPlayed)
     const setFav = useSetRecoilState(favoriteCountries);
 
    
@@ -30,6 +31,7 @@ export default function Results(pikachu){
             setNum(num + 1);
         }
         else {
+            setNumberOfGames(numberOfGames+1)
             setNum(1)
         }
         window.location.hash = "#/game"

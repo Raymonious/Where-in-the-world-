@@ -52,7 +52,8 @@ function GameView(prop) {
     }
 
     function handleFact(fact) {
-        if (fact.includes(prop.targetCountry)) return fact.replace(prop.targetCountry, "this country")
+        let target = prop.targetCountry.includes("-") ? prop.targetCountry.replaceAll("-", " ") : prop.targetCountry
+        if (fact.includes(target) || fact.includes(target)) return fact.replaceAll(target, "This country")
         return fact
     }
 }
