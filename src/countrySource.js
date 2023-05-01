@@ -1,6 +1,7 @@
-import {BASE_URL, API_KEY} from "./apiConfig.js"
+import {BASE_URL, API_KEY, OPENAI_KEY} from "./apiConfig.js"
 import {targetCountryState} from "./model/atoms.js";
 import {useRecoilState} from "recoil";
+import { Configuration, OpenAIApi } from "openai";
 
 // const [_, setTarget] = useRecoilState(targetCountryState)
 
@@ -11,6 +12,39 @@ const apiParams = {
         'accept': 'application/json',
     }
 };
+
+
+/*chatGPT params setup*/
+const configuration = new Configuration({
+    apiKey: OPENAI_KEY
+});
+delete configuration.baseOptions.headers['User-Agent'];
+const openai = new OpenAIApi(configuration);
+
+/*chatGPT call utility function */
+export function getFactsFromAI(URL) {
+    if(!URL) {
+        return;
+    }
+    
+    /*need to improve instructions */
+    const instructions = 'generate 1 lesser known trivia about ' + URL; 
+    
+    /*Specify role of system or user, content for context of conversation */
+    let input = [{role: 'system', content: instructions}];
+
+    /*use completion endpoint of chatgpt model */
+    return openai.createChatCompletion({
+        model: 'gpt-3.5-turbo',
+        temperature: 0.5,
+        messages: input,
+        //more options available
+    }).then((res) => {
+        return res.data.choices[0].message.content;
+    }).catch((err) => {console.log(err)})
+}
+
+
 
 // List of countries for the second api
 // // Easy countries (over 10 million inhabitants)
