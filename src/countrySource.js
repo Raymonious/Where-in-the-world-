@@ -46,7 +46,8 @@ const APIAccepted = [
 
 export function getCountry(difficulty) {
 
-    //return APIAccepted[Math.floor(Math.random() * APIAccepted.length)];
+    return APIAccepted[Math.floor(Math.random() * APIAccepted.length)];
+    /*
     switch (difficulty){
          case "easy":
              return easyCountries[Math.floor(Math.random() * easyCountries.length)];
@@ -55,6 +56,7 @@ export function getCountry(difficulty) {
         case "hard":
              return hardCountries[Math.floor(Math.random() * hardCountries.length)];
      }
+     */
 }
 
 export function getFactsFromApiCall(URL) { // utility function
