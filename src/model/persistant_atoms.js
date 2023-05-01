@@ -48,7 +48,7 @@ const playerHighScore = atom({
 
 const favoriteCountries = atom({
     key: "FavoriteCountryList",
-    default: ["sweden", "USA"],
+    default: ["Sweden"],
     effects_UNSTABLE: [
         ({onSet, setSelf}) => {
             setSelf(get(ref(db, PATH + "Countries")).then(data => data.val() || new Recoil.DefaultValue()));

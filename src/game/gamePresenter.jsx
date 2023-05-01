@@ -8,6 +8,7 @@ import {
 } from "../model/persistant_atoms.js";
 import {
     currentDifficulty,
+    roundWonState,
     roundNumber,
     guessNumber,
     targetCountryState,
@@ -27,13 +28,14 @@ export default function Game() {
     const [userGuess, setUserGuess] = useState("")
     const [status, setStatus] = useState("Make a guess")
     const [amountGuess, setGuess] = useRecoilState(guessNumber)
-    const [roundWon, setRoundWon] = useState(false)
+    const [roundWon, setRoundWon] = useRecoilState(roundWonState)
     const [latestStreak, setLatestStreak] = useRecoilState(playerLatestStreak)
     const [longestStreak, setLongestStreak] = useRecoilState(playerLongestStreak)
 
     return (
         <GameView
             gameRound = {round}
+            guessNumber = {Array(5-amountGuess).fill("Guess to unlock")}
             targetCountry={target}
             factList={facts}
             registerGuess={registerGuess}
@@ -43,23 +45,27 @@ export default function Game() {
     );
 
     function registerGuess(guess) {
-        setUserGuess(guess)
+        let validGuess = guess.includes("-") ? guess.replaceAll("-", " ") : guess
+        setUserGuess(validGuess)
     }
 
     function guess() {
-        if (userGuess.toLowerCase() === target.toLowerCase()) {
+        let correctAnswer = target.includes("-") ? target.replaceAll("-", " ") : target
+        if (userGuess.toLowerCase() === correctAnswer.toLowerCase()) {
             // console.log(getFactsFromApiCall())
             setStatus("Correct! Well done")
-            setRound(round + 1)
+            setRoundWon(true)
+            // setRound(round + 1)
             setGuess(1)
             window.location.hash = "#/result"
         } else {
             setStatus("Wrong guess, try again.")
             setGuess(amountGuess + 1)
             if (amountGuess === 5) {
+                setRoundWon(false)
                 setLatestStreak(round)
                 if (latestStreak > longestStreak) setLongestStreak(latestStreak)
-                setRound(1)
+                // setRound(1)
                 setGuess(1)
                 setStatus("Make a guess")
                 window.location.hash = "#/result"

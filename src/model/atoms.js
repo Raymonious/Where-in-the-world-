@@ -30,10 +30,21 @@ const guessNumber = atom({
     }
 );
 
+const roundWonState = atom({
+    key: "roundWon",
+    default: false
+})
+
+const gamesPlayed = atom({
+    key: "gamesPlayed",
+    default: 0,
+})
+
 const targetCountryState = selector({
     key: "CurrentCountryName",
     default: null,
     get: function (recoil) {
+        recoil.get(gamesPlayed)
         recoil.get(roundNumber)
         return getCountry(recoil.get(currentDifficulty))
     }
@@ -45,10 +56,7 @@ const countryFact = selectorFamily({
     get: (amountOfFacts) => (recoil) => {
         return getFactsFromApiCall(recoil.get(targetCountryState));
 }
-    // get: function (recoil) {
-    //     if(recoil.get(guessNumber) === 1)
-    //         return getFactsFromApiCall(recoil.get(targetCountryState));
-    // }
+    
 });
 
 const countryFacts = selector({
@@ -63,6 +71,32 @@ const curDetail = selector({
     get: function(recoil){return fetch(DET_URL + recoil.get(targetCountryState), detailAPI)
     .then(function(response){return response.json()})}
 });
+
+const singleDetail = selectorFamily({
+    key: "CurrentCountryD",
+    default: [],
+    get: (country) => (recoil) => {
+        return fetch(DET_URL + country + "&topk=1", detailAPI).then(function(response){return response.json()}).then(function(response){return response.summary[0]})
+}})
+
+const singleImg = selectorFamily({
+    key: "CurrentCountryI",
+    default: [],
+    get: (country) => (recoil) => {
+        return fetch(DET_URL + country + "&topk=1", detailAPI).then(function(response){return response.json()}).then(function(response){return response.image})
+}})
+
+
+
+const countryDetail = selector({
+    key: "CurrentCountryDs",
+    get: function(recoil) {
+        return [...recoil.get(favoriteCountries)].map((country) => {return ({"detail": recoil.get(singleDetail(country)), "image" : recoil.get(singleImg(country))}
+        
+        )});
+}
+});
+
 
 
 const playerLatestStreak = atom({
@@ -117,4 +151,4 @@ const favDetail2 = selector({
     .then(function(response){return response.json()})}
 });
 
-export {currentDifficulty, targetCountryState, countryFacts, playerLatestStreak, playerLatestHighScore, currentLife, currentFavCountry, detailAPI, favDetail, favDetail2, curDetail, roundNumber, guessNumber, countryFact}
+export {gamesPlayed,singleDetail,countryDetail,currentDifficulty, targetCountryState, roundWonState, countryFacts, playerLatestStreak, playerLatestHighScore, currentLife, currentFavCountry, detailAPI, favDetail, favDetail2, curDetail, roundNumber, guessNumber, countryFact}

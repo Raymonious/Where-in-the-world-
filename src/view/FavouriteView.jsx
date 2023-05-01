@@ -7,9 +7,13 @@ function FavouriteView(aa) {
     return(
         <div>
         <div className = "display">
+            
+            <a onClick={function() {aa.selectCountry(aa.favC[num])}} href="#/details">
             <motion.img 
             key={num} initial = {{opacity: 0.4}} animate = {{opacity: 1}}  
-            transition={{duration: 1.2}} onClick={function() {clickLocACB(aa.favC[num])}} src = {img/*aa.favC[num].image*/}/>
+            transition={{duration: 1.2}} src = {aa.listofDet[num].image}/>
+        </a>
+
             <div className = "heading">
                 SAVED LOCATIONS
             </div>
@@ -25,52 +29,62 @@ function FavouriteView(aa) {
     );
 
     function goRightACB(){
-        if(aa.favC.length > 5)
-        setNum((num + 1) % 5);
-        else
+      
         setNum((num + 1) % aa.favC.length);
     }
     function goLeftACB(){
-        if(aa.favC.length > 5)
-        setNum((num - 1) % 5);
-        else
-        setNum((num - 1) % aa.favC.length);
+        if(aa.favC.length > 5){
+            if(num === 0)
+                setNum(4)
+            else
+                setNum((num - 1) % 5);
+        }
+        else{
+            if(num === 0)
+                setNum(aa.favC.length -1)
+            else
+                setNum((num - 1) % aa.favC.length);
+        }
+        
     }
     function showACB(c){
-        if(document.getElementById(c).style.display === "none"){
+        if(document.getElementById(c).style.display === "none" || document.getElementById(c).style.display === ""){
             document.getElementById(c + '1').style.backgroundColor = "rgba(255,255,255, 0.1)";
             document.getElementById(c).style.display = "inline-block";
-            document.getElementById(c + '2').classList.remove("large")
+            document.getElementById(c + '2').classList.remove("large");
+            console.log(document.getElementById(c).style.display);
         }
         else{
             document.getElementById(c).style.display = "none"     
             document.getElementById(c + '1').style.backgroundColor = "transparent";
-            document.getElementById(c + '2').classList.add("large")
+            document.getElementById(c + '2').classList.add("large");
+            
+        }
         }
 
-    }
+    
 
-
-    function likedLocCB(country){
-        
+    
+    function likedLocCB(country,index){
+       
         function clickLocACB(){
             aa.selectCountry(country);
         }
-       
+
+
         return(
             
         <span key={country} id = {country + '1'} className = "fav" onClick={function() {showACB(country)}}> 
             <img className = "log" src = 'https://www.hangtimemedia.com/wp-content/uploads/2018/06/location-icon-png-3.png'></img>
-            <img id={country + '2'} className = "img large" src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnz1YfNEZ_NxGWI5Xy3jmOdjbUQ2IPDYg52Q&usqp=CAU'/>
+            <img id={country + '2'} className = "img large" src={aa.listofDet[index].image}/>
             <div className= "text">{country}</div>
             
             <span className = "none" id={country}>
                 <div className = "none1">
-                    {aa.factList.summary[0]}
+                    {aa.listofDet[index].detail}
                 </div>
-            <a className= "more" onClick={clickLocACB} >See more</a>
+            <a className= "more" href="#/details" onClick={clickLocACB} >See more</a>
             </span>
-            <div>{/*(aa.listofDet(country))*/}</div>
         </span>
         ); 
    
