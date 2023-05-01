@@ -3,6 +3,7 @@ import React from 'react';
 /*Details of selected favorite country*/ 
 
 export default function FavDetailView(aa){
+    console.log(aa.factList);
     return (
     <div className="detail">
         <h1>{aa.currentC}</h1>

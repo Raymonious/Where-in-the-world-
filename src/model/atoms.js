@@ -61,26 +61,19 @@ const curDetail = selector({
     .then(function(response){return response.json()})}
 });
 
-const singleDetail = selectorFamily({
-    key: "CurrentCountryD",
-    default: [],
-    get: (country) => (recoil) => {
-        return fetch(DET_URL + country + "&topk=1", detailAPI).then(function(response){return response.json()}).then(function(response){return response.summary[0]})
-}})
 
 const singleImg = selectorFamily({
     key: "CurrentCountryI",
     default: [],
     get: (country) => (recoil) => {
-        return fetch(DET_URL + country + "&topk=1", detailAPI).then(function(response){return response.json()}).then(function(response){return response.image})
+        return fetch(DET_URL2 + country, detailAPI2).then(function(response){return response.json()}).then(function(response){return response.flags[0]})
 }})
-
 
 
 const countryDetail = selector({
     key: "CurrentCountryDs",
     get: function(recoil) {
-        return [...recoil.get(favoriteCountries)].map((country) => {return ({"detail": recoil.get(singleDetail(country)), "image" : recoil.get(singleImg(country))}
+        return [...recoil.get(favoriteCountries)].map((country) => {return (recoil.get(singleImg(country))
         
         )});
 }
@@ -108,6 +101,12 @@ const currentLife = atom({
 
 const currentFavCountry = atom({
     key: "CurrentSelectedCountry",
+    default: 'Sweden'
+}
+);
+
+const currentSeleFav = atom({
+    key: "CurrentSelectedFav",
     default: 'Sweden'
 }
 );
@@ -140,4 +139,16 @@ const favDetail2 = selector({
     .then(function(response){return response.json()})}
 });
 
-export {singleDetail,countryDetail, currentDifficulty, targetCountryState, countryFacts, playerLatestStreak, playerLatestHighScore, currentLife, currentFavCountry, detailAPI, favDetail, favDetail2, curDetail, roundNumber, guessNumber, countryFact}
+const getImG = selector({
+    key: "ImageForCountry",
+    get: function(recoil){return fetch(DET_URL2 + recoil.get(currentFavCountry), detailAPI2)
+    .then(function(response){return response.json()})}
+});
+
+const singleDetail = selector({
+    key: "SelectFavCountry",
+    get: function(recoil){return fetch(DET_URL + recoil.get(currentSeleFav) + "&topk=1", detailAPI)
+    .then(function(response){return response.json()}).then(function(response){return response.summary[0]})}
+});
+
+export {countryDetail, currentDifficulty, targetCountryState, countryFacts, playerLatestStreak, playerLatestHighScore, currentLife, currentFavCountry, detailAPI, favDetail, favDetail2, curDetail, roundNumber, guessNumber, countryFact, singleDetail, currentSeleFav }
