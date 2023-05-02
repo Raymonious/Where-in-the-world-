@@ -14,6 +14,8 @@ export default function Favourite(aa) {
     const setCurFav = useSetRecoilState(currentFavCountry);
     const [cDetail, setcDetail] = Recoil.useRecoilState(countryDetail);
     const [curS, setcurS] = Recoil.useRecoilState(currentSeleFav);
+
+
     return (
         <div>
                 <FavouriteView
@@ -24,12 +26,11 @@ export default function Favourite(aa) {
                     removeFromList = {countryRemoveACB}
                     setSelect = {SelectFavACB}
                 />
-                  {console.log(cDetail)}
         </div>
     );
 
     function SelectFavACB(country) {
-        if (curS !== country){
+        if (curS !== country && (document.getElementById(curS) !== null)){
             document.getElementById(curS).style.display = "none"     
             document.getElementById(curS + '1').style.backgroundColor = "transparent";
             document.getElementById(curS + '2').classList.add("large")
@@ -46,6 +47,7 @@ export default function Favourite(aa) {
     }
     function countryRemoveACB(country) {
         setfavc(favc.filter(x => x !== country))
+        
     }
 
 }

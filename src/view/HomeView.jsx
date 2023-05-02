@@ -1,12 +1,14 @@
 import React from 'react';
+import bakcground from '../assets/Home.gif'
+
 
 export default function HomeView(aa){
     return (
-    <div onClick={goToQuizACB} className="home">
+    <div width = "100%" className="home">
         <div className="globe">
-        <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Rotating_earth_animated_transparent.gif/220px-Rotating_earth_animated_transparent.gif'/>
+        <img src={bakcground}/>
         </div>
-        <div>Click to start</div>
+        <div onClick={goToQuizACB} className = "start">Click to start</div>
     </div>
     );
 

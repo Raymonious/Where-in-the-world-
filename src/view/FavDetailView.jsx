@@ -3,7 +3,6 @@ import React from 'react';
 /*Details of selected favorite country*/ 
 
 export default function FavDetailView(aa){
-    console.log(aa.factList);
     return (
     <div className="detail">
         <h1>{aa.currentC}</h1>
@@ -39,6 +38,11 @@ export default function FavDetailView(aa){
                 <tr>
                     <td>Map</td>
                     <td><a href={aa.factData.maps.googleMaps}>googleMaps</a></td>
+                </tr>
+                <tr>
+                    <td colSpan={2}>
+                    <iframe width={200} src={aa.factData.maps.googleMaps}></iframe>
+                    </td>
                 </tr>
                 <tr>
                     <td colSpan={2}>
