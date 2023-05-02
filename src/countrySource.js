@@ -29,11 +29,19 @@ export function getFactsFromAI(URL) {
     
     /*need to improve instructions */
     //const instructions = 'generate 1 lesser known trivia about ' + URL; 
-    const instructions = 'Generate 5 lesser known trivia about a certain country specified by the user, hide any details in the fact that reveal the identity of the country,' +
-    'i.e. replace Chinese with "people" or "language", replace China with "this country", ' +'return the facts in an array of String type of size 5. ' +
-     'For example: ["This country has the most population in the world", "The language spoken by the people of this country are'
-    ' among the most difficult to learn", "this country...", "this country...", "this country..."]';
-    
+    // const instructions = 'Generate 5 lesser known trivia about a certain country specified by the user, hide any details in the fact that reveal the identity of the country,' +
+    // 'i.e. replace Chinese with "people" or "language", replace China with "this country", ' +'return the facts in an array of String type of size 5. ' +
+    //  'For example: ["This country has the most population in the world", "The language spoken by the people of this country are'
+    // ' among the most difficult to learn", "this country...", "this country...", "this country..."]';
+
+    const instructions = "You are a random fact generator. The facts you generate do not include the name of the country." +
+        ".Generate 5 random, lesser known, trivia about a certain country specified " +
+        "by the user. For each fact, Hide any identifiers of the country. For instance, hide the name of the country, " +
+        "the name of the people and the language. Replace any instance of the name of the country with 'This country' " +
+        "Only return the facts, no other text wanted." +
+        "Do not number the facts. Simply return each fact as one row. " +
+        "Return the list of facts as a javascript array. "
+
     /*Specify role of system or user, content for context of conversation */
     let input = [{role: 'system', content: instructions}, {role: 'user', content: URL}];
 
@@ -45,8 +53,9 @@ export function getFactsFromAI(URL) {
         messages: input,
         //more options available
     }).then((res) => {
-        console.log(res.data.choices[0].message.content);
-        return res.data.choices[0].message.content;
+        console.log(res)
+        console.log(res.data.choices[0].message.content.split("\n"));
+        return res.data.choices[0].message.content.replaceAll("-", " ").split("\n");
     }).catch((err) => {console.log(err)})
 }
 
