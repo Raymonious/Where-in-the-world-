@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import {motion} from "framer-motion";
 
 function FavouriteView(aa) {
@@ -11,7 +11,7 @@ function FavouriteView(aa) {
             <a onClick={function() {aa.selectCountry(aa.favC[num])}} href="#/details">
             <motion.img 
             key={num} initial = {{opacity: 0.4}} animate = {{opacity: 1}}  
-            transition={{duration: 1.2}} src = {aa.listofDet[num].image}/>
+            transition={{duration: 1.2}} src = {aa.listofDet[num]}/>
         </a>
 
             <div className = "heading">
@@ -24,6 +24,7 @@ function FavouriteView(aa) {
         </div>
 
         <div>
+           
             {aa.favC.map(likedLocCB)}
         </div></div>
     );
@@ -48,23 +49,10 @@ function FavouriteView(aa) {
         
     }
     function showACB(c){
-        if(document.getElementById(c).style.display === "none" || document.getElementById(c).style.display === ""){
-            document.getElementById(c + '1').style.backgroundColor = "rgba(255,255,255, 0.1)";
-            document.getElementById(c).style.display = "inline-block";
-            document.getElementById(c + '2').classList.remove("large");
-            console.log(document.getElementById(c).style.display);
-        }
-        else{
-            document.getElementById(c).style.display = "none"     
-            document.getElementById(c + '1').style.backgroundColor = "transparent";
-            document.getElementById(c + '2').classList.add("large");
-            
-        }
-        }
+        aa.setSelect(c);
+    }
 
-    
-
-    
+   
     function likedLocCB(country,index){
        
         function clickLocACB(){
@@ -73,21 +61,25 @@ function FavouriteView(aa) {
 
 
         return(
-            
         <span key={country} id = {country + '1'} className = "fav" onClick={function() {showACB(country)}}> 
             <img className = "log" src = 'https://www.hangtimemedia.com/wp-content/uploads/2018/06/location-icon-png-3.png'></img>
-            <img id={country + '2'} className = "img large" src={aa.listofDet[index].image}/>
+            <img id={country + '2'} className = "img large" src={aa.listofDet[index]}/>
             <div className= "text">{country}</div>
             
             <span className = "none" id={country}>
                 <div className = "none1">
-                    {aa.listofDet[index].detail}
+                    {aa.factList}
                 </div>
-            <a className= "more" href="#/details" onClick={clickLocACB} >See more</a>
+                <span className = "log2"  onClick={deleteCountryACB}><img src="https://cdn-icons-png.flaticon.com/512/860/860829.png"/></span>
+                <span><a className= "more" href="#/details" onClick={clickLocACB} >See more</a></span>
+            
             </span>
         </span>
         ); 
-   
+        
+        function deleteCountryACB(){
+            aa.removeFromList(country);
+        }
 
     }
 

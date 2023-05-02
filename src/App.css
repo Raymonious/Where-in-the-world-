@@ -133,6 +133,14 @@ li.tab:hover{
   z-index: 3;
 }
 
+.log2 img:hover{
+  filter: invert();
+}
+
+.log2 img{
+  height: 20px;
+  margin-left: 5%;
+}
 
 .large{
   filter: brightness(0.5);
@@ -225,8 +233,8 @@ li.tab:hover{
 }
 .more{
   position:relative;
-  left: 50%;
-  transform: translate(-100%, 0%);
+  left: 40%;
+
 }
 
 .sepPage{
