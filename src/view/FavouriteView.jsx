@@ -72,7 +72,7 @@ function FavouriteView(aa) {
                 <div className = "none1">
                     {aa.factList}
                 </div>
-                <span className = "log2"  onClick={deleteCountryACB}><img src="https://cdn-icons-png.flaticon.com/512/860/860829.png"/></span>
+                <span className = "log2" onClick={deleteCountryACB}><img src="https://cdn-icons-png.flaticon.com/512/860/860829.png"/></span>
                 <span><a className= "more" href="#/details" onClick={clickLocACB} >See more</a></span>
             
             </span>

@@ -1,6 +1,6 @@
 import {atom, selector, selectorFamily} from "recoil";
 import {getCountry, getFactsFromApiCall} from "../countrySource.js"
-import { DET_URL, DET_URL2 } from "../apiConfig.js";
+import { DET_URL, DET_URL2} from "../apiConfig.js";
 import { favoriteCountries } from "./persistant_atoms.js";
 
 const currentDifficulty = atom({
@@ -150,5 +150,6 @@ const singleDetail = selector({
     get: function(recoil){return fetch(DET_URL + recoil.get(currentSeleFav) + "&topk=1", detailAPI)
     .then(function(response){return response.json()}).then(function(response){return response.summary[0]})}
 });
+
 
 export {countryDetail, currentDifficulty, targetCountryState, countryFacts, playerLatestStreak, playerLatestHighScore, currentLife, currentFavCountry, detailAPI, favDetail, favDetail2, curDetail, roundNumber, guessNumber, countryFact, singleDetail, currentSeleFav }
