@@ -135,8 +135,18 @@ li.tab:hover{
   transform: translate(0, -100%);
   z-index: 3;
 }
+.log2 img{
+  height: 25px;
+  width: 25px;
+  position: absolute;
+  left: 61%;
+  top: 98%;
+  transform: translate(0, -100%);
+  z-index: 3;
+}
+.log2{
 
-
+}
 .large{
   filter: brightness(0.5);
 }
@@ -193,7 +203,9 @@ li.tab:hover{
 .display div img:hover{
   filter: invert();
 }
-
+.log2 :hover {
+  filter: invert();
+}
 
 /*testttttttttttttttttttttttttttttttttttttttttttt*/
 .mainContent{
