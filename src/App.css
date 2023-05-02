@@ -124,7 +124,7 @@ li.tab:hover{
   transform: translate(0, -100%);
   color: white;
   font-size: large;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Audiowide';
 }
 
 .log{
@@ -189,7 +189,7 @@ li.tab:hover{
   transform: translate(-50%, 0);
   color: white;
   font-size:40px;
-  font-family: 'Courier New', Courier, monospace
+  font-family: 'Audiowide';
 }
 .display div img{
   width: 50px;
@@ -267,6 +267,10 @@ li.tab:hover{
   padding: 1%;
 }
 
+h1, h2{  font-family: 'Audiowide';
+}
+
+
 td{ border: white 1px solid;
 }
 table{border-collapse:collapse;}
@@ -275,6 +279,7 @@ table{border-collapse:collapse;}
   width: 50%;
   height: 50%;
   object-fit: cover;
+  aspect-ratio: 4/3;
 }
 
 .detailFlex{

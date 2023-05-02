@@ -144,5 +144,5 @@ const singleDetail = selector({
 });
 
 
-export {getImG, gamesPlayed,singleDetail,countryDetail,currentDifficulty, targetCountryState, roundWonState, countryFacts, playerLatestStreak, playerLatestHighScore, currentLife, currentFavCountry, detailAPI, favDetail, favDetail2, curDetail, roundNumber, guessNumber, currentSeleFav /*countryFact*/}
+export {getImG, gamesPlayed,singleDetail,currentDifficulty, targetCountryState, roundWonState, countryFacts, playerLatestStreak, playerLatestHighScore, currentLife, currentFavCountry, detailAPI, favDetail, favDetail2, curDetail, roundNumber, guessNumber, currentSeleFav /*countryFact*/}
 
