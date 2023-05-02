@@ -61,26 +61,6 @@ const curDetail = selector({
     .then(function(response){return response.json()})}
 });
 
-
-const singleImg = selectorFamily({
-    key: "CurrentCountryI",
-    default: [],
-    get: (country) => (recoil) => {
-        return fetch(DET_URL2 + country, detailAPI2).then(function(response){return response.json()}).then(function(response){return response.flags[0]})
-}})
-
-
-const countryDetail = selector({
-    key: "CurrentCountryDs",
-    get: function(recoil) {
-        return [...recoil.get(favoriteCountries)].map((country) => {return (recoil.get(singleImg(country))
-        
-        )});
-}
-});
-
-
-
 const playerLatestStreak = atom({
     key: "LatestAttemptStreak",
     default: 0
@@ -152,4 +132,4 @@ const singleDetail = selector({
 });
 
 
-export {countryDetail, currentDifficulty, targetCountryState, countryFacts, playerLatestStreak, playerLatestHighScore, currentLife, currentFavCountry, detailAPI, favDetail, favDetail2, curDetail, roundNumber, guessNumber, countryFact, singleDetail, currentSeleFav }
+export {currentDifficulty, targetCountryState, countryFacts, playerLatestStreak, playerLatestHighScore, currentLife, currentFavCountry, detailAPI, favDetail, favDetail2, curDetail, roundNumber, guessNumber, countryFact, singleDetail, currentSeleFav }

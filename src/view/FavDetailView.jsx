@@ -5,9 +5,11 @@ import React from 'react';
 export default function FavDetailView(aa){
     return (
     <div className="detail">
+        <div className='center'>
         <h1>{aa.currentC}</h1>
-        <h2>{aa.factData.name.official}</h2>
-        <img className="detImg" src={aa.factList.image}></img>
+        <h2 >{aa.factData.name.official}</h2>
+        <img className="detImg " src={aa.countrysImage}></img>
+        </div>
         <div className="detailFlex">
         
             <table className="detdata">
@@ -38,11 +40,6 @@ export default function FavDetailView(aa){
                 <tr>
                     <td>Map</td>
                     <td><a href={aa.factData.maps.googleMaps}>googleMaps</a></td>
-                </tr>
-                <tr>
-                    <td colSpan={2}>
-                    <iframe width={200} src={aa.factData.maps.googleMaps}></iframe>
-                    </td>
                 </tr>
                 <tr>
                     <td colSpan={2}>
