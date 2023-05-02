@@ -50,6 +50,7 @@ const targetCountryState = selector({
     }
 });
 
+/*
 const countryFact = selectorFamily({
     key: "CurrentCountryFacts",
     default: [],
@@ -57,12 +58,12 @@ const countryFact = selectorFamily({
         return getFactsFromAI(recoil.get(targetCountryState));
 }
     
-});
+});*/
 
 const countryFacts = selector({
     key: 'countryFacts',
     get: function (recoil) {
-        return [...Array(recoil.get(guessNumber)).keys()].map((index)=>{return recoil.get(countryFact(index))})
+        return getFactsFromAI(recoil.get(targetCountryState));
     }
 });
 
@@ -151,4 +152,4 @@ const favDetail2 = selector({
     .then(function(response){return response.json()})}
 });
 
-export {gamesPlayed,singleDetail,countryDetail,currentDifficulty, targetCountryState, roundWonState, countryFacts, playerLatestStreak, playerLatestHighScore, currentLife, currentFavCountry, detailAPI, favDetail, favDetail2, curDetail, roundNumber, guessNumber, countryFact}
+export {gamesPlayed,singleDetail,countryDetail,currentDifficulty, targetCountryState, roundWonState, countryFacts, playerLatestStreak, playerLatestHighScore, currentLife, currentFavCountry, detailAPI, favDetail, favDetail2, curDetail, roundNumber, guessNumber, /*countryFact*/}

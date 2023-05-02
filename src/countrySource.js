@@ -28,18 +28,24 @@ export function getFactsFromAI(URL) {
     }
     
     /*need to improve instructions */
-    const instructions = 'generate 1 lesser known trivia about ' + URL; 
+    //const instructions = 'generate 1 lesser known trivia about ' + URL; 
+    const instructions = 'Generate 5 lesser known trivia about a certain country specified by the user, hide any details in the fact that reveal the identity of the country,' +
+    'i.e. replace Chinese with "people" or "language", replace China with "this country", ' +'return the facts in an array of String type of size 5. ' +
+     'For example: ["This country has the most population in the world", "The language spoken by the people of this country are'
+    ' among the most difficult to learn", "this country...", "this country...", "this country..."]';
     
     /*Specify role of system or user, content for context of conversation */
-    let input = [{role: 'system', content: instructions}];
+    let input = [{role: 'system', content: instructions}, {role: 'user', content: URL}];
 
     /*use completion endpoint of chatgpt model */
     return openai.createChatCompletion({
         model: 'gpt-3.5-turbo',
-        temperature: 0.5,
+        temperature: 1,
+        presence_penalty: 2,
         messages: input,
         //more options available
     }).then((res) => {
+        console.log(res.data.choices[0].message.content);
         return res.data.choices[0].message.content;
     }).catch((err) => {console.log(err)})
 }
