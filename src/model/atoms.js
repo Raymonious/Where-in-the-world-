@@ -1,5 +1,5 @@
 import {atom, selector, selectorFamily} from "recoil";
-import {getCountry, getFactsFromApiCall} from "../countrySource.js"
+import {getCountry, getFactsFromAI, getFactsFromApiCall} from "../countrySource.js"
 import { DET_URL, DET_URL2 } from "../apiConfig.js";
 import { favoriteCountries } from "./persistant_atoms.js";
 
@@ -54,7 +54,7 @@ const countryFact = selectorFamily({
     key: "CurrentCountryFacts",
     default: [],
     get: (amountOfFacts) => (recoil) => {
-        return getFactsFromApiCall(recoil.get(targetCountryState));
+        return getFactsFromAI(recoil.get(targetCountryState));
 }
     
 });

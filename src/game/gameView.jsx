@@ -3,7 +3,7 @@ import {getCountry, getFactsFromApiCall} from "../countrySource.js";
 import {currentDifficulty, targetCountryState} from "../model/atoms.js";
 
 function GameView(prop) {
-    // console.log(prop)
+    console.log(prop)
     return (
         <div>
             {headerText()}
