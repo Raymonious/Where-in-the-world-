@@ -10,14 +10,12 @@ function GameView(prop) {
             <span>Round {prop.gameRound}</span>
             <div id={"GameLocation"}>
                 <div id={"ClueLocation"}>
-                    <ol>
                         {prop.factList.map((fact, index) => {
-                            return <li key={index}>{handleFact(fact)}</li>
+                            return <div className = "factList" key={index}>{handleFact(fact)}</div>
                         })}
                         {Array(5-prop.guessNumber).fill("Guess to unlock").map((msg, index) => {
-                            return <li key={index}>{msg}</li>
+                            return <div className = "factList" key={index}>{msg}</div>
                         })}
-                    </ol>
                 </div>
                 {/*<div id={"PictureLocation"}>*/}
                 {/*    <h3>Get a picture from the country on your last guess!</h3>*/}
