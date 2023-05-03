@@ -35,9 +35,9 @@ export default function Game() {
     return (
         <GameView
             gameRound = {round}
-            guessNumber = {Array(5-amountGuess).fill("Guess to unlock")}
+            guessNumber ={amountGuess}
             targetCountry={target}
-            factList={facts}
+            factList={[...facts].splice(0, amountGuess)}
             registerGuess={registerGuess}
             guess={guess}
             gameState={status}
