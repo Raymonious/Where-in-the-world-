@@ -2,10 +2,9 @@ import FavouriteView from "../view/FavouriteView";
 import React from 'react'
 import * as Recoil from 'recoil';
 import {playerLongestStreak, playerHighScore, favoriteCountries, globalHighScore, globalLongestStreak} from "../model/persistant_atoms.js";
-import {targetCountryState, countryFacts,currentFavCountry, favDetail, detailAPI, singleDetail, currentSeleFav } from "../model/atoms.js";
+import {targetCountryState, countryFacts,currentFavCountry, favDetail, detailAPI, countryDetail, singleDetail, currentSeleFav } from "../model/atoms.js";
 import { DET_URL } from "../apiConfig";
 import { useSetRecoilState } from "recoil";
-import { countryDetail2 } from "../imageSource";
 
 export default function Favourite(aa) {
 
@@ -13,25 +12,23 @@ export default function Favourite(aa) {
     const [cfc, setCfc] = Recoil.useRecoilState(currentFavCountry);
     const [detail] = Recoil.useRecoilState(singleDetail);
     const setCurFav = useSetRecoilState(currentFavCountry);
+    const [cDetail, setcDetail] = Recoil.useRecoilState(countryDetail);
     const [curS, setcurS] = Recoil.useRecoilState(currentSeleFav);
-    const [cD, setcD] = Recoil.useRecoilState(countryDetail2);
 
 
-    console.log(cD)
     return (
         <div>
                 <FavouriteView
                     favC={favc}
                     selectCountry={countrySelectACB}
                     factList = {detail}
-                    listofDet = {cD}
+                    listofDet = {cDetail}
                     removeFromList = {countryRemoveACB}
                     setSelect = {SelectFavACB}
                 />
-                
         </div>
     );
-        
+
     function SelectFavACB(country) {
         if (curS !== country && (document.getElementById(curS) !== null)){
             document.getElementById(curS).style.display = "none"     
