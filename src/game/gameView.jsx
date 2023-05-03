@@ -6,16 +6,20 @@ function GameView(prop) {
     console.log(prop)
     return (
         <div>
-            {headerText()}
+            {prop.gameRound === 1 ? (<div>
+                <h1>Welcome to the game</h1>
+            </div>) : (<div>
+                <h1>Keep it going!</h1>
+            </div>)}
             <span>Round {prop.gameRound}</span>
             <div id={"GameLocation"}>
                 <div id={"ClueLocation"}>
-                        {prop.factList.map((fact, index) => {
-                            return <div className = "factList" key={index}>{handleFact(fact)}</div>
-                        })}
-                        {Array(5-prop.guessNumber).fill("Guess to unlock").map((msg, index) => {
-                            return <div className = "factList" key={index}>{msg}</div>
-                        })}
+                    {prop.factList.map((fact, index) => {
+                        return <div className="factList" key={index}>{handleFact(fact)}</div>
+                    })}
+                    {Array(5 - prop.guessNumber).fill("Guess to unlock").map((msg, index) => {
+                        return <div className="factList" key={index}>{msg}</div>
+                    })}
                 </div>
                 {/*<div id={"PictureLocation"}>*/}
                 {/*    <h3>Get a picture from the country on your last guess!</h3>*/}
@@ -31,15 +35,6 @@ function GameView(prop) {
             <button onClick={makeGuess}>Guess</button>
         </div>
     );
-
-    function headerText() {
-        if (prop.gameRound === 1) return (<div>
-            <h1>Welcome to the game</h1>
-        </div>)
-        return (<div>
-            <h1>Keep it going!</h1>
-        </div>)
-    }
 
     function saveGuess(event) {
         prop.registerGuess(event.target.value)
