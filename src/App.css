@@ -273,6 +273,10 @@ table{border-collapse:collapse;}
   flex-direction: row;
 }
 
+.factlist{
+  margin: auto;
+}
+
 .home{
   position: absolute;
   width: 100%;
