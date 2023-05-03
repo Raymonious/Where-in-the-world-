@@ -4,13 +4,15 @@
 @import url(https://fonts.googleapis.com/css2?family=Audiowide&family=Satisfy&display=swap%27);
 
 .navBar {
-  padding-left: 200px;
+  padding-left: 135px;
   padding-right: 80px;
   padding-bottom: 0px;
   padding-top: 0px;
   overflow: hidden;
   border-bottom: 1px solid;
-
+  margin: 0;
+  /*position: sticky;
+  top: 10px;*/
 }
 
 li.tab {

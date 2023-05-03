@@ -8,7 +8,7 @@ export default function HomeView(aa){
         <div className="globe">
         <img src={bakcground}/>
         </div>
-        <div onClick={goToQuizACB} className = "start">Click to start</div>
+        <div onClick={goToQuizACB} className = "start" >Click to start</div>
     </div>
     );
 

@@ -1,19 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import logo from '../assets/logo.png'
-export default function LoginView() {
-    const [isLogin, setIsLogion] = useState(false)
-    useEffect(() => {
-        if (window.location.href.includes('login')) setIsLogion(true)
-    })
+export default function LoginView(props) {
+    
+
+    function signUpHandlerACB(){
+        props.onSceneChange();
+        window.location.hash = "#/create"
+    }
+
+    function registerHandlerACB(){
+        props.onCreateAccount();
+    }
+
     return (
         <div width="100%" className="login">
             <div className="formBox">
-                <form className='from'>
+                
                     <h5 className='title'>where in the world?</h5>
                     <img src={logo} alt="" className='logo' />
-                    <h5 className='title'>{isLogin ? "LOGIN" : "CREATE ACCOUNT"}</h5>
+                    <h5 className='title'>{props.isLogin ? "LOGIN" : "CREATE ACCOUNT"}</h5>
                     {
-                        !isLogin && <div className='formItem'>
+                        !props.isLogin && <div className='formItem'>
                             <label>Name</label>
                             <input type="text" className="ipt" name='name' />
                         </div>
@@ -27,7 +34,7 @@ export default function LoginView() {
                         <input type="password" className="ipt" name='password' />
                     </div>
                     {
-                        isLogin ? <div className='remember'>
+                        props.isLogin ? <div className='remember'>
                             <p>
                                 <input type="checkbox" className="checkout" />
                                 Remember Me
@@ -41,8 +48,17 @@ export default function LoginView() {
                             <a></a>
                         </div>
                     }
-                    <button className='btn' type='submit'>LOGIN</button>
-                </form>
+                    {
+                     props.isLogin ?
+                    <div>
+                    <button className='btn' onClick = {registerHandlerACB}>LOGIN</button>
+                    <button className='btn'  onClick = {signUpHandlerACB}>SIGN UP</button>
+                    </div>:
+                    <div>
+                    <button className='btn'  onClick = {registerHandlerACB}>SIGN UP</button>
+                    </div>
+                    }
+                
             </div>
         </div>
     );

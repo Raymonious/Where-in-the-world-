@@ -65,9 +65,10 @@ function App() {
     return (
         <div>
             <RecoilRoot>
-                <div className="flexParent">
+                <div>
                     {
-                        !(window.location.href.includes('login') && !window.location.href.includes('create')) && <div className='sepPage'><Sidebar /></div>
+                        /*!(window.location.href.includes('login') && !window.location.href.includes('create')) &&*/ 
+                        <div><Sidebar /></div>
                     }
                     <div><RouterProvider router={createHashRouter(routes)} /></div>
                 </div>

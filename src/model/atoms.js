@@ -163,5 +163,17 @@ const singleDetail = selector({
     .then(function(response){return response.json()}).then(function(response){return response.summary[0]})}
 });
 
+/*Temporary atom to store signedUp or loggedIn state */
+const isGrantedAccess = atom({
+    key: "Access",
+    default: false,
+})
 
-export {getImG, gamesPlayed,singleDetail,countryDetail,currentDifficulty, targetCountryState, roundWonState, countryFacts, playerLatestStreak, playerLatestHighScore, currentLife, currentFavCountry, detailAPI, favDetail, favDetail2, curDetail, roundNumber, guessNumber, currentSeleFav /*countryFact*/}
+const isLoginA = atom({
+    key: "login",
+    default: true,
+})
+
+
+
+export {isLoginA, isGrantedAccess,getImG, gamesPlayed,singleDetail,countryDetail,currentDifficulty, targetCountryState, roundWonState, countryFacts, playerLatestStreak, playerLatestHighScore, currentLife, currentFavCountry, detailAPI, favDetail, favDetail2, curDetail, roundNumber, guessNumber, currentSeleFav /*countryFact*/}
