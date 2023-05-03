@@ -8,6 +8,7 @@ import Favourite from './react/favouritePresenter.jsx'
 import FavDetail from './react/FavDetailPresenter';
 import Results from './react/resultsPresenter';
 import Sidebar from './sidebarPresenter.jsx';
+import About from "./react/aboutPresenter.jsx";
 
 
 function App() {
@@ -16,6 +17,10 @@ function App() {
         {
             path: "/",
             element: <div className="homePage"><Home/></div>
+        },
+        {
+            path: "/about",
+            element: <div className="aboutPage"><About/></div>
         },
         {
             path: "/home",
