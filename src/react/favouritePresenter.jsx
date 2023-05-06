@@ -2,10 +2,10 @@ import FavouriteView from "../view/FavouriteView";
 import React from 'react'
 import * as Recoil from 'recoil';
 import {playerLongestStreak, playerHighScore, favoriteCountries, globalHighScore, globalLongestStreak} from "../model/persistant_atoms.js";
-import {targetCountryState, countryFacts,currentFavCountry, favDetail, detailAPI, singleDetail, currentSeleFav } from "../model/atoms.js";
+import {targetCountryState, countryFacts,currentFavCountry, favDetail, detailAPI, singleDetail, currentSeleFav,countryDetail2 } from "../model/atoms.js";
 import { DET_URL } from "../apiConfig";
 import { useSetRecoilState } from "recoil";
-import { countryDetail2 } from "../imageSource";
+
 
 export default function Favourite(aa) {
 

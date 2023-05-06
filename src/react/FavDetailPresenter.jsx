@@ -2,9 +2,9 @@ import FavDetailView from '../view/FavDetailView.jsx';
 import React from 'react'
 import * as Recoil from 'recoil';
 import {playerLongestStreak, playerHighScore, favoriteCountries, globalHighScore, globalLongestStreak} from "../model/persistant_atoms.js";
-import {targetCountryState, countryFacts,currentFavCountry, favDetail, favDetail2} from "../model/atoms.js";
+import {targetCountryState, countryFacts,currentFavCountry, favDetail, favDetail2,favoriteCImage} from "../model/atoms.js";
 import { DET_URL } from "../apiConfig";
-import { favoriteCImage } from '../imageSource.js';
+
 
 export default function FavDetail(aa) {
 
