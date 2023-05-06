@@ -1,4 +1,4 @@
-function AboutView(){
+function AboutView(props){
     return(<div>
         <strong><h1>What is it?</h1></strong>
         <span>
@@ -8,8 +8,8 @@ function AboutView(){
         <span>
             Each round, you get presented with a fact. Enter your guess into the box and if it's wrong, you get another fact.
             For each country, you get five attempts to guess the country, each attempt adds another fact.<br/>
-            Try to build up your streak for as long as possible! See if you made it into the <a href={"#/leaderboard"}>leaderboard.</a>
-            <h2><a href={"#/game"}>Play now!</a></h2>
+            Try to build up your streak for as long as possible! See if you made it into the <a href={props.access?"#/leaderboard":"#/login"}>leaderboard.</a>
+            <h2><a href={props.access?"#/game":"#/login"}>Play now!</a></h2>
         </span>
 
         <h3>Created by:</h3>
