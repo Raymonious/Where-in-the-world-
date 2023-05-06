@@ -11,6 +11,7 @@ import Sidebar from './sidebarPresenter.jsx';
 import Login from './react/loginPresenter';
 import Logout from './react/logoutPresenter';
 import Setting from './react/settingPresenter';
+import About from "./react/aboutPresenter.jsx";
 
 
 function App() {
@@ -35,6 +36,10 @@ function App() {
         {
             path: "/setting",
             element: <div className="settingPage"><Setting /></div>
+        },
+        {
+            path: "/about",
+            element: <div className="aboutPage"><About/></div>
         },
         {
             path: "/home",
