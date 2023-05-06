@@ -456,3 +456,7 @@ table{border-collapse:collapse;}
   height: 150px;
   border-radius: 50%;
 }
+
+.center{
+  text-align: center;
+}
