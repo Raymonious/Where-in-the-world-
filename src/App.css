@@ -202,7 +202,7 @@ li.tab:hover {
   transform: translate(-50%, 0);
   color: white;
   font-size: 40px;
-  font-family: 'Courier New', Courier, monospace
+  font-family: 'Audiowide',cursive
 }
 
 .display div img {
@@ -280,25 +280,33 @@ li.tab:hover {
   flex: auto;
 }
 
-.detdata {
+.detdata{
   flex: 1;
   margin: 1%;
 }
 
-td {
-  border: white 1px solid;
+.detailframe{
+  width: 30%;
+  padding: 1%;
 }
 
-table {
-  border-collapse: collapse;
+h1, h2{ font-family: 'Audiowide',cursive;
 }
 
-.detImg {
+
+td{ border: white 1px solid;
+}
+table{border-collapse:collapse;}
+
+.detImg{
   width: 50%;
+  height: 50%;
+  object-fit: cover;
+  aspect-ratio: 4/3;
 }
 
-.detailFlex {
-  display: flex;
+.detailFlex{
+  display:flex;
   flex-direction: row;
 }
 
@@ -312,7 +320,6 @@ table {
   height: 100%;
 }
 
-;
 
 .globe {}
 
