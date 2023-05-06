@@ -73,6 +73,26 @@ const curDetail = selector({
     .then(function(response){return response.json()})}
 });
 
+
+const singleImg = selectorFamily({
+    key: "CurrentCountryI",
+    default: [],
+    get: (country) => (recoil) => {
+        return fetch(DET_URL2 + country, detailAPI2).then(function(response){return response.json()}).then(function(response){return response.flags[0]})
+}})
+
+
+const countryDetail = selector({
+    key: "CurrentCountryDs",
+    get: function(recoil) {
+        return [...recoil.get(favoriteCountries)].map((country) => {return (recoil.get(singleImg(country))
+        
+        )});
+}
+});
+
+
+
 const playerLatestStreak = atom({
     key: "LatestAttemptStreak",
     default: 0
@@ -143,6 +163,7 @@ const singleDetail = selector({
     .then(function(response){return response.json()}).then(function(response){return response.summary[0]})}
 });
 
+/*Temporary atom to store signedUp or loggedIn state */
 const isGrantedAccess = atom({
     key: "Access",
     default: false,
@@ -150,4 +171,3 @@ const isGrantedAccess = atom({
 
 
 export {isGrantedAccess,getImG, gamesPlayed,singleDetail,currentDifficulty, targetCountryState, roundWonState, countryFacts, playerLatestStreak, playerLatestHighScore, currentLife, currentFavCountry, detailAPI, favDetail, favDetail2, curDetail, roundNumber, guessNumber, currentSeleFav /*countryFact*/}
-
