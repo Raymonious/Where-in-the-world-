@@ -4,7 +4,8 @@ import {
     playerHighScore,
     favoriteCountries,
     globalHighScore,
-    globalLongestStreak
+    globalLongestStreak,
+    
 } from "../model/persistant_atoms.js";
 import {
     currentDifficulty,
@@ -14,12 +15,16 @@ import {
     targetCountryState,
     countryFacts,
     playerLatestStreak,
-    playerLatestHighScore
+    playerLatestHighScore,
+    curDetail,
+    gamesPlayed
+    
 } from "../model/atoms.js";
 import GameView from "./gameView.jsx"
 import React, {useState} from "react";
-import {useRecoilState} from "recoil";
+import {useRecoilState, useSetRecoilState} from "recoil";
 import {getFactsFromApiCall} from "../countrySource.js";
+import ResultsView from "../view/resultsView.jsx";
 
 export default function Game() {
     const [target, setTarget] = useRecoilState(targetCountryState)
@@ -31,8 +36,19 @@ export default function Game() {
     const [roundWon, setRoundWon] = useRecoilState(roundWonState)
     const [latestStreak, setLatestStreak] = useRecoilState(playerLatestStreak)
     const [longestStreak, setLongestStreak] = useRecoilState(playerLongestStreak)
+    
+    const [open, setOpen] = useState(false);
+    const [curCountry, setCountry] = Recoil.useRecoilState(targetCountryState);
+    const [curDiff, setDiff] = Recoil.useRecoilState(currentDifficulty);
+    const difficulty = ['easy', 'medium', 'hard'];
+    const [num, setNum] = useRecoilState(roundNumber);
+    const [detail] = Recoil.useRecoilState(curDetail);
+    const [numberOfGames, setNumberOfGames] = useRecoilState(gamesPlayed)
+    const setFav = useSetRecoilState(favoriteCountries);
+
 
     return (
+        <div>
         <GameView
             gameRound = {round}
             guessNumber ={amountGuess}
@@ -41,8 +57,44 @@ export default function Game() {
             registerGuess={registerGuess}
             guess={guess}
             gameState={status}
+            openModal = {handleOpen}
         />
+        <ResultsView open = {open} closeModal = {handleClose} curCountry = {curCountry} onNextCountry = {CountryModifierACB} list = {detail}
+        onAddFav = {FavAdderACB} gameState = {roundWon}/>
+    </div>
     );
+
+    /*rough iterator between easy, medium and hard levels and set atom currentDifficulty to switch to next country for the next round*/ 
+    function CountryModifierACB(){
+        setOpen(false);
+        if (goNextRound) {
+            setDiff(difficulty[num % 3]);
+            setNum(num + 1);
+        }
+        else {
+            setNumberOfGames(numberOfGames+1)
+            setNum(1)
+        }
+    }
+
+    /*useSetRecoilState to set the targetCountryState atom with a new array including both the old ones and the newly added one*/ 
+    function FavAdderACB(country){
+        setOpen(false);
+        setFav((currentState) => [
+            ...currentState,
+            country,
+          ]);
+    }
+
+
+
+    function handleOpen(){
+        setOpen(true);
+    }
+
+    function handleClose(){
+        setOpen(false);
+    }
 
     function registerGuess(guess) {
         let validGuess = guess.includes("-") ? guess.replaceAll("-", " ") : guess
@@ -57,7 +109,8 @@ export default function Game() {
             setRoundWon(true)
             // setRound(round + 1)
             setGuess(1)
-            window.location.hash = "#/result"
+            setOpen(true);
+            //window.location.hash = "#/result"
         } else {
             setStatus("Wrong guess, try again.")
             setGuess(amountGuess + 1)
@@ -68,7 +121,8 @@ export default function Game() {
                 // setRound(1)
                 setGuess(1)
                 setStatus("Make a guess")
-                window.location.hash = "#/result"
+                //window.location.hash = "#/result"
+                setOpen(true);
             }
         }
     }

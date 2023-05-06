@@ -356,9 +356,9 @@ table{border-collapse:collapse;}
 
 }
 
-.resultsPic {
-  width: 20%;
-  height: 20%;
+.resultsPic{
+  width: 50%;
+  border: white 1px solid
 }
 
 #GameLocation {
