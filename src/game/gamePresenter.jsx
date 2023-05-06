@@ -67,7 +67,7 @@ export default function Game() {
     /*rough iterator between easy, medium and hard levels and set atom currentDifficulty to switch to next country for the next round*/ 
     function CountryModifierACB(){
         setOpen(false);
-        if (goNextRound) {
+        if (roundWon) {
             setDiff(difficulty[num % 3]);
             setNum(num + 1);
         }
