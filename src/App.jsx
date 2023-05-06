@@ -6,8 +6,7 @@ import { RecoilRoot } from "recoil";
 import Home from './react/homePresenter.jsx'
 import Favourite from './react/favouritePresenter.jsx'
 import FavDetail from './react/FavDetailPresenter';
-import Results from './react/resultsPresenter';
-import Sidebar from './sidebarPresenter.jsx';
+import Sidebar from './react/sidebarPresenter.jsx';
 import Login from './react/loginPresenter';
 import Logout from './react/logoutPresenter';
 import Setting from './react/settingPresenter';
@@ -50,11 +49,6 @@ function App() {
             element: <div><Suspense
                 fallback={<img src="http://www.csc.kth.se/~cristi/loading.gif" alt={"Loading gif"} />}><Game /></Suspense>
             </div>
-        },
-        {
-            path: "/result",
-            element: <div><Suspense fallback={<img src="http://www.csc.kth.se/~cristi/loading.gif"
-                alt={"Loading gif"} />}><Results /></Suspense></div>
         },
         {
             path: "/favorites",

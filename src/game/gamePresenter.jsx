@@ -45,6 +45,7 @@ export default function Game() {
     const [detail] = Recoil.useRecoilState(curDetail);
     const [numberOfGames, setNumberOfGames] = useRecoilState(gamesPlayed)
     const setFav = useSetRecoilState(favoriteCountries);
+    const [favList] = useRecoilState(favoriteCountries)
 
 
     return (
@@ -80,10 +81,13 @@ export default function Game() {
     /*useSetRecoilState to set the targetCountryState atom with a new array including both the old ones and the newly added one*/ 
     function FavAdderACB(country){
         setOpen(false);
+        if (favList.find((item) => item === country)) return;
+        else{
         setFav((currentState) => [
             ...currentState,
             country,
           ]);
+        }
     }
 
 

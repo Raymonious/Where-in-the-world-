@@ -10,6 +10,7 @@ export default function SidebarView(pikachu){
           <li className='tab'><a href="#/leaderboard">Leaderboard</a></li>
           <li className='tab'><a href="#/favorites">Favorite</a></li>
           <li className='tab'><a href="#/game">Game</a></li>
+          <li className='tab'><a href="#/about">About</a></li>
           <li className='title'><a href="#/home">Where in the world?</a></li>
         </ul>:
         <ul className='navBar'>

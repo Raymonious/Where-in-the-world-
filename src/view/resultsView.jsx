@@ -2,10 +2,6 @@ import React, { useState } from "react";
 import Modal from "@mui/material/Modal";
 import Box  from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import { flexbox, textAlign } from "@mui/system";
-import { color } from "style-value-types";
-import { blue } from "@mui/material/colors";
 
 
 export default function ResultsView(pikachu) {
