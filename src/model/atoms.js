@@ -143,6 +143,11 @@ const singleDetail = selector({
     .then(function(response){return response.json()}).then(function(response){return response.summary[0]})}
 });
 
+const isGrantedAccess = atom({
+    key: "Access",
+    default: false,
+})
 
-export {getImG, gamesPlayed,singleDetail,currentDifficulty, targetCountryState, roundWonState, countryFacts, playerLatestStreak, playerLatestHighScore, currentLife, currentFavCountry, detailAPI, favDetail, favDetail2, curDetail, roundNumber, guessNumber, currentSeleFav /*countryFact*/}
+
+export {isGrantedAccess,getImG, gamesPlayed,singleDetail,currentDifficulty, targetCountryState, roundWonState, countryFacts, playerLatestStreak, playerLatestHighScore, currentLife, currentFavCountry, detailAPI, favDetail, favDetail2, curDetail, roundNumber, guessNumber, currentSeleFav /*countryFact*/}
 
