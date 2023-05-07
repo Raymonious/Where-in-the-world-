@@ -7,11 +7,11 @@ function GameView(prop) {
     return (
         <div>
             {prop.gameRound === 1 ? (<div>
-                <h1>Welcome to the game</h1>
+                <h1 style={{position: "relative", left: "32%"}}>Welcome to the game</h1>
             </div>) : (<div>
-                <h1>Keep it going!</h1>
+                <h1 style={{position: "relative", left: "32%"}}>Keep it going!</h1>
             </div>)}
-            <span>Round {prop.gameRound}</span>
+            <span style={{position: "relative", left: "30%"}}>Round {prop.gameRound}</span>
             <div id={"GameLocation"}>
                 <div id={"ClueLocation"}>
                     {prop.factList.map((fact, index) => {
@@ -29,10 +29,10 @@ function GameView(prop) {
                 {/*            alt={"picture of padlock"}/>}*/}
                 {/*</div>*/}
             </div>
-            <span>{prop.gameState}</span>
+            <span style={{position: "relative", left: "30%"}}>{prop.gameState}</span>
             <br/>
-            <input onChange={saveGuess}/>
-            <button onClick={makeGuess}>Guess</button>
+            <input style={{position: "relative", left: "30%"}} onChange={saveGuess}/>
+            <button style={{position: "relative", left: "30%"}} onClick={makeGuess}>Guess</button>
         </div>
     );
 

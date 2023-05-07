@@ -362,8 +362,19 @@ table{border-collapse:collapse;}
 }
 
 #GameLocation {
-  display: grid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   grid-template-columns: 500px auto;
+  flex-wrap: wrap;
+  overflow-x: auto;
+  
+  
+}
+
+#ClueLocation {
+  width: 500px;
+ text-overflow: wrap;
 }
 
 #PictureLocation {

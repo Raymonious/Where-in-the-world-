@@ -85,11 +85,12 @@ export function getFactsFromAI(URL) {
 const APIAccepted = [
     "Germany", "Spain", "Italy",
     "France", "Sweden", "Estonia",
-    "Switzerland", "Chile", "Iceland",
+     "Chile", "Iceland", "South Korea",
     "Thailand", "Bahamas", "Bolivia",
-    "Venezuela", "Honduras", "China",
+    "Venezuela", "Honduras", "USA", "UK",
     "Peru", "Paraguay", "Japan",
-    "Guatemala", "Ivory-Coast", "Haiti",
+    "Guatemala", "Haiti", "India", "Singapore", 
+    "Cambodia", "South Africa",
     ]
 
 export function getCountry(difficulty) {
