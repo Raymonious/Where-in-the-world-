@@ -1,17 +1,18 @@
 import { Suspense } from 'react'
 import { createHashRouter, RouterProvider } from "react-router-dom";
 import './App.css'
-import Game from "./game/gamePresenter.jsx";
+import Game from "./presenter/gamePresenter.jsx";
 import { RecoilRoot } from "recoil";
-import Home from './react/homePresenter.jsx'
-import Favourite from './react/favouritePresenter.jsx'
-import FavDetail from './react/FavDetailPresenter';
-import Sidebar from './react/sidebarPresenter.jsx';
-import Login from './react/loginPresenter';
-import Logout from './react/logoutPresenter';
-import Setting from './react/settingPresenter';
-import About from "./react/aboutPresenter.jsx";
-
+import Home from './presenter/homePresenter.jsx'
+import Favourite from './presenter/favouritePresenter.jsx'
+import FavDetail from './presenter/FavDetailPresenter';
+import Sidebar from './presenter/sidebarPresenter.jsx';
+import Login from './presenter/loginPresenter';
+import Logout from './presenter/logoutPresenter';
+import Setting from './presenter/settingPresenter';
+import About from "./presenter/aboutPresenter.jsx";
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 
 function App() {
 
@@ -47,18 +48,31 @@ function App() {
         {
             path: "/game",
             element: <div><Suspense
-                fallback={<img src="http://www.csc.kth.se/~cristi/loading.gif" alt={"Loading gif"} />}><Game /></Suspense>
+                fallback={<Backdrop
+                    sx={{ color: 'white', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                    open={true}
+                  >
+                    <CircularProgress color="inherit" />
+                  </Backdrop>}><Game /></Suspense>
             </div>
         },
         {
             path: "/favorites",
-            element: <div><Suspense fallback={<img src="http://www.csc.kth.se/~cristi/loading.gif"
-                alt={"Loading gif"} />}><Favourite /></Suspense></div>
+            element: <div><Suspense fallback={<Backdrop
+                sx={{ color: 'white', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                open={true}
+              >
+                <CircularProgress color="inherit" />
+              </Backdrop>}><Favourite /></Suspense></div>
         },
         {
             path: "/details",
-            element: <div><Suspense fallback={<img src="http://www.csc.kth.se/~cristi/loading.gif"
-                alt={"Loading gif"} />}><FavDetail /></Suspense></div>
+            element: <div><Suspense fallback={<Backdrop
+                sx={{ color: 'white', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                open={true}
+              >
+                <CircularProgress color="inherit" />
+              </Backdrop>}><FavDetail /></Suspense></div>
         }
     ]
     return (

@@ -181,7 +181,7 @@ const singleImg2 = selectorFamily({
     key: "CurrentCountryImg",
     default: [],
     get: (country) => (recoil) => {
-        return fetch(IMG_URL + country , imageAPI).then(function(response){return response.json()}).then(function(response){return response.photos[0].src.original})
+        return fetch(IMG_URL + country , imageAPI).then(function(response){return response.json()}).then(function(response){return response.photos[0].src})
 }})
 
 

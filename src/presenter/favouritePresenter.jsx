@@ -5,6 +5,7 @@ import {playerLongestStreak, playerHighScore, favoriteCountries, globalHighScore
 import {targetCountryState, countryFacts,currentFavCountry, favDetail, detailAPI, singleDetail, currentSeleFav,countryDetail2 } from "../model/atoms.js";
 import { DET_URL } from "../apiConfig";
 import { useSetRecoilState } from "recoil";
+import { useState } from "react";
 
 
 export default function Favourite(aa) {
@@ -15,7 +16,7 @@ export default function Favourite(aa) {
     const setCurFav = useSetRecoilState(currentFavCountry);
     const [curS, setcurS] = Recoil.useRecoilState(currentSeleFav);
     const [cD, setcD] = Recoil.useRecoilState(countryDetail2);
-
+    const [num, setNum] = useState(0);
 
     console.log(cD)
     return (
@@ -27,11 +28,17 @@ export default function Favourite(aa) {
                     listofDet = {cD}
                     removeFromList = {countryRemoveACB}
                     setSelect = {SelectFavACB}
+                    num = {num}
+                    onNumSet = {handleNumSet}
                 />
                 
         </div>
     );
-        
+    
+    function handleNumSet(num){
+        setNum(num);
+    }
+
     function SelectFavACB(country) {
         if (curS !== country && (document.getElementById(curS) !== null)){
             document.getElementById(curS).style.display = "none"     

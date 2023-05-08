@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 
 export default function ResultsView(pikachu) {
   
-
+  /*click on backdrop or hit escape doesn't close modal pop up*/ 
   function handleClose(event, reason){
     if (reason === "backdropClick" || reason === "escapeKeyDown") {
         console.log(reason);
@@ -15,6 +15,7 @@ export default function ResultsView(pikachu) {
       }
   }
 
+  /*javascript style for MUI third party components*/
   const style = {
     position: 'absolute',
     display:'flex',

@@ -2,16 +2,16 @@ import React, { Suspense, useState } from "react";
 import {motion} from "framer-motion";
 
 function FavouriteView(aa) {
-    const [num, setNum] = useState(0);
+    
     let img = ["https://lh3.googleusercontent.com/78Irkx8M-SAffrhgKPSc_-vf78XjkvEGiC5L_g2eT7x1utKoQC-JsKwSeK2RtGiZ4qLd-HkqTQHFzV6BE4Mpk5ZU2q3ND3I0FlGZ7A"];
     return(
         <div>
         <div className = "display">
             
-            <a onClick={function() {aa.selectCountry(aa.favC[num])}} href="#/details">
+            <a onClick={function() {aa.selectCountry(aa.favC[aa.num])}} href="#/details">
             <motion.img 
-            key={num} initial = {{opacity: 0.4}} animate = {{opacity: 1}}  
-            transition={{duration: 1.2}} src = {aa.listofDet[num]}/>
+            key={aa.num} initial = {{opacity: 0.4}} animate = {{opacity: 1}}  
+            transition={{duration: 1.2}} src = {aa.listofDet[aa.num].original}/>
         </a>
 
             <div className = "heading">
@@ -30,21 +30,20 @@ function FavouriteView(aa) {
     );
 
     function goRightACB(){
-      
-        setNum((num + 1) % aa.favC.length);
+        aa.onNumSet((num + 1) % aa.favC.length);
     }
     function goLeftACB(){
         if(aa.favC.length > 5){
-            if(num === 0)
-                setNum(4)
+            if(aa.num === 0)
+                aa.onNumSet(4)
             else
-                setNum((num - 1) % 5);
+                aa.onNumSet((aa.num - 1) % 5);
         }
         else{
-            if(num === 0)
-                setNum(aa.favC.length -1)
+            if(aa.num === 0)
+                aa.onNumSet(aa.favC.length -1)
             else
-                setNum((num - 1) % aa.favC.length);
+                aa.onNumSet((aa.num - 1) % aa.favC.length);
         }
         
     }
@@ -63,7 +62,7 @@ function FavouriteView(aa) {
         return(
         <span key={country} id = {country + '1'} className = "fav" onClick={function() {showACB(country)}}> 
             <img className = "log" src = 'https://www.hangtimemedia.com/wp-content/uploads/2018/06/location-icon-png-3.png'></img>
-            <img id={country + '2'} className = "img large" src={aa.listofDet[index]}/>
+            <img id={country + '2'} className = "img large" src={aa.listofDet[index].large2x}/>
             <div className= "text">{country}</div>
             
             <span className = "none" id={country}>

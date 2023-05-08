@@ -20,7 +20,7 @@ import {
     gamesPlayed
     
 } from "../model/atoms.js";
-import GameView from "./gameView.jsx"
+import GameView from "../view/gameView.jsx"
 import React, {useState} from "react";
 import {useRecoilState, useSetRecoilState} from "recoil";
 import {getFactsFromApiCall} from "../countrySource.js";
