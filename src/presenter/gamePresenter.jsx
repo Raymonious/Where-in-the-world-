@@ -71,6 +71,11 @@ export default function Game() {
         if (roundWon) {
             setDiff(difficulty[num % 3]);
             setNum(num + 1);
+            console.log("round won")
+            console.log(latestStreak)
+            console.log(longestStreak)
+            console.log(latestStreak > longestStreak)
+            if (latestStreak > longestStreak || !longestStreak) setLongestStreak(latestStreak)
         }
         else {
             setNumberOfGames(numberOfGames+1)
@@ -121,7 +126,6 @@ export default function Game() {
             if (amountGuess === 5) {
                 setRoundWon(false)
                 setLatestStreak(round)
-                if (latestStreak > longestStreak) setLongestStreak(latestStreak)
                 // setRound(1)
                 setGuess(1)
                 setStatus("Make a guess")
