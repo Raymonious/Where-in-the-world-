@@ -317,7 +317,7 @@ table{border-collapse:collapse;}
 .home{
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: calc(100% - 88.8px);
 }
 
 
