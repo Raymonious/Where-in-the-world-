@@ -3,6 +3,27 @@
 
 @import url(https://fonts.googleapis.com/css2?family=Audiowide&family=Satisfy&display=swap%27);
 
+.card{
+  width: 30%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 100px auto;
+  border-color: red;
+  border-style: solid;
+}
+
+.card-header{
+  border-style: solid;
+  border-color: black;
+  text-align: center;
+}
+
+.card-body{
+  border-color: black;
+  border-style: solid;
+  text-align: center;
+}
+
 .navBar {
   padding-left: 135px;
   padding-right: 80px;
