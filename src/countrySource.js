@@ -51,11 +51,17 @@ export function getFactsFromAI(URL) {
         presence_penalty: 2,
         messages: input,
         //more options available
-    }).then((res) => {
-        console.log(res)
-        console.log(res.data.choices[0].message.content.split("\n"));
+    }).then(handleAPIRespons).catch(handleAPIError)
+
+    function handleAPIRespons(res){
+        // console.log(res)
+        // console.log(res.data.choices[0].message.content.split("\n"));
         return res.data.choices[0].message.content.replaceAll("-", " ").split("\n");
-    }).catch((err) => {console.log(err)})
+    }
+
+    function handleAPIError(){
+        console.log("API issues, please wait...")
+    }
 }
 
 

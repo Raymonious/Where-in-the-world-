@@ -27,7 +27,6 @@ import {getFactsFromApiCall} from "../countrySource.js";
 import ResultsView from "../view/resultsView.jsx";
 
 export default function Game() {
-    const [target, setTarget] = useRecoilState(targetCountryState)
     const [round, setRound] = useRecoilState(roundNumber)
     const [facts] = useRecoilState(countryFacts)
     const [userGuess, setUserGuess] = useState("")
@@ -36,12 +35,11 @@ export default function Game() {
     const [roundWon, setRoundWon] = useRecoilState(roundWonState)
     const [latestStreak, setLatestStreak] = useRecoilState(playerLatestStreak)
     const [longestStreak, setLongestStreak] = useRecoilState(playerLongestStreak)
-    
+    const [learderboard, setLeaderboard] = useRecoilState(globalLongestStreak)
     const [open, setOpen] = useState(false);
     const [curCountry, setCountry] = Recoil.useRecoilState(targetCountryState);
     const [curDiff, setDiff] = Recoil.useRecoilState(currentDifficulty);
     const difficulty = ['easy', 'medium', 'hard'];
-    const [num, setNum] = useRecoilState(roundNumber);
     const [detail] = Recoil.useRecoilState(curDetail);
     const [numberOfGames, setNumberOfGames] = useRecoilState(gamesPlayed)
     const setFav = useSetRecoilState(favoriteCountries);
@@ -53,7 +51,7 @@ export default function Game() {
         <GameView
             gameRound = {round}
             guessNumber ={amountGuess}
-            targetCountry={target}
+            targetCountry={curCountry}
             factList={[...facts].splice(0, amountGuess)}
             registerGuess={registerGuess}
             guess={guess}
@@ -69,8 +67,8 @@ export default function Game() {
     function CountryModifierACB(){
         setOpen(false);
         if (roundWon) {
-            setDiff(difficulty[num % 3]);
-            setNum(num + 1);
+            setDiff(difficulty[round % 3]);
+            setRound(round + 1);
             console.log("round won")
             console.log(latestStreak)
             console.log(longestStreak)
@@ -78,9 +76,17 @@ export default function Game() {
             if (latestStreak > longestStreak || !longestStreak) setLongestStreak(latestStreak)
         }
         else {
+            checkIfLeaderboard()
             setNumberOfGames(numberOfGames+1)
-            setNum(1)
+            setRound(1)
         }
+    }
+
+    function checkIfLeaderboard(){
+        // console.log("checking leaderboard")
+        let results = [...learderboard, latestStreak]
+        results.sort((a,b) => b-a)
+        setLeaderboard(results.slice(0,results.length >= 10 ? 10 : results.length))
     }
 
     /*useSetRecoilState to set the targetCountryState atom with a new array including both the old ones and the newly added one*/ 
@@ -111,8 +117,9 @@ export default function Game() {
     }
 
     function guess() {
-        let correctAnswer = target.includes("-") ? target.replaceAll("-", " ") : target
-        if (userGuess.toLowerCase() === correctAnswer.toLowerCase()) {
+        // let correctAnswer = curCountry.includes("-") ? curCountry.replaceAll("-", " ") : curCountry
+        if (userGuess.toLowerCase() === curCountry.toLowerCase()) {
+            setLatestStreak(round)
             // console.log(getFactsFromApiCall())
             setStatus("Correct! Well done")
             setRoundWon(true)
