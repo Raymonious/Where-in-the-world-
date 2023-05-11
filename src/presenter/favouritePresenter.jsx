@@ -6,7 +6,7 @@ import {targetCountryState, countryFacts,currentFavCountry, favDetail, detailAPI
 import { DET_URL } from "../apiConfig";
 import { useSetRecoilState } from "recoil";
 import { useState } from "react";
-
+import FavPopupView from "../view/favPopupView";
 
 export default function Favourite(aa) {
 
@@ -18,8 +18,9 @@ export default function Favourite(aa) {
     const [cD, setcD] = Recoil.useRecoilState(countryDetail2);
     const [num, setNum] = useState(0);
 
-    console.log(cD)
+    console.log(favc)
     return (
+        (favc.length)?
         <div>
                 <FavouriteView
                     favC={favc}
@@ -32,9 +33,9 @@ export default function Favourite(aa) {
                     onNumSet = {handleNumSet}
                 />
                 
-        </div>
+        </div>:<FavPopupView/>
     );
-    
+
     function handleNumSet(num){
         setNum(num);
     }

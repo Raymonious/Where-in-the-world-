@@ -13,7 +13,7 @@ export default function Sidebar(){
     
     onAuthStateChanged(fireBaseAuth, (user) =>{
         if(user){
-            console.log(session);
+            console.log(user.uid);
             if (session === "signUp") {
                 console.log("User signed up");
                 changeAccess(false);
