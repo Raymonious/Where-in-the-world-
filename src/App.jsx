@@ -49,9 +49,8 @@ function App() {
             path: "/game",
             element: <div><Suspense
                 fallback={<Backdrop
-                    sx={{ color: 'white', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-                    open={true}
-                  >
+                    sx={{ color: 'white', zIndex: 10000 }}
+                    open={true}>
                     <CircularProgress color="inherit" />
                   </Backdrop>}><Game /></Suspense>
             </div>
@@ -81,7 +80,8 @@ function App() {
                 <div>
                     {
                         /*!(window.location.href.includes('login') && !window.location.href.includes('create')) &&*/ 
-                        <div><Sidebar /></div>
+                        <Suspense>
+                        <div><Sidebar /></div></Suspense>
                     }
                     <div><RouterProvider router={createHashRouter(routes)} /></div>
                 </div>

@@ -4,12 +4,12 @@ import * as Recoil from "recoil";
 
 import {initializeApp} from "firebase/app";
 import {getDatabase, ref, get, off, set, onValue} from "firebase/database";
-import {getAuth} from "firebase/auth";
+import {getAuth, onAuthStateChanged} from "firebase/auth";
 
-const app = initializeApp(firebaseConfig)
-const db = getDatabase(app)
-const fireBaseAuth = getAuth()
-const PATH = "userData/"
+export const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+export const fireBaseAuth = getAuth();
+const PATH = "userData/";
 
 function getPlayerPath(){
     // console.log(fireBaseAuth.currentUser)

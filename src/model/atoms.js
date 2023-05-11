@@ -1,7 +1,10 @@
-import {atom, selector, selectorFamily} from "recoil";
+import {atom, selector, selectorFamily, useRecoilState} from "recoil";
 import {getCountry, getFactsFromAI, getFactsFromApiCall} from "../countrySource.js"
 import { DET_URL, DET_URL2,IMG_URL, IMG_KEY } from "../apiConfig.js";
-import { favoriteCountries } from "./persistant_atoms.js";
+import { favoriteCountries, fireBaseAuth} from "./persistant_atoms.js";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+
+
 
 const currentDifficulty = atom({
     key: "RoundDiff",
@@ -163,11 +166,19 @@ const singleDetail = selector({
     .then(function(response){return response.json()}).then(function(response){return response.summary[0]})}
 });
 
+const sessionType = atom({
+    key:"signInOrsignUp",
+    default: null,
+});
+
+
 /*Temporary atom to store signedUp or loggedIn state */
 const isGrantedAccess = atom({
     key: "Access",
-    default: false,
-})
+    default: null,
+
+});
+
 
 
 const imageAPI = {
@@ -199,5 +210,9 @@ const favoriteCImage = selector({
     {return fetch(IMG_URL + recoil.get(currentFavCountry) , imageAPI).then(function(response){return response.json()}).then(function(response){return response.photos[0].src.original})
 }})
 
+const openModal = atom({
+    key:"modalStatus",
+    default: false
+})
 
-export {countryDetail2, favoriteCImage,isGrantedAccess,getImG, gamesPlayed,singleDetail,currentDifficulty, targetCountryState, roundWonState, countryFacts, playerLatestStreak, playerLatestHighScore, currentLife, currentFavCountry, detailAPI, favDetail, favDetail2, curDetail, roundNumber, guessNumber, currentSeleFav /*countryFact*/}
+export {sessionType,openModal, countryDetail2, favoriteCImage,isGrantedAccess,getImG, gamesPlayed,singleDetail,currentDifficulty, targetCountryState, roundWonState, countryFacts, playerLatestStreak, playerLatestHighScore, currentLife, currentFavCountry, detailAPI, favDetail, favDetail2, curDetail, roundNumber, guessNumber, currentSeleFav /*countryFact*/}
