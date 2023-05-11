@@ -1,11 +1,11 @@
 import React from 'react'
 import LogoutView from '../view/LogoutView';
-import { isGrantedAccess } from '../model/atoms';
-import { useRecoilState } from 'recoil';
+import { signOut } from 'firebase/auth';
+import { fireBaseAuth } from '../model/persistant_atoms';
+
 export default function Logout(){
-    const [, changeAccess] = useRecoilState(isGrantedAccess);
     function handleLogOut(){
-        changeAccess(false);
+        signOut(fireBaseAuth);
     }   
     return (
         <LogoutView onLogout = {handleLogOut}/>

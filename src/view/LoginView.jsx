@@ -4,27 +4,16 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  getAdditionalUserInfo,
 } from "firebase/auth";
 
+
 export default function LoginView(props) {
-  
+
   function onSubmitACB(e) {
-    
+
     const auth = getAuth();
     
-    /*
-    var form = document.getElementById("form");
-    var obj = {};
-    var tagElement = form.getElementsByTagName("input");
-    for (var j = 0; j < tagElement.length; j++) {
-      let item = tagElement[j];
-      if (item.type.toLowerCase() === "checkbox") {
-        obj[`${item.name}`] = item.checked;
-      } else {
-        obj[`${item.name}`] = item.value;
-      }
-    }*/
-
     //Judging registration or login
     [props.isLogin ? signInWithEmailAndPassword : createUserWithEmailAndPassword][0](
       auth,
@@ -33,9 +22,16 @@ export default function LoginView(props) {
     )
       .then((userCredential) => {
         // Signed in
-        const user = userCredential.user;
-        window.location.hash = "#/home";
-        props.onCreateAccount();
+        let user = userCredential.user;
+        if(props.isLogin){
+          props.onSessionChange("signIn");
+          window.location.hash = "#/home";
+        }
+        else{
+          props.onSceneChange()
+          props.onSessionChange("signUp");
+          window.location.hash = "#/login"
+        }
         console.log(user);
       })
       .catch((error) => {
@@ -46,7 +42,7 @@ export default function LoginView(props) {
         // ..
       });
   };
-  function signUpHandlerACB(){
+function signUpHandlerACB(){
     props.onSceneChange();
     window.location.hash = "#/create"
 }
