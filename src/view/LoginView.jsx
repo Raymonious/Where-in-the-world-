@@ -4,6 +4,7 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+    updateProfile,
   getAdditionalUserInfo,
 } from "firebase/auth";
 
@@ -28,6 +29,7 @@ export default function LoginView(props) {
           window.location.hash = "#/home";
         }
         else{
+            updateProfile(auth.currentUser, {displayName: props.displayName}).then(console.log("successfully changed name")).catch(console.log("could not change display name"))
           props.onSceneChange()
           props.onSessionChange("signUp");
           window.location.hash = "#/login"
@@ -56,6 +58,10 @@ function handleEmailInput(e){
     props.onEmailChange(e.target.value);
 }
 
+function handleUsernameInput(e){
+    props.onUsernameInput(e.target.value)
+}
+
 function handlePassChange(e){
     props.onPassChange(e.target.value);
 }
@@ -70,7 +76,7 @@ return (
                 {
                     !props.isLogin && <div className='formItem'>
                         <label>Name</label>
-                        <input type="text" className="ipt" name='name' />
+                        <input type="text" className="ipt" name='name' onChange={handleUsernameInput}/>
                     </div>
                 }
                 <div className='formItem'>

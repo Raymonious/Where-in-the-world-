@@ -11,7 +11,7 @@ export default function Login(){
     const [email, changeEmail] = useState(); 
     const [password, changePass] = useState();
     const [session, updateType] = useRecoilState(sessionType);
-
+    const [username, setUsername] = useState("")
     function SceneHandlerACB(){
         setIsLogion(!isLogin);
     }
@@ -24,6 +24,10 @@ export default function Login(){
         changePass(value);
     }
 
+    function handleUsernameChange(name){
+        setUsername(name)
+    }
+
     function handleSessionUpdate(session){
        updateType(session);
     }
@@ -31,7 +35,8 @@ export default function Login(){
     return (
         <LoginView isLogin = {isLogin}
         onSceneChange = {SceneHandlerACB} email = {email} onEmailChange = {handleEmailChange} password = {password}
-        onPassChange = {handlePassChange} session = {session} onSessionChange = {handleSessionUpdate}/>
+        onPassChange = {handlePassChange} session = {session} onSessionChange = {handleSessionUpdate} onUsernameInput = {handleUsernameChange}
+        displayName = {username}/>
     );
 
 }   
