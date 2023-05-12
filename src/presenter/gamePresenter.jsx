@@ -5,7 +5,7 @@ import {
     favoriteCountries,
     globalHighScore,
     globalLongestStreak,
-    
+    fireBaseAuth
 } from "../model/persistant_atoms.js";
 import {
     currentDifficulty,
@@ -84,8 +84,8 @@ export default function Game() {
 
     function checkIfLeaderboard(){
         // console.log("checking leaderboard")
-        let results = [...learderboard, latestStreak]
-        results.sort((a,b) => b-a)
+        let results = [...learderboard, {score: latestStreak, name: fireBaseAuth.currentUser.displayName}]
+        results.sort((a,b) => b.score-a.score)
         setLeaderboard(results.slice(0,results.length >= 10 ? 10 : results.length))
     }
 

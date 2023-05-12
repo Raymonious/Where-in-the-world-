@@ -85,7 +85,7 @@ const globalHighScore = atom({
 
 const globalLongestStreak = atom({
     key: "StreakLeaderboard",
-    default: [15, 2, 6, 8, 3, 5, 4, 9, 10, 0].sort((a,b) => b-a),
+    default: [{score: 14, name: "Tester"}, {score: 16, name: "test2"}].sort((a,b) => b.score-a.score),
     effects_UNSTABLE: [
         ({onSet, setSelf}) => {
             setSelf(get(ref(db, PATH+ "StreakLeaderboard")).then(data => data.val() || new Recoil.DefaultValue()));
