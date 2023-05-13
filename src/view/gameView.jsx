@@ -21,17 +21,10 @@ function GameView(prop) {
                         return <div className="factList" key={index}>{msg}</div>
                     })}
                 </div>
-                {/*<div id={"PictureLocation"}>*/}
-                {/*    <h3>Get a picture from the country on your last guess!</h3>*/}
-                {/*    {prop.guessNumber.length === 0 ?*/}
-                {/*        <img id={"Waiting"} src={"https://media.tenor.com/13VnwKt5qS0AAAAd/waiting.gif"} alt={"Waiting gif"}/> : <img*/}
-                {/*            src={"https://media.istockphoto.com/id/936681148/vector/lock-icon.jpg?s=612x612&w=0&k=20&c=_0AmWrBagdcee-KDhBUfLawC7Gh8CNPLWls73lKaNVA="}*/}
-                {/*            alt={"picture of padlock"}/>}*/}
-                {/*</div>*/}
             </div>
             <span style={{position: "relative", left: "30%"}}>{prop.gameState}</span>
             <br/>
-            <input style={{position: "relative", left: "30%"}} onChange={saveGuess}/>
+            <input style={{position: "relative", left: "30%"}} onChange={saveGuess} value={prop.userGuess}/>
             <button style={{position: "relative", left: "30%"}} onClick={makeGuess}>Guess</button>
         </div>
     );
@@ -45,8 +38,7 @@ function GameView(prop) {
     }
 
     function handleFact(fact) {
-        let target = prop.targetCountry.includes("-") ? prop.targetCountry.replaceAll("-", " ") : prop.targetCountry
-        if (fact.includes(target) || fact.includes(target)) return fact.replaceAll(target, "This country")
+        if (fact.includes(prop.targetCountry) || fact.includes(prop.targetCountry)) return fact.replaceAll(prop.targetCountry, "This country")
         return fact
     }
 }
