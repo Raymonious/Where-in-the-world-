@@ -34,7 +34,7 @@ export default function Game() {
     if(access === false){
         return <Navigate to="/login" replace/>
     }
-    else {
+    else if (access === true) {
     const [round, setRound] = useRecoilState(roundNumber)
     const [facts] = useRecoilState(countryFacts)
     const [userGuess, setUserGuess] = useState("")
@@ -148,6 +148,13 @@ export default function Game() {
             }
         }
     }
+}
+
+else{
+    const [round, setRound] = useRecoilState(roundNumber)
+    const [facts] = useRecoilState(countryFacts) 
+    
+    return <div></div>
 }
 
 

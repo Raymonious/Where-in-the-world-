@@ -9,11 +9,14 @@ export default function Leaderboard() {
     const [leaderboardList] = useRecoilState(globalLongestStreak)
     // console.log(leaderboardList)
 
-    if(!access){return <Navigate to="/login" replace/>; }
-    else{
+    if(access === false){return <Navigate to="/login" replace/>; }
+    else if (access === true){
         return (
             <LeaderboardView leaderboard={leaderboardList}/>
         );
+    }
+    else{
+        return <div></div>
     }
     
 }
