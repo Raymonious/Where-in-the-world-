@@ -1,7 +1,7 @@
 import FavouriteView from "../view/FavouriteView";
 import React, { useEffect } from 'react'
 import * as Recoil from 'recoil';
-import {playerLongestStreak, playerHighScore, globalHighScore, globalLongestStreak} from "../model/persistant_atoms.js";
+import {playerLongestStreak, playerHighScore, globalHighScore, globalLongestStreak, favoriteCountries} from "../model/persistant_atoms.js";
 import {targetCountryState, countryFacts,currentFavCountry, favDetail, detailAPI, singleDetail, currentSeleFav, countryDetail2, isGrantedAccess } from "../model/atoms.js";
 import { DET_URL } from "../apiConfig";
 import { useSetRecoilState } from "recoil";
@@ -11,9 +11,11 @@ import { Navigate, useNavigate } from "react-router-dom";
 
 export default function Favourite(aa) {
     const [access] = Recoil.useRecoilState(isGrantedAccess);
-    if (!access){return <Navigate to="/login" replace/>}
+    if (!access){
+        return <Navigate to="/login" replace/>
+    }
     else{
-    const [favc, setfavc] = (access)? Recoil.useRecoilState(favoriteCountries):[null, null];
+    const [favc, setfavc] = Recoil.useRecoilState(favoriteCountries);
     const [cfc, setCfc] = Recoil.useRecoilState(currentFavCountry);
     const [detail] = Recoil.useRecoilState(singleDetail);
     const setCurFav = useSetRecoilState(currentFavCountry);

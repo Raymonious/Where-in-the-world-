@@ -26,6 +26,7 @@ export default function Sidebar(){
             console.log("user logged out");
         }
     });
+    
 
     return (
         <SidebarView accessRights = {grantedAccess}/>

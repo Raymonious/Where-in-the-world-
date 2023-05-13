@@ -48,7 +48,13 @@ function App() {
         },
         {
             path: "/leaderboard",
-            element: <div className={"leaderboard"}><Leaderboard/></div>
+            element: <div><Suspense
+            fallback={<Backdrop
+                sx={{ color: 'white', zIndex: 10000 }}
+                open={true}>
+                <CircularProgress color="inherit" />
+              </Backdrop>}><Leaderboard /></Suspense>
+        </div>
         },
         {
             path: "/game",

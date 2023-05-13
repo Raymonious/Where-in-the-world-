@@ -9,7 +9,7 @@ import { Navigate } from 'react-router-dom';
 
 export default function FavDetail(aa) {
     const [access] = Recoil.useRecoilState(isGrantedAccess);
-    if (!access) {return <Navigate to="/login" replace/>}
+    if (access === false) {return <Navigate to="/login" replace/>}
     else{
     const [cfc, setCfc] = Recoil.useRecoilState(currentFavCountry);
     const [detail] = Recoil.useRecoilState(favDetail);

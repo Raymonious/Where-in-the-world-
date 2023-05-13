@@ -31,7 +31,7 @@ import { Navigate } from "react-router-dom";
 export default function Game() {
     const [access] = useRecoilState(isGrantedAccess)
     
-    if(!access){
+    if(access === false){
         return <Navigate to="/login" replace/>
     }
     else {
