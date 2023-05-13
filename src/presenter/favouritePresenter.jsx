@@ -1,16 +1,19 @@
 import FavouriteView from "../view/FavouriteView";
-import React from 'react'
+import React, { useEffect } from 'react'
 import * as Recoil from 'recoil';
-import {playerLongestStreak, playerHighScore, favoriteCountries, globalHighScore, globalLongestStreak} from "../model/persistant_atoms.js";
-import {targetCountryState, countryFacts,currentFavCountry, favDetail, detailAPI, singleDetail, currentSeleFav,countryDetail2 } from "../model/atoms.js";
+import {playerLongestStreak, playerHighScore, globalHighScore, globalLongestStreak} from "../model/persistant_atoms.js";
+import {targetCountryState, countryFacts,currentFavCountry, favDetail, detailAPI, singleDetail, currentSeleFav, countryDetail2, isGrantedAccess } from "../model/atoms.js";
 import { DET_URL } from "../apiConfig";
 import { useSetRecoilState } from "recoil";
 import { useState } from "react";
 import FavPopupView from "../view/favPopupView";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export default function Favourite(aa) {
-
-    const [favc, setfavc] = Recoil.useRecoilState(favoriteCountries);
+    const [access] = Recoil.useRecoilState(isGrantedAccess);
+    if (!access){return <Navigate to="/login" replace/>}
+    else{
+    const [favc, setfavc] = (access)? Recoil.useRecoilState(favoriteCountries):[null, null];
     const [cfc, setCfc] = Recoil.useRecoilState(currentFavCountry);
     const [detail] = Recoil.useRecoilState(singleDetail);
     const setCurFav = useSetRecoilState(currentFavCountry);
@@ -18,7 +21,6 @@ export default function Favourite(aa) {
     const [cD, setcD] = Recoil.useRecoilState(countryDetail2);
     const [num, setNum] = useState(0);
 
-    console.log(favc)
     return (
         (favc.length)?
         <div>
@@ -30,9 +32,7 @@ export default function Favourite(aa) {
                     removeFromList = {countryRemoveACB}
                     setSelect = {SelectFavACB}
                     num = {num}
-                    onNumSet = {handleNumSet}
-                />
-                
+                    onNumSet = {handleNumSet}/>
         </div>:<FavPopupView/>
     );
 
@@ -60,5 +60,6 @@ export default function Favourite(aa) {
         setfavc(favc.filter(x => x !== country))
         
     }
-
+    
+    }
 }

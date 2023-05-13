@@ -17,16 +17,24 @@ import {
     playerLatestStreak,
     playerLatestHighScore,
     curDetail,
-    gamesPlayed
+    gamesPlayed,
+    isGrantedAccess
     
 } from "../model/atoms.js";
 import GameView from "../view/gameView.jsx"
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useRecoilState, useSetRecoilState} from "recoil";
 import {getFactsFromApiCall} from "../countrySource.js";
 import ResultsView from "../view/resultsView.jsx";
+import { Navigate } from "react-router-dom";
 
 export default function Game() {
+    const [access] = useRecoilState(isGrantedAccess)
+    
+    if(!access){
+        return <Navigate to="/login" replace/>
+    }
+    else {
     const [round, setRound] = useRecoilState(roundNumber)
     const [facts] = useRecoilState(countryFacts)
     const [userGuess, setUserGuess] = useState("")
@@ -43,9 +51,8 @@ export default function Game() {
     const [detail] = Recoil.useRecoilState(curDetail);
     const [numberOfGames, setNumberOfGames] = useRecoilState(gamesPlayed)
     const setFav = useSetRecoilState(favoriteCountries);
-    const [favList] = useRecoilState(favoriteCountries)
-
-
+    const [favList] = useRecoilState(favoriteCountries);
+        
     return (
         <div>
         <GameView
@@ -141,4 +148,7 @@ export default function Game() {
             }
         }
     }
+}
+
+
 }

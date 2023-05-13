@@ -12,17 +12,16 @@ export default function Sidebar(){
     const [session] = useRecoilState(sessionType);
     
     onAuthStateChanged(fireBaseAuth, (user) =>{
-        if(user){
+        if(user){ //current user exists
             console.log(user.uid);
             if (session === "signUp") {
                 console.log("User signed up");
                 changeAccess(false);
               } else {
-                // User signed in.
                 changeAccess(true);
                 console.log('User signed in');
               }
-        }else{
+        }else{ //current user not found
             changeAccess(false)
             console.log("user logged out");
         }

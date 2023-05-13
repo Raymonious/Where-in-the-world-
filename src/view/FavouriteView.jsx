@@ -30,7 +30,7 @@ function FavouriteView(aa) {
     );
 
     function goRightACB(){
-        aa.onNumSet((num + 1) % aa.favC.length);
+        aa.onNumSet((aa.num + 1) % aa.favC.length);
     }
     function goLeftACB(){
         if(aa.favC.length > 5){

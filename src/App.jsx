@@ -1,8 +1,8 @@
 import {Suspense} from 'react'
-import {createHashRouter, RouterProvider} from "react-router-dom";
+import {createHashRouter, RouterProvider, useNavigate} from "react-router-dom";
 import './App.css'
 import Game from "./presenter/gamePresenter.jsx";
-import {RecoilRoot} from "recoil";
+import {RecoilRoot, useRecoilState} from "recoil";
 import Home from './presenter/homePresenter.jsx'
 import Favourite from './presenter/favouritePresenter.jsx'
 import FavDetail from './presenter/FavDetailPresenter';
@@ -14,9 +14,9 @@ import About from "./presenter/aboutPresenter.jsx";
 import Leaderboard from "./presenter/leaderboardPresenter.jsx";
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
+import { isGrantedAccess } from './model/atoms';
 
 function App() {
-
     const routes = [
         {
             path: "/",
@@ -84,9 +84,8 @@ function App() {
             <RecoilRoot>
                 <div>
                     {
-                        /*!(window.location.href.includes('login') && !window.location.href.includes('create')) &&*/ 
-                        <Suspense>
-                        <div><Sidebar /></div></Suspense>
+                        
+                        <div><Sidebar /></div>
                     }
                     <div><RouterProvider router={createHashRouter(routes)}/></div>
                 </div>
