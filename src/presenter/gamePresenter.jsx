@@ -91,7 +91,6 @@ export default function Game() {
             if (latestStreak > longestStreak || !longestStreak) setLongestStreak(latestStreak)
         }
         else {
-            checkIfLeaderboard()
             setNumberOfGames(numberOfGames+1)
             setRound(1)
         }
@@ -146,6 +145,7 @@ export default function Game() {
             setStatus("Wrong guess, try again.")
             setGuess(amountGuess + 1)
             if (amountGuess === 5) {
+                checkIfLeaderboard()
                 setRoundWon(false)
                 setLatestStreak(round)
                 // setRound(1)
