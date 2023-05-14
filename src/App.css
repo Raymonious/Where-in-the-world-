@@ -3,6 +3,78 @@
 
 @import url(https://fonts.googleapis.com/css2?family=Audiowide&family=Satisfy&display=swap%27);
 
+.playGameButton{
+  text-align: center;
+}
+
+.aboutView{
+  display: grid;
+  justify-items: center;
+}
+
+.aboutView *{
+  max-width: 1000px;
+}
+
+.inputField{
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 5px;
+  align-items: center;
+}
+
+#gameTags{
+  display: grid;
+  justify-items: center;
+}
+
+.factNumber{
+  text-align: center;
+  font-size: 25px;
+  /*border-right: grey solid;*/
+  padding: 5px 5px;
+}
+
+.factText{
+  padding: 5px;
+  min-height: 43px;
+  display: grid;
+  align-items: center;
+  /*border: red dotted;*/
+  border-left: grey solid;
+  max-width: 500px;
+  text-align: center;
+}
+
+#ClueLocation {
+  grid-template-rows: 120px;
+  /*width: 500px;*/
+  text-overflow: wrap;
+}
+
+.unlockedFact{
+  align-items: center;
+  vertical-align: baseline;
+  display: grid;
+  grid-template-columns: 30px auto;
+  border-radius: 10px;
+  /*margin: auto;*/
+  margin-bottom: 10px;
+  border: solid grey;
+  /*padding-left: 5px;*/
+  /*padding-bottom: 5px;*/
+  background: black;
+}
+
+.lockedFact{
+  margin-bottom: 10px;
+  text-align: center;
+  border: solid grey;
+  padding-left: 5px;
+  padding-bottom: 5px;
+  background: black;
+}
+
 .leaderboard{
   text-align: center;
 }
@@ -345,10 +417,6 @@ table{border-collapse:collapse;}
   flex-direction: row;
 }
 
-.factlist{
-  margin: auto;
-}
-
 .home{
   position: absolute;
   width: 100%;
@@ -405,11 +473,6 @@ table{border-collapse:collapse;}
   overflow-x: auto;
   
   
-}
-
-#ClueLocation {
-  width: 500px;
- text-overflow: wrap;
 }
 
 #PictureLocation {
