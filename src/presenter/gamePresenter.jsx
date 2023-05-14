@@ -27,31 +27,37 @@ import {useRecoilState, useSetRecoilState} from "recoil";
 import {getFactsFromApiCall} from "../countrySource.js";
 import ResultsView from "../view/resultsView.jsx";
 import { Navigate } from "react-router-dom";
+import SuspenseView from "../view/suspenseView.jsx";
 
 export default function Game() {
     const [access] = useRecoilState(isGrantedAccess)
-    
-    if(access === false){
-        return <Navigate to="/login" replace/>
-    }
-    else if (access === true) {
     const [round, setRound] = useRecoilState(roundNumber)
-    const [facts] = useRecoilState(countryFacts)
     const [userGuess, setUserGuess] = useState("")
     const [status, setStatus] = useState("Make a guess")
     const [amountGuess, setGuess] = useRecoilState(guessNumber)
     const [roundWon, setRoundWon] = useRecoilState(roundWonState)
-    const [latestStreak, setLatestStreak] = useRecoilState(playerLatestStreak)
-    const [longestStreak, setLongestStreak] = useRecoilState(playerLongestStreak)
-    const [learderboard, setLeaderboard] = useRecoilState(globalLongestStreak)
     const [open, setOpen] = useState(false);
     const [curCountry, setCountry] = Recoil.useRecoilState(targetCountryState);
     const [curDiff, setDiff] = Recoil.useRecoilState(currentDifficulty);
     const difficulty = ['easy', 'medium', 'hard'];
-    const [detail] = Recoil.useRecoilState(curDetail);
     const [numberOfGames, setNumberOfGames] = useRecoilState(gamesPlayed)
+    const [detail] = Recoil.useRecoilState(curDetail);
+
+
+    if(!access){
+        if (access === null) return <SuspenseView/>
+        return <Navigate to="/login" replace/>
+    }
+    else{
+   
+    const [latestStreak, setLatestStreak] = useRecoilState(playerLatestStreak)
+    const [longestStreak, setLongestStreak] = useRecoilState(playerLongestStreak)
+    const [learderboard, setLeaderboard] = useRecoilState(globalLongestStreak)
     const setFav = useSetRecoilState(favoriteCountries);
     const [favList] = useRecoilState(favoriteCountries);
+    const [facts] = useRecoilState(countryFacts)
+
+   
         
     return (
         <div>
@@ -149,13 +155,5 @@ export default function Game() {
         }
     }
 }
-
-else{
-    const [round, setRound] = useRecoilState(roundNumber)
-    const [facts] = useRecoilState(countryFacts) 
-    
-    return <div></div>
-}
-
 
 }

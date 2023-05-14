@@ -6,7 +6,7 @@ import {currentDifficulty, targetCountryState, countryFacts, playerLatestStreak,
 import { useRecoilState } from 'recoil';
 
 export default function Home(aa){
-    const[access] = useRecoilState(isGrantedAccess);
+    const [access] = useRecoilState(isGrantedAccess);
     
     return (
         <HomeView access = {access}/>
