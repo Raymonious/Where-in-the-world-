@@ -3,6 +3,15 @@
 
 @import url(https://fonts.googleapis.com/css2?family=Audiowide&family=Satisfy&display=swap%27);
 
+/*#input-box{*/
+/*  background: grey;*/
+/*  !*border: dotted red;*!*/
+/*}*/
+
+.MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"] {
+  background: grey
+}
+
 .playGameButton{
   text-align: center;
 }

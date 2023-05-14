@@ -1,7 +1,7 @@
 import React from "react";
-import {getCountry, getFactsFromApiCall} from "../countrySource.js";
+import {APIAccepted, getCountry, getFactsFromApiCall} from "../countrySource.js";
 import {currentDifficulty, targetCountryState} from "../model/atoms.js";
-
+import {Autocomplete, TextField} from "@mui/material";
 function GameView(prop) {
     console.log(prop)
     return (
@@ -25,14 +25,23 @@ function GameView(prop) {
             <span>{prop.gameState}</span>
             <br/>
             <div className={"inputField"}>
-                <input onChange={saveGuess} value={prop.userGuess}/>
+                <Autocomplete
+                    onChange={saveGuess}
+                    disablePortal
+                    id="input-box"
+                    options= {APIAccepted}
+                    sx={{ width: 300}}
+                    renderInput={(params) => <TextField {...params} label="Country" />}
+                />
+                {/*<input onChange={saveGuess} value={prop.userGuess}/>*/}
                 <button onClick={makeGuess}>Guess</button>
             </div>
         </div>
     );
 
     function saveGuess(event) {
-        prop.registerGuess(event.target.value)
+        // console.log(event.target.innerText)
+        prop.registerGuess(event.target.innerText)
     }
 
     function makeGuess() {
