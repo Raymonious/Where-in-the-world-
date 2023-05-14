@@ -57,12 +57,12 @@ export function getFactsFromAI(URL, attempts) {
     function handleAPIRespons(res){
         // console.log(res)
         // console.log(res.data.choices[0].message.content.split("\n"));
-        return res.data.choices[0].message.content.replaceAll("-", " ").split("\n");
+        return res.data.choices[0].message.content.replaceAll("-", " ").split("\n").filter((a)=>a);
     }
 
     function handleAPIError(err){
         if(attempts === 0){
-            return ["Sorry, API does not work currently, please refresh the page. You will lose your progress nerd"]
+            return ["Sorry, API does not work currently, please refresh the page. You will lose your progress."]
         }
         // console.log(attempts)
         // console.log("API issues, please wait...")
