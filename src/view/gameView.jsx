@@ -40,16 +40,15 @@ function GameView(prop) {
     }
 
     function handleFact(fact, index) {
-        if (fact.includes(prop.targetCountry) || fact.includes(prop.targetCountry)) return fact.replaceAll(prop.targetCountry, "This country")
         if (!isNaN(fact[0] * 1)) {
             const factNumber = fact.slice(0, 2)
-            const factText = fact.slice(2, fact.length)
+            const factText = fact.slice(2, fact.length).replaceAll(prop.targetCountry, "This country")
             return (<div className="unlockedFact" key={index}>
                 <div className={"factNumber"}>{factNumber}</div>
                 <div className={"factText"}><span>{factText}</span></div>
             </div>)
         }
-        return (<div className="unlockedFact" key={index}><span/><span className={"factText"}>{fact}</span></div>)
+        return (<div className="unlockedFact" key={index}><span/><span className={"factText"}>{fact.replaceAll(prop.targetCountry, "This country")}</span></div>)
     }
 }
 
