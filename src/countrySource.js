@@ -65,7 +65,7 @@ export function getFactsFromAI(URL, attempts) {
             return ["Sorry, API does not work currently, please refresh the page. You will lose your progress."]
         }
         // console.log(attempts)
-        // console.log("API issues, please wait...")
+        console.log("API issues, please wait...")
         // console.log(err)
         return sleep(500).then(()=> getFactsFromAI(URL, attempts-1))
     }
