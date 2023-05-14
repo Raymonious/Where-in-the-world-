@@ -49,7 +49,7 @@ function GameView(prop) {
                 <div className={"factText"}><span>{factText}</span></div>
             </div>)
         }
-        return (<div className="unlockedFact" key={index}><span className={"factText"}>{fact}</span></div>)
+        return (<div className="unlockedFact" key={index}><span/><span className={"factText"}>{fact}</span></div>)
     }
 }
 

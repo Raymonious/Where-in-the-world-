@@ -66,7 +66,7 @@ const countryFact = selectorFamily({
 const countryFacts = selector({
     key: 'countryFacts',
     get: function (recoil) {
-        return getFactsFromAI(recoil.get(targetCountryState));
+        return getFactsFromAI(recoil.get(targetCountryState), 50);
     }
 });
 
