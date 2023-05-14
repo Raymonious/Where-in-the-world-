@@ -8,20 +8,24 @@ import { useSetRecoilState } from "recoil";
 import { useState } from "react";
 import FavPopupView from "../view/favPopupView";
 import { Navigate, useNavigate } from "react-router-dom";
+import SuspenseView from "../view/suspenseView";
 
 export default function Favourite(aa) {
     const [access] = Recoil.useRecoilState(isGrantedAccess);
-    if (access === false){
-        return <Navigate to="/login" replace/>
-    }
-    else if(access === true){
-    const [favc, setfavc] = Recoil.useRecoilState(favoriteCountries);
-    const [cfc, setCfc] = Recoil.useRecoilState(currentFavCountry);
-    const [detail] = Recoil.useRecoilState(singleDetail);
     const setCurFav = useSetRecoilState(currentFavCountry);
     const [curS, setcurS] = Recoil.useRecoilState(currentSeleFav);
-    const [cD, setcD] = Recoil.useRecoilState(countryDetail2);
     const [num, setNum] = useState(0);
+    const [detail] = Recoil.useRecoilState(singleDetail);
+
+
+
+    if (!access){
+        if (access === null) return <SuspenseView></SuspenseView>
+        return <Navigate to="/login" replace/>
+    }
+    else{
+        const [favc, setfavc] = Recoil.useRecoilState(favoriteCountries);
+        const [cD, setcD] = Recoil.useRecoilState(countryDetail2);
 
     return (
         (favc.length)?
@@ -63,16 +67,6 @@ export default function Favourite(aa) {
         
     }
     
-    }
-    else{
-        const [cfc, setCfc] = Recoil.useRecoilState(currentFavCountry);
-        const [detail] = Recoil.useRecoilState(singleDetail);
-        const setCurFav = useSetRecoilState(currentFavCountry);
-        const [curS, setcurS] = Recoil.useRecoilState(currentSeleFav);
-        const [cD, setcD] = Recoil.useRecoilState(countryDetail2);
-        const [num, setNum] = useState(0);
-
-        return <div>loading</div>
     }
 
 }

@@ -406,7 +406,7 @@ li.tab:hover {
   padding: 1%;
 }
 
-h1, h2{ font-family: 'Audiowide',cursive;
+h1, h2, h3{ font-family: 'Audiowide',cursive;
 }
 
 
@@ -577,4 +577,13 @@ table{border-collapse:collapse;}
 
 .center{
   text-align: center;
+}
+
+
+.iconBtnContainer{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width:auto
+
 }

@@ -15,6 +15,7 @@ import Leaderboard from "./presenter/leaderboardPresenter.jsx";
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import { isGrantedAccess } from './model/atoms';
+import SuspenseView from './view/suspenseView';
 
 function App() {
     const routes = [
@@ -48,41 +49,21 @@ function App() {
         },
         {
             path: "/leaderboard",
-            element: <div><Suspense
-            fallback={<Backdrop
-                sx={{ color: 'white', zIndex: 10000 }}
-                open={true}>
-                <CircularProgress color="inherit" />
-              </Backdrop>}><Leaderboard /></Suspense>
+            element: <div><Suspense fallback={<SuspenseView/>}><Leaderboard /></Suspense>
         </div>
         },
         {
             path: "/game",
-            element: <div><Suspense
-                fallback={<Backdrop
-                    sx={{ color: 'white', zIndex: 10000 }}
-                    open={true}>
-                    <CircularProgress color="inherit" />
-                  </Backdrop>}><Game /></Suspense>
+            element: <div><Suspense fallback={<SuspenseView/>}><Game /></Suspense>
             </div>
         },
         {
             path: "/favorites",
-            element: <div><Suspense fallback={<Backdrop
-                sx={{color: 'white', zIndex: (theme) => theme.zIndex.drawer + 1}}
-                open={true}
-            >
-                <CircularProgress color="inherit"/>
-            </Backdrop>}><Favourite/></Suspense></div>
+            element: <div><Suspense fallback={<SuspenseView/>}><Favourite/></Suspense></div>
         },
         {
             path: "/details",
-            element: <div><Suspense fallback={<Backdrop
-                sx={{color: 'white', zIndex: (theme) => theme.zIndex.drawer + 1}}
-                open={true}
-            >
-                <CircularProgress color="inherit"/>
-            </Backdrop>}><FavDetail/></Suspense></div>
+            element: <div><Suspense fallback={<SuspenseView/>}><FavDetail/></Suspense></div>
         }
     ]
     return (
