@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import Modal from "@mui/material/Modal";
 import Box  from "@mui/material/Box";
-import Button from "@mui/material/Button";
-
-
+import IconButton from "@mui/material/IconButton";
+import SportsEsportsOutlinedIcon from '@mui/icons-material/SportsEsportsOutlined';
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import logo from "../assets/logo.png";
 export default function ResultsView(pikachu) {
   
   /*click on backdrop or hit escape doesn't close modal pop up*/ 
@@ -20,14 +22,17 @@ export default function ResultsView(pikachu) {
     position: 'absolute',
     display:'flex',
     flexDirection: 'column',
-    top: '50%',
+    top: '48%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 800,
-    bgcolor: '#bbdefb',
+    bgcolor: ' #000066    ',
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
+  
+    borderRadius: 25,
+
   };
 
   function nextCountryACB(){
@@ -38,6 +43,9 @@ export default function ResultsView(pikachu) {
     pikachu.onAddFav(pikachu.curCountry)
  }
 
+  function backHomeACB(){
+    window.location.hash = "#/home"
+  }
 
   return (
     <div> 
@@ -45,15 +53,25 @@ export default function ResultsView(pikachu) {
       open={pikachu.open}
       onClose={handleClose}
       disableEscapeKeyDown = {true}
+      sx={{borderRadius: 5}}
+      slotProps={{ backdrop: { style: { backgroundColor: 'rgba(0,0,0,0.5)' } } }}
+
     ><Box sx={style}>
+        <img src= {logo} className="logo"></img>
         {pikachu.gameState?
-        <h1>You guessed correct! <br></br>The country was <mark>{pikachu.curCountry}</mark></h1>:
-        <h1>Almost there...<br></br>the country was <mark>{pikachu.curCountry}</mark></h1>}
+        <div> 
+        <h2 style={{textAlign: 'center', color: 'white', fontSize: 25, position: "relative", top: 20}}> 🎉Bingo!🎉The country was...</h2>
+        <h1 style={{textAlign: 'center',color: 'white'}}>{pikachu.curCountry}</h1></div>:
+        <div> 
+        <h2 style={{textAlign: 'center', color: 'white', fontSize: 25, position: "relative", top: 20}}>😟Nearly there!🤦‍the country was...</h2>
+        <h1 style={{textAlign: 'center',color: 'white'}}>{pikachu.curCountry}</h1></div>}
         <div style={{textAlign: "center"}}>
-        <img className = "resultsPic" src={pikachu.list.image}></img></div>  
-        <Button onClick = {nextCountryACB}>Proceed to Next Round</Button>
-        <Button onClick = {AddFavACB}>Add to Favorite</Button>
-        <Button href="#/home">Back to HomePage</Button>
+        <img className = "resultsPic" src={pikachu.list.image}></img></div>
+        <div className = "iconBtnContainer">
+        <IconButton title="Next Round!" onClick = {nextCountryACB}><SportsEsportsOutlinedIcon sx={{fontSize: '2em', color: 'white'}}></SportsEsportsOutlinedIcon></IconButton>
+        <IconButton title="Add to Favorite" onClick = {AddFavACB}><FavoriteBorderOutlinedIcon sx={{fontSize: '2em',color: 'white'}}></FavoriteBorderOutlinedIcon></IconButton>
+        <IconButton title="Back to Home" onClick= {backHomeACB} ><HomeOutlinedIcon sx={{fontSize: '2em',color: 'white'}}></HomeOutlinedIcon></IconButton>
+        </div>  
       </Box>
     </Modal>
     </div>
