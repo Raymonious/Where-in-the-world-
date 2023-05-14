@@ -62,6 +62,7 @@ export default function Game() {
     return (
         <div>
         <GameView
+            userGuess = {userGuess}
             gameRound = {round}
             guessNumber ={amountGuess}
             targetCountry={curCountry}
@@ -78,6 +79,7 @@ export default function Game() {
 
     /*rough iterator between easy, medium and hard levels and set atom currentDifficulty to switch to next country for the next round*/ 
     function CountryModifierACB(){
+        setStatus("Make a guess")
         setOpen(false);
         if (roundWon) {
             setDiff(difficulty[round % 3]);
@@ -125,11 +127,11 @@ export default function Game() {
     }
 
     function registerGuess(guess) {
-        let validGuess = guess.includes("-") ? guess.replaceAll("-", " ") : guess
-        setUserGuess(validGuess)
+        setUserGuess(guess)
     }
 
     function guess() {
+        setUserGuess("")
         // let correctAnswer = curCountry.includes("-") ? curCountry.replaceAll("-", " ") : curCountry
         if (userGuess.toLowerCase() === curCountry.toLowerCase()) {
             setLatestStreak(round)

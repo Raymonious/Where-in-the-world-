@@ -15,7 +15,7 @@ function LeaderboardView(props) {
                 {props.leaderboard.map((streak, index) => {
                     return (<tr key={index}>
                         <td>{index+1}.</td>
-                        <td>{streak.name}</td>
+                        <td>{streak.name ? streak.name : "Anonymous"}</td>
                         <td>{streak.score}</td>
                     </tr>)
                 })}

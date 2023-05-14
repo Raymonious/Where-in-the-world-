@@ -22,7 +22,7 @@ delete configuration.baseOptions.headers['User-Agent'];
 const openai = new OpenAIApi(configuration);
 
 /*chatGPT call utility function */
-export function getFactsFromAI(URL) {
+export function getFactsFromAI(URL, attempts) {
     if(!URL) {
         return;
     }
@@ -59,8 +59,17 @@ export function getFactsFromAI(URL) {
         return res.data.choices[0].message.content.replaceAll("-", " ").split("\n");
     }
 
-    function handleAPIError(){
-        console.log("API issues, please wait...")
+    function handleAPIError(err){
+        if(attempts === 0){
+            return ["Sorry, API does not work currently, please refresh the page. You will lose your progress nerd"]
+        }
+        // console.log(attempts)
+        // console.log("API issues, please wait...")
+        // console.log(err)
+        return sleep(500).then(()=> getFactsFromAI(URL, attempts-1))
+    }
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
     }
 }
 
