@@ -16,6 +16,8 @@ export default function Favourite(aa) {
     const [curS, setcurS] = Recoil.useRecoilState(currentSeleFav);
     const [num, setNum] = useState(0);
     const [detail] = Recoil.useRecoilState(singleDetail);
+    const [favc, setfavc] = Recoil.useRecoilState(favoriteCountries);
+    const [cD, setcD] = Recoil.useRecoilState(countryDetail2);
 
 
 
@@ -24,8 +26,6 @@ export default function Favourite(aa) {
         return <Navigate to="/login" replace/>
     }
     else{
-        const [favc, setfavc] = Recoil.useRecoilState(favoriteCountries);
-        const [cD, setcD] = Recoil.useRecoilState(countryDetail2);
 
     return (
         (favc.length)?

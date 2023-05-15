@@ -42,14 +42,6 @@ export default function Game() {
     const difficulty = ['easy', 'medium', 'hard'];
     const [numberOfGames, setNumberOfGames] = useRecoilState(gamesPlayed)
     const [detail] = Recoil.useRecoilState(curDetail);
-
-
-    if(!access){
-        if (access === null) return <SuspenseView/>
-        return <Navigate to="/login" replace/>
-    }
-    else{
-   
     const [latestStreak, setLatestStreak] = useRecoilState(playerLatestStreak)
     const [longestStreak, setLongestStreak] = useRecoilState(playerLongestStreak)
     const [learderboard, setLeaderboard] = useRecoilState(globalLongestStreak)
@@ -57,8 +49,13 @@ export default function Game() {
     const [favList] = useRecoilState(favoriteCountries);
     const [facts] = useRecoilState(countryFacts)
 
-   
-        
+
+
+    if(!access){
+        if (access === null) return <SuspenseView/>
+        return <Navigate to="/login" replace/>
+    }
+    else{     
     return (
         <div>
         <GameView

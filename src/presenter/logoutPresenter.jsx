@@ -9,16 +9,13 @@ import SuspenseView from '../view/suspenseView';
 
 export default function Logout(){
     const [access] = useRecoilState(isGrantedAccess)
-    if(!access) {
-        if(access === null) return <SuspenseView/>
-        return <Navigate to="/login" replace/>
-    }
-    else{
+   
         function handleLogOut(){
             signOut(fireBaseAuth);
+            window.location.hash = "#/home"
+            window.location.reload()
          }   
         return (
             <LogoutView onLogout = {handleLogOut}/>
         );
     }
-}

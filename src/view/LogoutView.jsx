@@ -3,7 +3,6 @@ import logo from '../assets/logo.png'
 export default function LogoutView(props) {
    function handleClick(){
         props.onLogout();
-        window.location.hash = "#/home";
    }
    
     return (
