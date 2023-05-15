@@ -60,7 +60,7 @@ export default function Favourite(aa) {
     function countrySelectACB(country) {
         setCurFav(country);
  
-        console.log(country);
+        // console.log(country);
     }
     function countryRemoveACB(country) {
         setfavc(favc.filter(x => x !== country))

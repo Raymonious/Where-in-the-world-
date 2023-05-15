@@ -5,7 +5,7 @@ import {Autocomplete, TextField} from "@mui/material";
 import bakcground from '../assets/Home.gif'
  
 function GameView(prop) {
-    console.log(prop)
+    // console.log(prop)
     return (
         <div style={{objectFit: 'cover'}}>
         <div width = "100%" className="home" style={{position:'absolute', zIndex:-1,}}>

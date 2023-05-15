@@ -12,7 +12,7 @@ const currentDifficulty = atom({
     effects: [
         ({onSet, setSelf}) => {
             onSet((newValue, oldValue) => {
-                console.log(newValue)
+                // console.log(newValue)
                 if (!["easy", "medium", "hard"].find((item) => item===newValue)) {
                     setSelf(oldValue);
                     console.error("New difficulty not in list of accepted difficulties. Please enter either easy, medium or hard")

@@ -84,10 +84,10 @@ export default function Game() {
             setDiff(difficulty[round % 3]);
             setRound(round + 1);
             setRoundWon(null);
-            console.log("round won")
-            console.log(latestStreak)
-            console.log(longestStreak)
-            console.log(latestStreak > longestStreak)
+            // console.log("round won")
+            // console.log(latestStreak)
+            // console.log(longestStreak)
+            // console.log(latestStreak > longestStreak)
             if (latestStreak > longestStreak || !longestStreak) setLongestStreak(latestStreak)
         }
         else {

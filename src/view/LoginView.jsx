@@ -34,7 +34,7 @@ export default function LoginView(props) {
           props.onSessionChange("signUp");
           window.location.hash = "#/login"
         }
-        console.log(user);
+        // console.log(user);
       })
       .catch((error) => {
         //const errorCode = error.code;
