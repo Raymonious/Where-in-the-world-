@@ -10,7 +10,7 @@ function GameView(prop) {
         <div style={{objectFit: 'cover'}}>
         <div width = "100%" className="home" style={{position:'absolute', zIndex:-1,}}>
             <div className="globe">
-            <img style={{}} src={'https://images.pexels.com/photos/41949/earth-earth-at-night-night-lights-41949.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'}/>
+            <img id ={"backgroundMap"} style={{filter: "brightness(" + (0.8 + (prop.guessNumber - 1) * 0.2) + ""}} src={'https://images.pexels.com/photos/41949/earth-earth-at-night-night-lights-41949.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'}/>
             </div>
         </div>
 
