@@ -2,9 +2,18 @@ import React from "react";
 import {APIAccepted, getCountry, getFactsFromApiCall} from "../countrySource.js";
 import {currentDifficulty, targetCountryState} from "../model/atoms.js";
 import {Autocomplete, TextField} from "@mui/material";
+import bakcground from '../assets/Home.gif'
+ 
 function GameView(prop) {
     console.log(prop)
     return (
+        <div style={{objectFit: 'cover'}}>
+        <div width = "100%" className="home" style={{position:'absolute', zIndex:-1,}}>
+            <div className="globe">
+            <img style={{}} src={'https://images.pexels.com/photos/41949/earth-earth-at-night-night-lights-41949.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'}/>
+            </div>
+        </div>
+
         <div id={"gameTags"}>
             {prop.gameRound === 1 ? (<div>
                 <h1>Welcome to the game</h1>
@@ -36,6 +45,7 @@ function GameView(prop) {
                 {/*<input onChange={saveGuess} value={prop.userGuess}/>*/}
                 <button onClick={makeGuess}>Guess</button>
             </div>
+        </div>
         </div>
     );
 
