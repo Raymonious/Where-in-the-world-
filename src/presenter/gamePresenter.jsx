@@ -149,7 +149,7 @@ export default function Game() {
             if (amountGuess === 5) {
                 checkIfLeaderboard()
                 setRoundWon(false)
-                setLatestStreak(round)
+                setLatestStreak(round+1)
                 // setRound(1)
                 //setGuess(1)
                 setStatus("Make a guess")
