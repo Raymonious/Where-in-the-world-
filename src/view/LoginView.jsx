@@ -67,41 +67,26 @@ function handlePassChange(e){
 }
 
 return (
-    <div width="100%" className="login">
+    <div className="login">
         <div className="formBox">
             
-                <h5 className='title'>where in the world?</h5>
+                <h3 className='title'>where in the world?</h3>
                 <img src={logo} alt="" className='logo' />
                 <h5 className='title'>{props.isLogin ? "LOGIN" : "CREATE ACCOUNT"}</h5>
                 {
                     !props.isLogin && <div className='formItem'>
-                        <label>Name</label>
+                        <h5>Name</h5>
                         <input type="text" className="ipt" name='name' onChange={handleUsernameInput}/>
                     </div>
                 }
                 <div className='formItem'>
-                    <label>Email</label>
+                    <h5>Email</h5>
                     <input type="email" className="ipt" name='email' onChange={handleEmailInput}/>
                 </div>
                 <div className='formItem'>
-                    <label>Password</label>
+                    <h5>Password</h5>
                     <input type="password" className="ipt" name='password' onChange={handlePassChange} />
                 </div>
-                {
-                    props.isLogin ? <div className='remember'>
-                        <p>
-                            <input type="checkbox" className="checkout" />
-                            Remember Me
-                        </p>
-                        <a>Forgot Password?</a>
-                    </div> : <div className='remember'>
-                        <p>
-                            <input type="checkbox" className="checkout" />
-                            laccept the Terms  Conditions
-                        </p>
-                        <a></a>
-                    </div>
-                }
                 {
                  props.isLogin ?
                 <div>

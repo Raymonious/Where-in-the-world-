@@ -491,10 +491,11 @@ table{border-collapse:collapse;}
 .login {
   background-color: rgb(0, 0, 0);
   color: white;
-  height: 100vh;
+  height: calc(100% - 88.8px);
 }
 
 .login .formBox {
+  background: black;
   width: 450px;
   position: absolute;
   top: 50%;
