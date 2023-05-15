@@ -1,5 +1,4 @@
 import React from 'react';
-import {fireBaseAuth} from "../model/persistant_atoms.js";
 export default function LoginView(props) {
     return (
         <div className="login">
@@ -8,7 +7,7 @@ export default function LoginView(props) {
                     <h1>Account Details</h1>
                     <div className='formItem'>
                         <h3>Display name</h3>
-                        <span>{fireBaseAuth.currentUser.displayName}</span>
+                        <span>{props.displayName}</span>
                     </div>
                     <div className='formItem'>
                         <h3>Highest streak</h3>
