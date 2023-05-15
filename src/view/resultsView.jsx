@@ -10,7 +10,7 @@ export default function ResultsView(pikachu) {
   
   /*click on backdrop or hit escape doesn't close modal pop up*/ 
   function handleClose(event, reason){
-    if (reason === "backdropClick" || reason === "escapeKeyDown") {
+    if (reason === "escapeKeyDown") {
         console.log(reason);
       } else {
         pikachu.closeModal();

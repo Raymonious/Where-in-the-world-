@@ -22,7 +22,7 @@ delete configuration.baseOptions.headers['User-Agent'];
 const openai = new OpenAIApi(configuration);
 
 /*chatGPT call utility function */
-export function getFactsFromAI(URL, attempts) {
+export function getFactsFromAI(URL, attempts, sleepTime) {
     if(!URL) {
         return;
     }
@@ -67,7 +67,7 @@ export function getFactsFromAI(URL, attempts) {
         // console.log(attempts)
         console.log("API issues, please wait...")
         // console.log(err)
-        return sleep(500).then(()=> getFactsFromAI(URL, attempts-1))
+        return sleep(sleepTime).then(()=> getFactsFromAI(URL, attempts-1, sleepTime * 1.8))
     }
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));

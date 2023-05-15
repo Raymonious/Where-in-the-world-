@@ -70,7 +70,6 @@ export default function Game() {
             registerGuess={registerGuess}
             guess={guess}
             gameState={status}
-            openModal = {handleOpen}
         />
         <ResultsView open = {open} closeModal = {handleClose} curCountry = {curCountry} onNextCountry = {CountryModifierACB} list = {detail}
         onAddFav = {FavAdderACB} gameState = {roundWon}/>
@@ -82,8 +81,10 @@ export default function Game() {
         setStatus("Make a guess")
         setOpen(false);
         if (roundWon) {
+            setGuess(1)
             setDiff(difficulty[round % 3]);
             setRound(round + 1);
+            setRoundWon(null);
             console.log("round won")
             console.log(latestStreak)
             console.log(longestStreak)
@@ -91,8 +92,11 @@ export default function Game() {
             if (latestStreak > longestStreak || !longestStreak) setLongestStreak(latestStreak)
         }
         else {
+            setGuess(1)
             setNumberOfGames(numberOfGames+1)
             setRound(1)
+            setRoundWon(null)
+
         }
     }
 
@@ -131,6 +135,10 @@ export default function Game() {
 
     function guess() {
         setUserGuess("")
+        if(roundWon !== null) {
+            setOpen(true)
+            return;
+        }
         // let correctAnswer = curCountry.includes("-") ? curCountry.replaceAll("-", " ") : curCountry
         if (userGuess.toLowerCase() === curCountry.toLowerCase()) {
             setLatestStreak(round)
@@ -138,22 +146,21 @@ export default function Game() {
             setStatus("Correct! Well done")
             setRoundWon(true)
             // setRound(round + 1)
-            setGuess(1)
             setOpen(true);
             //window.location.hash = "#/result"
         } else {
             setStatus("Wrong guess, try again.")
-            setGuess(amountGuess + 1)
             if (amountGuess === 5) {
                 checkIfLeaderboard()
                 setRoundWon(false)
                 setLatestStreak(round)
                 // setRound(1)
-                setGuess(1)
+                //setGuess(1)
                 setStatus("Make a guess")
                 //window.location.hash = "#/result"
                 setOpen(true);
             }
+            else setGuess(amountGuess + 1)
         }
     }
 }

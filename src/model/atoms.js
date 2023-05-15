@@ -35,7 +35,7 @@ const guessNumber = atom({
 
 const roundWonState = atom({
     key: "roundWon",
-    default: false
+    default: null
 })
 
 const gamesPlayed = atom({
@@ -66,7 +66,7 @@ const countryFact = selectorFamily({
 const countryFacts = selector({
     key: 'countryFacts',
     get: function (recoil) {
-        return getFactsFromAI(recoil.get(targetCountryState), 50);
+        return getFactsFromAI(recoil.get(targetCountryState), 50, 5000);
     }
 });
 
