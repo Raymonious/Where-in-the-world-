@@ -144,7 +144,7 @@ export default function Game() {
             return;
         }
         // let correctAnswer = curCountry.includes("-") ? curCountry.replaceAll("-", " ") : curCountry
-        if (userGuess.toLowerCase() === curCountry.toLowerCase()) {
+        if (userGuess && userGuess.toLowerCase() === curCountry.toLowerCase()) {
             setLatestStreak(round)
             // console.log(getFactsFromApiCall())
             setStatus("Correct! Well done")
