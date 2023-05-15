@@ -14,7 +14,7 @@ const PATH = "userData/";
 function getPlayerPath(){
     // console.log(fireBaseAuth.currentUser)
     if(fireBaseAuth.currentUser)
-    return PATH + fireBaseAuth.currentUser.uid
+        return PATH + fireBaseAuth.currentUser.uid
     else return PATH;
 }
 
