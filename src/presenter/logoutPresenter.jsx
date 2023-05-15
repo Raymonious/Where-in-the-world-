@@ -16,6 +16,7 @@ export default function Logout(){
     else{
         function handleLogOut(){
             signOut(fireBaseAuth);
+            window.location.reload()
          }   
         return (
             <LogoutView onLogout = {handleLogOut}/>
