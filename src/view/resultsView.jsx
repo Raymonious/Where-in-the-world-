@@ -25,13 +25,11 @@ export default function ResultsView(pikachu) {
     top: '48%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 800,
-    bgcolor: ' #000066    ',
+    width: 700,
+    bgcolor: 'white',
     border: '2px solid #000',
     boxShadow: 24,
-    p: 4,
-  
-    borderRadius: 25,
+
 
   };
 
@@ -57,20 +55,23 @@ export default function ResultsView(pikachu) {
       slotProps={{ backdrop: { style: { backgroundColor: 'rgba(0,0,0,0.5)' } } }}
 
     ><Box sx={style}>
-        <img src= {logo} className="logo"></img>
+      <img style={{position:"absolute", top:280, left:"50%", transform:"translate(-50%, -50%)", height:70, width:70}} src= {logo}></img>
+         <div style={{textAlign: "center",height: 280 ,backgroundImage:'url(https://images.pexels.com/photos/697662/pexels-photo-697662.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)',backgroundPositionX: "center",backgroundRepeat: "no-repeat", backgroundSize: "100%"}}>
+</div> 
         {pikachu.gameState?
         <div> 
-        <h2 style={{textAlign: 'center', color: 'white', fontSize: 25, position: "relative", top: 20}}> 🎉Bingo!🎉The country was...</h2>
-        <h1 style={{textAlign: 'center',color: 'white'}}>{pikachu.curCountry}</h1></div>:
+        <h2 style={{textAlign: 'center', color: 'black', fontSize: 25, position: "relative", top: 20}}> 🎉Bingo!🎉The country was...</h2>
+        <h1 style={{textAlign: 'center',color: 'black'}}>{pikachu.curCountry}</h1></div>:
         <div> 
-        <h2 style={{textAlign: 'center', color: 'white', fontSize: 25, position: "relative", top: 20}}>😟Nearly there!🤦‍the country was...</h2>
-        <h1 style={{textAlign: 'center',color: 'white'}}>{pikachu.curCountry}</h1></div>}
-        <div style={{textAlign: "center"}}>
-        <img className = "resultsPic" src={pikachu.list.image}></img></div>
+        <h2 style={{textAlign: 'center', color: 'black', fontSize: 25, position: "relative", top: 20}}>😟Nearly there!🤦‍the country was...</h2>
+        <span><h1 style={{textAlign: 'center',color: 'black'}}>{pikachu.curCountry}</h1></span>
+        <span style={{height: 32}}></span>
+        </div>}
+   
         <div className = "iconBtnContainer">
-        <IconButton title="Next Round!" onClick = {nextCountryACB}><SportsEsportsOutlinedIcon sx={{fontSize: '2em', color: 'white'}}></SportsEsportsOutlinedIcon></IconButton>
-        <IconButton title="Add to Favorite" onClick = {AddFavACB}><FavoriteBorderOutlinedIcon sx={{fontSize: '2em',color: 'white'}}></FavoriteBorderOutlinedIcon></IconButton>
-        <IconButton title="Back to Home" onClick= {backHomeACB} ><HomeOutlinedIcon sx={{fontSize: '2em',color: 'white'}}></HomeOutlinedIcon></IconButton>
+        <IconButton title="Next Round!" onClick = {nextCountryACB}><SportsEsportsOutlinedIcon sx={{fontSize: '2em', color: 'black'}}></SportsEsportsOutlinedIcon></IconButton>
+        <IconButton title="Add to Favorite" onClick = {AddFavACB}><FavoriteBorderOutlinedIcon sx={{fontSize: '2em',color: 'black'}}></FavoriteBorderOutlinedIcon></IconButton>
+        <IconButton title="Back to Home" onClick= {backHomeACB} ><HomeOutlinedIcon sx={{fontSize: '2em',color: 'black'}}></HomeOutlinedIcon></IconButton>
         </div>  
       </Box>
     </Modal>
