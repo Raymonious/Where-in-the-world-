@@ -11,11 +11,7 @@ export default function LogoutView(props) {
             <div className="formBox">
                     <h5 className='title'>where in the world?</h5>
                     <img src={logo} alt="" className='logo' />
-                    <div className='formItem'>
-                        <label>Email</label>
-                        <input type="email" className="ipt" name='email' />
-                    </div>
-                    <button className='btn' onClick={handleClick}>LoGouT</button>
+                    <button className='btn' onClick={handleClick}>Log out</button>
             </div>
         </div>
     );
