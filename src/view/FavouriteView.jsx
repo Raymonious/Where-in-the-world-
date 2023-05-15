@@ -31,6 +31,14 @@ function FavouriteView(aa) {
 
     function goRightACB(){
         aa.onNumSet((aa.num + 1) % aa.favC.length);
+        if(aa.favC.length > 5){
+            aa.onNumSet((aa.num + 1) % 5);
+        }
+        else{
+            aa.onNumSet((aa.num + 1) % aa.favC.length);
+        }
+
+
     }
     function goLeftACB(){
         if(aa.favC.length > 5){
