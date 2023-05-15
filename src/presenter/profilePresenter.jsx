@@ -1,29 +1,19 @@
 import React from 'react'
-import {favoriteCountries, fireBaseAuth, playerLongestStreak} from "../model/persistant_atoms.js";
-import SettingView from '../view/SettingView';
-import {useRecoilState, useSetRecoilState} from 'recoil';
+import {fireBaseAuth, playerLongestStreak} from "../model/persistant_atoms.js";
+import ProfileView from '../view/profileView.jsx';
+import {useRecoilState} from 'recoil';
 import {
-    countryDetail2,
-    currentFavCountry,
-    currentSeleFav,
     isGrantedAccess,
     playerLatestStreak,
     singleDetail
 } from '../model/atoms';
 import { Navigate } from 'react-router-dom';
 import SuspenseView from '../view/suspenseView';
-import * as Recoil from "recoil";
-import {useState} from "react";
 
-export default function Setting(){
+export default function Profile(){
     const [access] = useRecoilState(isGrantedAccess);
     const [userLatestStreak] = useRecoilState(playerLatestStreak)
-    const setCurFav = useSetRecoilState(currentFavCountry);
-    const [curS, setcurS] = Recoil.useRecoilState(currentSeleFav);
-    const [num, setNum] = useState(0);
-    const [detail] = Recoil.useRecoilState(singleDetail);
-    const [favc, setfavc] = Recoil.useRecoilState(favoriteCountries);
-    const [cD, setcD] = Recoil.useRecoilState(countryDetail2);
+    const [detail] = useRecoilState(singleDetail);
     const [userHighStreak] = useRecoilState(playerLongestStreak)
 
 
@@ -35,7 +25,7 @@ export default function Setting(){
     else{
 
         return (
-            <SettingView
+            <ProfileView
                 highestStreak = {userHighStreak}
                 recentStreak = {userLatestStreak}
                 displayName = {fireBaseAuth.currentUser.displayName}

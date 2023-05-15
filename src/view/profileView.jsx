@@ -1,5 +1,5 @@
 import React from 'react';
-export default function SettingView(props) {
+export default function ProfileView(props) {
     return (
         <div className="login">
             <div className="formBox setting">

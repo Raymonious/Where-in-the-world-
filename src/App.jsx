@@ -9,7 +9,7 @@ import FavDetail from './presenter/FavDetailPresenter';
 import Sidebar from './presenter/sidebarPresenter.jsx';
 import Login from './presenter/loginPresenter';
 import Logout from './presenter/logoutPresenter';
-import Setting from './presenter/settingPresenter';
+import Profile from './presenter/profilePresenter.jsx';
 import About from "./presenter/aboutPresenter.jsx";
 import Leaderboard from "./presenter/leaderboardPresenter.jsx";
 import Backdrop from '@mui/material/Backdrop';
@@ -37,7 +37,7 @@ function App() {
         },
         {
             path: "/setting",
-            element: <div className="settingPage"><Suspense fallback={<SuspenseView/>}><Setting/></Suspense></div>
+            element: <div className="settingPage"><Suspense fallback={<SuspenseView/>}><Profile/></Suspense></div>
         },
         {
             path: "/about",
