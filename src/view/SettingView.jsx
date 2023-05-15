@@ -5,17 +5,17 @@ export default function LoginView(props) {
         <div className="login">
             <div className="formBox setting">
                 <form className='from'>
-                    <h5>Account Details</h5>
+                    <h1>Account Details</h1>
                     <div className='formItem'>
-                        <label>Display name</label>
+                        <h3>Display name</h3>
                         <span>{fireBaseAuth.currentUser.displayName}</span>
                     </div>
                     <div className='formItem'>
-                        <label>Highest streak</label>
-                        <span>{props.highStreak}</span>
+                        <h3>Highest streak</h3>
+                        <span>{props.highestStreak}</span>
                     </div>
                     <div className='formItem'>
-                        <label>Most recent streak</label>
+                        <h3>Most recent streak</h3>
                         <span>{props.recentStreak}</span>
                     </div>
                 </form>

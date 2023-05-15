@@ -37,7 +37,7 @@ function App() {
         },
         {
             path: "/setting",
-            element: <div className="settingPage"><Setting/></div>
+            element: <div className="settingPage"><Suspense fallback={<SuspenseView/>}><Setting/></Suspense></div>
         },
         {
             path: "/about",

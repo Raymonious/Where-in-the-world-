@@ -6,17 +6,20 @@ import { Navigate } from 'react-router-dom';
 import SuspenseView from '../view/suspenseView';
 import {playerHighScore} from "../model/persistant_atoms.js";
 export default function Login(){
-    const[access] = useRecoilState(isGrantedAccess);
+    const [access] = useRecoilState(isGrantedAccess);
     const [userLatestStreak] = useRecoilState(playerLatestStreak)
+    const [userHighStreak] = useRecoilState(playerHighScore)
     if(!access) {
         if(access === null) return <SuspenseView/>
         return <Navigate to="/login" replace/>
     }
     else{
-        const [userHighStreak] = useRecoilState(playerHighScore)
 
         return (
-            <SettingView highStreak = {userHighStreak} recentStreak = {userLatestStreak}/>
+            <SettingView
+                highestStreak = {userHighStreak}
+                recentStreak = {userLatestStreak}
+            />
         );
     }
 }
