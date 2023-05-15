@@ -6,6 +6,8 @@ import SportsEsportsOutlinedIcon from '@mui/icons-material/SportsEsportsOutlined
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import logo from "../assets/logo.png";
+import Alert from '@mui/material/Alert';
+
 export default function ResultsView(pikachu) {
   
   /*click on backdrop or hit escape doesn't close modal pop up*/ 
@@ -45,6 +47,11 @@ export default function ResultsView(pikachu) {
     window.location.hash = "#/home"
   }
 
+  function handleClickXACB(){
+    pikachu.onAlertClose();
+  }
+
+
   return (
     <div> 
     <Modal
@@ -54,7 +61,10 @@ export default function ResultsView(pikachu) {
       sx={{borderRadius: 5}}
       slotProps={{ backdrop: { style: { backgroundColor: 'rgba(0,0,0,0.5)' } } }}
 
-    ><Box sx={style}>
+    >
+      <Box>
+      {pikachu.alertState && <Alert sx ={{position: 'absolute', left: "41%", bottom: "10%"}} onClose={handleClickXACB}>Added to your favorite list now!</Alert>}
+      <Box sx={style}>
       <img style={{position:"absolute", top:280, left:"50%", transform:"translate(-50%, -50%)", height:70, width:70}} src= {logo}></img>
          <div style={{textAlign: "center",height: 280 ,backgroundImage:'url(https://images.pexels.com/photos/697662/pexels-photo-697662.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)',backgroundPositionX: "center",backgroundRepeat: "no-repeat", backgroundSize: "100%"}}>
 </div> 
@@ -73,6 +83,7 @@ export default function ResultsView(pikachu) {
         <IconButton title="Add to Favorite" onClick = {AddFavACB}><FavoriteBorderOutlinedIcon sx={{fontSize: '2em',color: 'black'}}></FavoriteBorderOutlinedIcon></IconButton>
         <IconButton title="Back to Home" onClick= {backHomeACB} ><HomeOutlinedIcon sx={{fontSize: '2em',color: 'black'}}></HomeOutlinedIcon></IconButton>
         </div>  
+      </Box>
       </Box>
     </Modal>
     </div>

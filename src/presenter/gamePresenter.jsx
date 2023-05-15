@@ -48,6 +48,7 @@ export default function Game() {
     const setFav = useSetRecoilState(favoriteCountries);
     const [favList] = useRecoilState(favoriteCountries);
     const [facts] = useRecoilState(countryFacts)
+    const [alertOpen, setAlert] = useState(false);
 
 
 
@@ -69,7 +70,8 @@ export default function Game() {
             gameState={status}
         />
         <ResultsView open = {open} closeModal = {handleClose} curCountry = {curCountry} onNextCountry = {CountryModifierACB} list = {detail}
-        onAddFav = {FavAdderACB} gameState = {roundWon}/>
+        onAddFav = {FavAdderACB} gameState = {roundWon} alertState = {alertOpen} onAlertClose = {handleAlertACB}/>
+        
     </div>
     );
 
@@ -112,6 +114,8 @@ export default function Game() {
             ...currentState,
             country,
           ]);
+        setAlert(true)
+
         }
     }
 
@@ -123,6 +127,10 @@ export default function Game() {
 
     function handleClose(){
         setOpen(false);
+    }
+
+    function handleAlertACB(){
+        setAlert(false);
     }
 
     function registerGuess(guess) {
