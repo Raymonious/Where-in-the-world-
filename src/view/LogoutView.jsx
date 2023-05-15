@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import logo from '../assets/logo.png'
 export default function LogoutView(props) {
    function handleClick(){
+       window.location.hash = "#/home";
         props.onLogout();
-        window.location.hash = "#/home";
    }
    
     return (
