@@ -469,8 +469,8 @@ table{border-collapse:collapse;}
 }
 
 .resultsPic{
-  width: 50%;
-  border: white 1px solid
+  width: 40%;
+  border: white 1px solid;
 }
 
 #GameLocation {
@@ -584,6 +584,7 @@ table{border-collapse:collapse;}
   display:flex;
   flex-direction: row;
   justify-content: space-evenly;
-  width:auto
-
+  width:auto;
+  padding: 25px;
+  padding-top: 0;
 }
