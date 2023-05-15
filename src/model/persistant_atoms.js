@@ -27,12 +27,9 @@ const playerLongestStreak = atom({
                 data.val() || new Recoil.DefaultValue()
             }));
             onSet(newStreak => {
-                console.log(newStreak)
                 set(ref(db, getPlayerPath() + "/Streak"), newStreak)
             });
             onValue(ref(db, getPlayerPath() ), data => {
-                // console.log(data)
-                // console.log(data.val().Streak)
                 if (data.val() && data.val().Streak) setSelf(data.val().Streak)
             });
             return () => off(ref(db,getPlayerPath()));
