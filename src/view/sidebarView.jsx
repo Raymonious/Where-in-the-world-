@@ -1,7 +1,6 @@
 import React from 'react';
 
 export default function SidebarView(pikachu){
-  console.log(pikachu)  
   return (
       pikachu.accessRights?
         <ul className='navBar'>

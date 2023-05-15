@@ -1,53 +1,63 @@
 import React from "react";
-import {getCountry, getFactsFromApiCall} from "../countrySource.js";
+import {APIAccepted, getCountry, getFactsFromApiCall} from "../countrySource.js";
 import {currentDifficulty, targetCountryState} from "../model/atoms.js";
-
+import {Autocomplete, TextField} from "@mui/material";
 function GameView(prop) {
     console.log(prop)
     return (
-        <div>
+        <div id={"gameTags"}>
             {prop.gameRound === 1 ? (<div>
-                <h1 style={{position: "relative", left: "32%"}}>Welcome to the game</h1>
+                <h1>Welcome to the game</h1>
             </div>) : (<div>
-                <h1 style={{position: "relative", left: "32%"}}>Keep it going!</h1>
+                <h1>Keep it going!</h1>
             </div>)}
-            <span style={{position: "relative", left: "30%"}}>Round {prop.gameRound}</span>
+            <h3>Round {prop.gameRound}</h3>
             <div id={"GameLocation"}>
                 <div id={"ClueLocation"}>
                     {prop.factList.map((fact, index) => {
-                        return <div className="factList" key={index}>{handleFact(fact)}</div>
+                        return handleFact(fact, index)
                     })}
                     {Array(5 - prop.guessNumber).fill("Guess to unlock").map((msg, index) => {
-                        return <div className="factList" key={index}>{msg}</div>
+                        return <div className="lockedFact" key={index}>{msg}</div>
                     })}
                 </div>
-                {/*<div id={"PictureLocation"}>*/}
-                {/*    <h3>Get a picture from the country on your last guess!</h3>*/}
-                {/*    {prop.guessNumber.length === 0 ?*/}
-                {/*        <img id={"Waiting"} src={"https://media.tenor.com/13VnwKt5qS0AAAAd/waiting.gif"} alt={"Waiting gif"}/> : <img*/}
-                {/*            src={"https://media.istockphoto.com/id/936681148/vector/lock-icon.jpg?s=612x612&w=0&k=20&c=_0AmWrBagdcee-KDhBUfLawC7Gh8CNPLWls73lKaNVA="}*/}
-                {/*            alt={"picture of padlock"}/>}*/}
-                {/*</div>*/}
             </div>
-            <span style={{position: "relative", left: "30%"}}>{prop.gameState}</span>
+            <span>{prop.gameState}</span>
             <br/>
-            <input style={{position: "relative", left: "30%"}} onChange={saveGuess}/>
-            <button style={{position: "relative", left: "30%"}} onClick={makeGuess}>Guess</button>
+            <div className={"inputField"}>
+                <Autocomplete
+                    onChange={saveGuess}
+                    disablePortal
+                    id="input-box"
+                    options= {APIAccepted}
+                    sx={{ width: 300}}
+                    renderInput={(params) => <TextField {...params} label="Country" />}
+                />
+                {/*<input onChange={saveGuess} value={prop.userGuess}/>*/}
+                <button onClick={makeGuess}>Guess</button>
+            </div>
         </div>
     );
 
     function saveGuess(event) {
-        prop.registerGuess(event.target.value)
+        // console.log(event.target.innerText)
+        prop.registerGuess(event.target.innerText)
     }
 
     function makeGuess() {
         prop.guess()
     }
 
-    function handleFact(fact) {
-        let target = prop.targetCountry.includes("-") ? prop.targetCountry.replaceAll("-", " ") : prop.targetCountry
-        if (fact.includes(target) || fact.includes(target)) return fact.replaceAll(target, "This country")
-        return fact
+    function handleFact(fact, index) {
+        if (!isNaN(fact[0] * 1)) {
+            const factNumber = fact.slice(0, 2)
+            const factText = fact.slice(2, fact.length).replaceAll(prop.targetCountry, "This country")
+            return (<div className="unlockedFact" key={index}>
+                <div className={"factNumber"}>{factNumber}</div>
+                <div className={"factText"}><span>{factText}</span></div>
+            </div>)
+        }
+        return (<div className="unlockedFact" key={index}><span/><span className={"factText"}>{fact.replaceAll(prop.targetCountry, "This country")}</span></div>)
     }
 }
 

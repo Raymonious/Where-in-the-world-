@@ -4,27 +4,17 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+    updateProfile,
+  getAdditionalUserInfo,
 } from "firebase/auth";
 
+
 export default function LoginView(props) {
-  
+
   function onSubmitACB(e) {
-    
+
     const auth = getAuth();
     
-    /*
-    var form = document.getElementById("form");
-    var obj = {};
-    var tagElement = form.getElementsByTagName("input");
-    for (var j = 0; j < tagElement.length; j++) {
-      let item = tagElement[j];
-      if (item.type.toLowerCase() === "checkbox") {
-        obj[`${item.name}`] = item.checked;
-      } else {
-        obj[`${item.name}`] = item.value;
-      }
-    }*/
-
     //Judging registration or login
     [props.isLogin ? signInWithEmailAndPassword : createUserWithEmailAndPassword][0](
       auth,
@@ -33,9 +23,17 @@ export default function LoginView(props) {
     )
       .then((userCredential) => {
         // Signed in
-        const user = userCredential.user;
-        window.location.hash = "#/home";
-        props.onCreateAccount();
+        let user = userCredential.user;
+        if(props.isLogin){
+          props.onSessionChange("signIn");
+          window.location.hash = "#/home";
+        }
+        else{
+            updateProfile(auth.currentUser, {displayName: props.displayName}).then(console.log("successfully changed name")).catch(console.log("could not change display name"))
+          props.onSceneChange()
+          props.onSessionChange("signUp");
+          window.location.hash = "#/login"
+        }
         console.log(user);
       })
       .catch((error) => {
@@ -46,7 +44,7 @@ export default function LoginView(props) {
         // ..
       });
   };
-  function signUpHandlerACB(){
+function signUpHandlerACB(){
     props.onSceneChange();
     window.location.hash = "#/create"
 }
@@ -58,6 +56,10 @@ function registerHandlerACB(){
 
 function handleEmailInput(e){
     props.onEmailChange(e.target.value);
+}
+
+function handleUsernameInput(e){
+    props.onUsernameInput(e.target.value)
 }
 
 function handlePassChange(e){
@@ -74,7 +76,7 @@ return (
                 {
                     !props.isLogin && <div className='formItem'>
                         <label>Name</label>
-                        <input type="text" className="ipt" name='name' />
+                        <input type="text" className="ipt" name='name' onChange={handleUsernameInput}/>
                     </div>
                 }
                 <div className='formItem'>

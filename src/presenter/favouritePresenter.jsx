@@ -1,25 +1,34 @@
 import FavouriteView from "../view/FavouriteView";
-import React from 'react'
+import React, { useEffect } from 'react'
 import * as Recoil from 'recoil';
-import {playerLongestStreak, playerHighScore, favoriteCountries, globalHighScore, globalLongestStreak} from "../model/persistant_atoms.js";
-import {targetCountryState, countryFacts,currentFavCountry, favDetail, detailAPI, singleDetail, currentSeleFav,countryDetail2 } from "../model/atoms.js";
+import {playerLongestStreak, playerHighScore, globalHighScore, globalLongestStreak, favoriteCountries} from "../model/persistant_atoms.js";
+import {targetCountryState, countryFacts,currentFavCountry, favDetail, detailAPI, singleDetail, currentSeleFav, countryDetail2, isGrantedAccess } from "../model/atoms.js";
 import { DET_URL } from "../apiConfig";
 import { useSetRecoilState } from "recoil";
 import { useState } from "react";
-
+import FavPopupView from "../view/favPopupView";
+import { Navigate, useNavigate } from "react-router-dom";
+import SuspenseView from "../view/suspenseView";
 
 export default function Favourite(aa) {
-
-    const [favc, setfavc] = Recoil.useRecoilState(favoriteCountries);
-    const [cfc, setCfc] = Recoil.useRecoilState(currentFavCountry);
-    const [detail] = Recoil.useRecoilState(singleDetail);
+    const [access] = Recoil.useRecoilState(isGrantedAccess);
     const setCurFav = useSetRecoilState(currentFavCountry);
     const [curS, setcurS] = Recoil.useRecoilState(currentSeleFav);
-    const [cD, setcD] = Recoil.useRecoilState(countryDetail2);
     const [num, setNum] = useState(0);
+    const [detail] = Recoil.useRecoilState(singleDetail);
 
-    console.log(cD)
+
+
+    if (!access){
+        if (access === null) return <SuspenseView></SuspenseView>
+        return <Navigate to="/login" replace/>
+    }
+    else{
+        const [favc, setfavc] = Recoil.useRecoilState(favoriteCountries);
+        const [cD, setcD] = Recoil.useRecoilState(countryDetail2);
+
     return (
+        (favc.length)?
         <div>
                 <FavouriteView
                     favC={favc}
@@ -29,12 +38,10 @@ export default function Favourite(aa) {
                     removeFromList = {countryRemoveACB}
                     setSelect = {SelectFavACB}
                     num = {num}
-                    onNumSet = {handleNumSet}
-                />
-                
-        </div>
+                    onNumSet = {handleNumSet}/>
+        </div>:<FavPopupView/>
     );
-    
+
     function handleNumSet(num){
         setNum(num);
     }
@@ -58,6 +65,8 @@ export default function Favourite(aa) {
     function countryRemoveACB(country) {
         setfavc(favc.filter(x => x !== country))
         
+    }
+    
     }
 
 }

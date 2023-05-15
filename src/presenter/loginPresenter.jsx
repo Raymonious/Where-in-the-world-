@@ -1,24 +1,19 @@
 import React from 'react'
 import LoginView from '../view/LoginView';
-import { isGrantedAccess } from '../model/atoms';
 import * as Recoil from "recoil";
 import {useRecoilState} from 'recoil';
 import { useEffect, useState } from 'react';
-
+import { sessionType } from '../model/atoms';
 
 export default function Login(){
     
-    const [, changeAccess] = useRecoilState(isGrantedAccess);//navbar access rights or login state in general
     const [isLogin, setIsLogion] = useState(true) //component state for rendering login or create. This is not login state !
     const [email, changeEmail] = useState(); 
     const [password, changePass] = useState();
-
-    function accessHandlerACB(){
-        changeAccess(true);
-    }
-    
+    const [session, updateType] = useRecoilState(sessionType);
+    const [username, setUsername] = useState("")
     function SceneHandlerACB(){
-        setIsLogion(false);
+        setIsLogion(!isLogin);
     }
 
     function handleEmailChange(value){
@@ -29,9 +24,19 @@ export default function Login(){
         changePass(value);
     }
 
+    function handleUsernameChange(name){
+        setUsername(name)
+    }
+
+    function handleSessionUpdate(session){
+       updateType(session);
+    }
+
     return (
-        <LoginView onCreateAccount = {accessHandlerACB} isLogin = {isLogin}
+        <LoginView isLogin = {isLogin}
         onSceneChange = {SceneHandlerACB} email = {email} onEmailChange = {handleEmailChange} password = {password}
-        onPassChange = {handlePassChange}/>
+        onPassChange = {handlePassChange} session = {session} onSessionChange = {handleSessionUpdate} onUsernameInput = {handleUsernameChange}
+        displayName = {username}/>
     );
+
 }   

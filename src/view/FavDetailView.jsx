@@ -13,6 +13,7 @@ export default function FavDetailView(aa){
         <div className="detailFlex">
         
             <table className="detdata">
+                <tbody>
                 <tr>
                     <td>Capital</td>
                     <td>{aa.factData.capital.map(listDataACB)}</td>
@@ -45,7 +46,7 @@ export default function FavDetailView(aa){
                     <td colSpan={2}>
                     <img width={200} src={aa.factData.flags[0]}/></td>
                     
-                </tr>
+                </tr></tbody>
             </table>
         
         <span className="detailtext">
@@ -58,10 +59,10 @@ export default function FavDetailView(aa){
 
 
     function listDataACB(fact){
-        return (<span>{fact}</span>)
+        return (<span key={fact}>{fact}</span>)
     }
 
     function listFactACB(fact){
-        return (<div>{fact}</div>)
+        return (<div key={fact}>{fact}</div>)
     }
 }

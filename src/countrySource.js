@@ -22,7 +22,7 @@ delete configuration.baseOptions.headers['User-Agent'];
 const openai = new OpenAIApi(configuration);
 
 /*chatGPT call utility function */
-export function getFactsFromAI(URL) {
+export function getFactsFromAI(URL, attempts, sleepTime) {
     if(!URL) {
         return;
     }
@@ -40,7 +40,8 @@ export function getFactsFromAI(URL) {
         "by the user. For each fact, Hide any identifiers of the country. For instance, hide the name of the country, " +
         "the name of the people and the language. Replace any instance of the name of the country with 'This country' " +
         "Only return the facts, no other text wanted." +
-        "Return the facts numbered, with one new fact each line. "
+        "Return the facts numbered, with one new fact each line. " +
+        "Return new facts every time, even if the country being asked for is the same as before."
     /*Specify role of system or user, content for context of conversation */
     let input = [{role: 'system', content: instructions}, {role: 'user', content: URL}];
 
@@ -51,11 +52,26 @@ export function getFactsFromAI(URL) {
         presence_penalty: 2,
         messages: input,
         //more options available
-    }).then((res) => {
-        console.log(res)
-        console.log(res.data.choices[0].message.content.split("\n"));
-        return res.data.choices[0].message.content.replaceAll("-", " ").split("\n");
-    }).catch((err) => {console.log(err)})
+    }).then(handleAPIRespons).catch(handleAPIError)
+
+    function handleAPIRespons(res){
+        // console.log(res)
+        // console.log(res.data.choices[0].message.content.split("\n"));
+        return res.data.choices[0].message.content.replaceAll("-", " ").split("\n").filter((a)=>a);
+    }
+
+    function handleAPIError(err){
+        if(attempts === 0){
+            return ["Sorry, API does not work currently, please refresh the page. You will lose your progress."]
+        }
+        // console.log(attempts)
+        console.log("API issues, please wait...")
+        // console.log(err)
+        return sleep(sleepTime).then(()=> getFactsFromAI(URL, attempts-1, sleepTime * 1.8))
+    }
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
 }
 
 
@@ -82,16 +98,28 @@ export function getFactsFromAI(URL) {
 
 // list of countries accepted by the current API
 
-const APIAccepted = [
-    "Germany", "Spain", "Italy",
-    "France", "Sweden", "Estonia",
-     "Chile", "Iceland", "South Korea",
-    "Thailand", "Bahamas", "Bolivia",
-    "Venezuela", "Honduras", "USA", "UK",
-    "Peru", "Paraguay", "Japan",
-    "Guatemala", "Haiti", "India", "Singapore", 
-    "Cambodia", "South Africa",
-    ]
+export const APIAccepted = ["Afghanistan","Albania","Algeria","Andorra","Angola","Antigua and Barbuda","Argentina","Armenia",
+    "Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin",
+    "Bhutan","Bolivia","Bosnia and Herzegovina","Botswana","Brazil","Brunei","Bulgaria","Burkina Faso","Burundi",
+    "Cabo Verde","Cambodia","Cameroon","Canada","Central African Republic","Chad","Chile","China","Colombia","Comoros",
+    "Democratic Republic of the Congo","Republic of the Congo","Costa Rica","Cote d'Ivoire","Croatia","Cuba","Cyprus",
+    "Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador",
+    "Equatorial Guinea","Eritrea","Estonia","Eswatini","Ethiopia","Fiji","Finland","France","Gabon","Gambia","Georgia",
+    "Germany","Ghana","Greece","Grenada","Guatemala","Guinea","Guinea-Bissau","Guyana","Haiti","Honduras","Hungary",
+    "Iceland","India","Indonesia","Iran","Iraq","Ireland","Israel","Italy","Jamaica","Japan","Jordan","Kazakhstan",
+    "Kenya","Kiribati","Kosovo","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya",
+    "Liechtenstein","Lithuania","Luxembourg","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta",
+    "Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro",
+    "Morocco","Mozambique","Myanmar","Namibia","Nauru","Nepal","Netherlands","New Zealand","Nicaragua","Niger",
+    "Nigeria","North Korea","North Macedonia","Norway","Oman","Pakistan","Palau","Palestine","Panama",
+    "Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Qatar","Romania","Russia","Rwanda",
+    "Saint Kitts and Nevis","Saint Lucia","Saint Vincent and the Grenadines","Samoa","San Marino",
+    "Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia",
+    "Slovenia","Solomon Islands","Somalia","South Africa","South Korea","South Sudan","Spain","Sri Lanka","Sudan",
+    "Suriname","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor-Leste","Togo","Tonga",
+    "Trinidad and Tobago","Tunisia","Turkey","Turkmenistan","Tuvalu","Uganda","Ukraine","United Arab Emirates",
+    "United Kingdom","United States of America","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam",
+    "Yemen","Zambia","Zimbabwe"]
 
 export function getCountry(difficulty) {
 

@@ -3,6 +3,122 @@
 
 @import url(https://fonts.googleapis.com/css2?family=Audiowide&family=Satisfy&display=swap%27);
 
+/*#input-box{*/
+/*  background: grey;*/
+/*  !*border: dotted red;*!*/
+/*}*/
+
+.MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"] {
+  background: grey
+}
+
+.playGameButton{
+  text-align: center;
+}
+
+.aboutView{
+  display: grid;
+  justify-items: center;
+}
+
+.aboutView *{
+  max-width: 1000px;
+}
+
+.inputField{
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 5px;
+  align-items: center;
+}
+
+#gameTags{
+  display: grid;
+  justify-items: center;
+}
+
+.factNumber{
+  text-align: center;
+  font-size: 25px;
+  /*border-right: grey solid;*/
+  padding: 5px 5px;
+}
+
+.factText{
+  padding: 5px;
+  min-height: 43px;
+  display: grid;
+  align-items: center;
+  /*border: red dotted;*/
+  border-left: grey solid;
+  max-width: 500px;
+  text-align: center;
+}
+
+#ClueLocation {
+  grid-template-rows: 120px;
+  /*width: 500px;*/
+  text-overflow: wrap;
+}
+
+.unlockedFact{
+  align-items: center;
+  vertical-align: baseline;
+  display: grid;
+  grid-template-columns: 30px auto;
+  border-radius: 10px;
+  /*margin: auto;*/
+  margin-bottom: 10px;
+  border: solid grey;
+  /*padding-left: 5px;*/
+  /*padding-bottom: 5px;*/
+  background: black;
+}
+
+.lockedFact{
+  margin-bottom: 10px;
+  text-align: center;
+  border: solid grey;
+  padding-left: 5px;
+  padding-bottom: 5px;
+  background: black;
+}
+
+.leaderboard{
+  text-align: center;
+}
+#leaderboard{
+  align-content: center;
+  text-align: center;
+}
+#leaderboard table{
+  margin: 0 auto;
+  border-collapse: collapse;
+  /*min-width: 400px;*/
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+#leaderboard thead tr {
+  width: 400px;
+  background-color: #141313;
+  text-align: center;
+}
+#leaderboard th,
+#leaderboard td {
+  border-color: #1a1818;
+  padding: 12px 15px;
+}
+#leaderboard tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+#leaderboard tbody tr:nth-of-type(even) {
+  background-color: #1a1818;
+}
+
+#leaderboard tbody tr:last-of-type {
+  border-bottom: 2px solid #1a1818;
+}
+
 .navBar {
   padding-left: 135px;
   padding-right: 80px;
@@ -290,7 +406,7 @@ li.tab:hover {
   padding: 1%;
 }
 
-h1, h2{ font-family: 'Audiowide',cursive;
+h1, h2, h3{ font-family: 'Audiowide',cursive;
 }
 
 
@@ -308,10 +424,6 @@ table{border-collapse:collapse;}
 .detailFlex{
   display:flex;
   flex-direction: row;
-}
-
-.factlist{
-  margin: auto;
 }
 
 .home{
@@ -370,11 +482,6 @@ table{border-collapse:collapse;}
   overflow-x: auto;
   
   
-}
-
-#ClueLocation {
-  width: 500px;
- text-overflow: wrap;
 }
 
 #PictureLocation {
@@ -470,4 +577,12 @@ table{border-collapse:collapse;}
 
 .center{
   text-align: center;
+}
+
+.iconBtnContainer{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width:auto
+
 }
